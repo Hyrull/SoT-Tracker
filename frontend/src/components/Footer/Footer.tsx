@@ -1,8 +1,11 @@
+import './Footer.scss'
+
 function Footer() {
   return (
-    <>
-    <h1>This is a footer.</h1>
-    </>
+    <footer>
+    <p>Website made by Hyrul</p>
+    <a href='https://github.com/Hyrull/SoT-Tracker'>Source code</a>
+    </footer>
   )
 }
 
