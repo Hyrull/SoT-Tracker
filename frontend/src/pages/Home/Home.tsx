@@ -1,8 +1,8 @@
 function Home() {
   return (
-    <>
-    <h1>This works! (Page)</h1>
-    </>
+    <div className="homepage">
+      <h2>This page is under construction - check out the Commendations page!</h2>
+    </div>
   )
 }
 
