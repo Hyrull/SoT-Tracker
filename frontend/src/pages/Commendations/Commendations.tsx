@@ -34,6 +34,7 @@ function Commendations() {
         return (
           <div key={factionKey} className="faction-category">
             <h2>{factionNames[factionKey] || ''}</h2>
+            {/* I made it so it doesn't display anything if the faction is unknown just so it doesn't add a random empty category with the player's guilds IDs.*/}
             <div className='emblems'>
             {emblems?.map((emblem, index) => (
               <div key={index} className='emblem-card'>
@@ -53,7 +54,7 @@ function Commendations() {
             ))}
             </div>
           </div>
-        );
+        )
       })}
     </section>
   );
