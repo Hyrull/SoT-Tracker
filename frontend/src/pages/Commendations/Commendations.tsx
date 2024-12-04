@@ -25,7 +25,9 @@ function Commendations() {
 
   return (
     <section id="all-commendations">
-      {Object.entries(allCommsData).map(([factionKey, factionData]) => {
+      {Object.entries(allCommsData)
+      .filter(([factionKey]) => factionNames[factionKey])
+      .map(([factionKey, factionData]) => {
         // check pour les tall tales/bilge rats
         const emblems =
           'Emblems' in factionData
