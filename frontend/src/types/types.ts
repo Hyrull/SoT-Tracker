@@ -8,6 +8,12 @@ export interface Emblem {
   subtitle?: string;
   title?: string;
   image?: string;
+  Value: number;
+  Threshold: number;
+}
+
+export interface EmblemCardProps {
+  emblem: Emblem;
 }
 
 export interface Campaign {
@@ -27,4 +33,8 @@ export interface AllCommsData {
   [key: string]: FactionData;
 }
 
+export interface DropdownProps {
+  title: string
+  content: string  | JSX.Element
+}
 

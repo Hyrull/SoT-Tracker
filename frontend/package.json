@@ -14,7 +14,8 @@
     "react": "^18.3.1",
     "react-dom": "^18.3.1",
     "react-router": "^7.0.2",
-    "sass-embedded": "^1.82.0"
+    "sass-embedded": "^1.82.0",
+    "sass-loader": "^16.0.4"
   },
   "devDependencies": {
     "@eslint/js": "^9.15.0",

@@ -1,24 +1,15 @@
 #all-commendations {
-  .faction-category {
-    .emblems {
-      display: flex;
-      flex-direction: row;
-      flex-wrap: wrap;
-
-      .emblem-card {
-
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  
+  .dropdown-box {
+    .dropdown-content {
+      .emblems {
         display: flex;
-        padding: 20px;
-        margin: 24px;
-        // background-color: blue;
-        width: 30%;
-        align-items: center;
-
-        img {
-          width: 120px;
-          height: 120px;
-          margin-right: 20px;
-        }
+        flex-direction: row;
+        flex-wrap: wrap;
       }
     }
   }
