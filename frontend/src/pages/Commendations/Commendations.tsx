@@ -3,8 +3,9 @@ import Dropdown from '../../components/Dropdown/Dropdown'
 import EmblemCard from '../../components/EmblemCard/EmblemCard'
 import { useState } from 'react'
 
-// import allCommsData from './../../assets/user-data/hyrul-simplified.json'
-import allCommsData from './../../assets/user-data/hyrul-0412240615.json'
+import hyrulData from './../../assets/user-data/hyrul-0412240615.json'
+import user2Data from './../../assets/user-data/user2-0412242321.json'
+import UserSelector from '../../components/UserSelector/UserSelector'
 
 const factionNames: Record<string, string> = {
   ReapersBones: "Reaper's Bones",
@@ -22,11 +23,20 @@ const factionNames: Record<string, string> = {
 };
 
 function Commendations() {
-  const [hideCompleted, setHideCompleted] = useState(false)
+  const [hideCompleted, setHideCompleted] = useState(true)
+  const [allCommsData, setCommsData] = useState (hyrulData)
 
 const toggleHideCompleted = () => {
   setHideCompleted(!hideCompleted)
 }
+
+const handleDataSelection = (selected: string) => {
+  if (selected === 'hyrul') {
+    setCommsData(hyrulData);
+  } else if (selected === 'user2') {
+    setCommsData(user2Data);
+  }
+};
 
 
   return (
@@ -34,6 +44,7 @@ const toggleHideCompleted = () => {
       <button className='toggle-button' onClick={toggleHideCompleted}>
         {hideCompleted ? 'Show Completed' : 'Hide Completed'}
       </button>
+      <UserSelector onChange={handleDataSelection}/>
 
       {/* skip les guildes */}
       {Object.entries(allCommsData)
@@ -47,13 +58,16 @@ const toggleHideCompleted = () => {
             .flatMap(campaign => campaign.Emblems || []
             )
 
-            const filteredEmblems = hideCompleted ? emblems?.filter((emblem) => !emblem.Completed) : emblems;
+            const totalEmblems = emblems?.length || 0
+            const completedEmblems = emblems?.filter((emblem) => emblem.Completed).length || 0
+
+          const filteredEmblems = hideCompleted ? emblems?.filter((emblem) => !emblem.Completed) : emblems;
 
 
         return (
           <Dropdown
             key={factionKey}
-            title={factionNames[factionKey] || ''}
+            title={`${factionNames[factionKey]} - ${completedEmblems}/${totalEmblems}` || ''}
             content={
               <div className="emblems">
                 {filteredEmblems?.map((emblem, index) => (

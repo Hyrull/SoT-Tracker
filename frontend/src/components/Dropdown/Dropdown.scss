@@ -1,4 +1,9 @@
 .dropdown {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+
   .dropdown-header {
     // background-color: $main-color;
     border-radius: 5px;
@@ -7,7 +12,9 @@
     padding: 10px;
     background-color: #2B2F30;
     margin-top: 25px;
-    min-width: 100vh;
+    max-width: 100vh;
+    min-width: 60%;
+    align-items: center;
 
     h2 {
       font-size: 18px;
@@ -34,7 +41,7 @@
   .dropdown-box {
     overflow: hidden;
     height: 0px;
-    // max-width: 100vh;
+    min-width: 70%;
     transition: max-height 0.5s ease, padding 0.5s ease, min-height 0.5s ease;
     padding: 0 20px;
     position: relative;

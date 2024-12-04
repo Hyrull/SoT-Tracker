@@ -11,10 +11,7 @@ const EmblemCard: React.FC<EmblemCardProps> = ({ emblem }) => {
         {emblem.MaxGrade === 1 ? ('') : (
           <>
             <p>
-              {emblem.Value}/{emblem.Threshold}
-            </p>
-            <p>
-              Grade: {emblem.Grade}/{emblem.MaxGrade}
+              {emblem.Value}/{emblem.Threshold} (for grade {emblem.Grade}/{emblem.MaxGrade})
             </p>
           </>
         )}
