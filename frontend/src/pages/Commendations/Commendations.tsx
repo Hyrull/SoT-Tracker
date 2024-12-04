@@ -41,7 +41,12 @@ function Commendations() {
                 <div className='card-content'>
                   <h3>{emblem.title}</h3>
                   <p>{emblem.subtitle}</p>
-                  {emblem.MaxGrade === 1 ? '' : <p>Grade: {emblem.Grade}/{emblem.MaxGrade}</p>}
+                  {emblem.MaxGrade === 1 ? '' : 
+                  <>
+                  <p>{emblem.Value}/{emblem.Threshold}</p>
+                  <p>Grade: {emblem.Grade}/{emblem.MaxGrade}</p>
+                  </>
+                  }
                   <p>{emblem.Completed ? "Completed" : "Incomplete"}</p>
                 </div>
               </div>
