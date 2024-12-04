@@ -1,0 +1,266 @@
+{
+    "ReapersBones": {
+        "Motto": "Pirates For All Eternity",
+        "Intro": "",
+        "Rank": "Reaper of First Distinction",
+        "Level": 146,
+        "DistinctionLevel": 1,
+        "PromotionsUnlocked": 21,
+        "PromotionsTotal": 25,
+        "EmblemsTotal": 31,
+        "EmblemsUnlocked": 27,
+        "ItemsUnlocked": 17,
+        "ItemsTotal": 17,
+        "Progress": 0.485724043715847,
+        "Emblems": {
+            "EmblemsTotal": 31,
+            "EmblemsUnlocked": 27,
+            "Emblems": [
+                {
+                    "Image": "4970BE9646A041B99050F0A2295C06AA.png",
+                    "DisplayName": "Tributes Taken",
+                    "Description": "You sold 480 Gold Hoarder treasures to the Reaper's Bones.",
+                    "Completed": true,
+                    "New": true,
+                    "Grade": 5,
+                    "MaxGrade": 5,
+                    "Threshold": 480,
+                    "Value": 480,
+                    "HasScalar": true,
+                    "#Type": "EmblemItem",
+                    "#Name": "Tributes Taken",
+                    "Taxonomy": {
+                        "Tags": [
+                            {
+                                "#Name": "unlocked",
+                                "#Value": "unlocked"
+                            },
+                            {
+                                "#Name": "complete",
+                                "#Value": "complete"
+                            }
+                        ]
+                    },
+                    "locked": false,
+                    "image": "https://sotprofilecdn.azureedge.net/2-135-8227-0/Emblem/Unlocked/4970BE9646A041B99050F0A2295C06AA.png",
+                    "title": "Tributes Taken",
+                    "subtitle": "You sold 480 Gold Hoarder treasures to the Reaper's Bones.",
+                    "size": 0.85,
+                    "suppressProgress": false
+                },
+                {
+                    "Image": "0608EB8546F2E7B3EB9CEA8E04DB760D.png",
+                    "DisplayName": "Secrets Stolen",
+                    "Description": "You sold 480 Order of Souls treasures to the Reaper's Bones.",
+                    "Completed": true,
+                    "New": true,
+                    "Grade": 5,
+                    "MaxGrade": 5,
+                    "Threshold": 480,
+                    "Value": 480,
+                    "HasScalar": true,
+                    "#Type": "EmblemItem",
+                    "#Name": "Secrets Stolen",
+                    "Taxonomy": {
+                        "Tags": [
+                            {
+                                "#Name": "unlocked",
+                                "#Value": "unlocked"
+                            },
+                            {
+                                "#Name": "complete",
+                                "#Value": "complete"
+                            }
+                        ]
+                    },
+                    "locked": false,
+                    "image": "https://sotprofilecdn.azureedge.net/2-135-8227-0/Emblem/Unlocked/0608EB8546F2E7B3EB9CEA8E04DB760D.png",
+                    "title": "Secrets Stolen",
+                    "subtitle": "You sold 480 Order of Souls treasures to the Reaper's Bones.",
+                    "size": 0.85,
+                    "suppressProgress": false
+                },
+                {
+                    "Image": "B914918741C1EDDB6B9D538A96B28ABD.png",
+                    "DisplayName": "Cargo Captured",
+                    "Description": "You delivered 480 Merchant Alliance consignments to the Reaper's Bones.",
+                    "Completed": true,
+                    "New": true,
+                    "Grade": 5,
+                    "MaxGrade": 5,
+                    "Threshold": 480,
+                    "Value": 480,
+                    "HasScalar": true,
+                    "#Type": "EmblemItem",
+                    "#Name": "Cargo Captured",
+                    "Taxonomy": {
+                        "Tags": [
+                            {
+                                "#Name": "unlocked",
+                                "#Value": "unlocked"
+                            },
+                            {
+                                "#Name": "complete",
+                                "#Value": "complete"
+                            }
+                        ]
+                    },
+                    "locked": false,
+                    "image": "https://sotprofilecdn.azureedge.net/2-135-8227-0/Emblem/Unlocked/B914918741C1EDDB6B9D538A96B28ABD.png",
+                    "title": "Cargo Captured",
+                    "subtitle": "You delivered 480 Merchant Alliance consignments to the Reaper's Bones.",
+                    "size": 0.85,
+                    "suppressProgress": false
+                },
+                {
+                    "Image": "980F975D450C67A6BEDB96A433CC3A06.png",
+                    "DisplayName": "Legends Looted",
+                    "Description": "You sold 250 Athena's Fortune treasures to the Reaper's Bones.",
+                    "Completed": true,
+                    "New": true,
+                    "Grade": 5,
+                    "MaxGrade": 5,
+                    "Threshold": 250,
+                    "Value": 250,
+                    "HasScalar": true,
+                    "#Type": "EmblemItem",
+                    "#Name": "Legends Looted",
+                    "Taxonomy": {
+                        "Tags": [
+                            {
+                                "#Name": "unlocked",
+                                "#Value": "unlocked"
+                            },
+                            {
+                                "#Name": "complete",
+                                "#Value": "complete"
+                            }
+                        ]
+                    },
+                    "locked": false,
+                    "image": "https://sotprofilecdn.azureedge.net/2-135-8227-0/Emblem/Unlocked/980F975D450C67A6BEDB96A433CC3A06.png",
+                    "title": "Legends Looted",
+                    "subtitle": "You sold 250 Athena's Fortune treasures to the Reaper's Bones.",
+                    "size": 0.85,
+                    "suppressProgress": false
+                }
+            ]
+        }
+    },
+
+    "AthenasFortune": {
+        "Motto": "We Shall Sail Together",
+        "Intro": "",
+        "Rank": "Legend of First Distinction",
+        "Level": 119,
+        "DistinctionLevel": 1,
+        "PromotionsUnlocked": 11,
+        "PromotionsTotal": 42,
+        "TitlesTotal": 28,
+        "TitlesUnlocked": 21,
+        "EmblemsTotal": 61,
+        "EmblemsUnlocked": 38,
+        "ItemsUnlocked": 2,
+        "ItemsTotal": 2,
+        "Progress": 0.9674871794871794,
+        "Emblems": {
+            "EmblemsTotal": 61,
+            "EmblemsUnlocked": 38,
+            "Emblems": [
+                {
+                    "Image": "87FAEB434AFF98DF2C2F8AAC252A2E1C.png",
+                    "DisplayName": "Sailor of Athena's Fortune",
+                    "Description": "You sailed 1000 nautical miles on Athena's Fortune voyages!",
+                    "Completed": true,
+                    "Grade": 5,
+                    "MaxGrade": 5,
+                    "Threshold": 1000,
+                    "Value": 1000,
+                    "HasScalar": true,
+                    "#Type": "EmblemItem",
+                    "#Name": "Sailor of Athena's Fortune",
+                    "Taxonomy": {
+                        "Tags": [
+                            {
+                                "#Name": "unlocked",
+                                "#Value": "unlocked"
+                            },
+                            {
+                                "#Name": "complete",
+                                "#Value": "complete"
+                            }
+                        ]
+                    },
+                    "locked": false,
+                    "image": "https://sotprofilecdn.azureedge.net/2-135-8227-0/Emblem/Unlocked/87FAEB434AFF98DF2C2F8AAC252A2E1C.png",
+                    "title": "Sailor of Athena's Fortune",
+                    "subtitle": "You sailed 1000 nautical miles on Athena's Fortune voyages!",
+                    "size": 0.85,
+                    "suppressProgress": false
+                },
+                {
+                    "Image": "9335153745ABDF6F4852849183039974.png",
+                    "DisplayName": "Athena's Voyager",
+                    "Description": "You completed 30 Athena's Fortune voyages!",
+                    "Completed": true,
+                    "Grade": 5,
+                    "MaxGrade": 5,
+                    "Threshold": 30,
+                    "Value": 30,
+                    "HasScalar": true,
+                    "#Type": "EmblemItem",
+                    "#Name": "Athena's Voyager",
+                    "Taxonomy": {
+                        "Tags": [
+                            {
+                                "#Name": "unlocked",
+                                "#Value": "unlocked"
+                            },
+                            {
+                                "#Name": "complete",
+                                "#Value": "complete"
+                            }
+                        ]
+                    },
+                    "locked": false,
+                    "image": "https://sotprofilecdn.azureedge.net/2-135-8227-0/Emblem/Unlocked/9335153745ABDF6F4852849183039974.png",
+                    "title": "Athena's Voyager",
+                    "subtitle": "You completed 30 Athena's Fortune voyages!",
+                    "size": 0.85,
+                    "suppressProgress": false
+                },
+                {
+                    "Image": "F00E674B4C665779EC5DC29D5ED80724.png",
+                    "DisplayName": "Legendary Treasure Hunter",
+                    "Description": "You sold 30 Chest of Legends to the Mysterious Stranger!",
+                    "Completed": true,
+                    "Grade": 5,
+                    "MaxGrade": 5,
+                    "Threshold": 30,
+                    "Value": 30,
+                    "HasScalar": true,
+                    "#Type": "EmblemItem",
+                    "#Name": "Legendary Treasure Hunter",
+                    "Taxonomy": {
+                        "Tags": [
+                            {
+                                "#Name": "unlocked",
+                                "#Value": "unlocked"
+                            },
+                            {
+                                "#Name": "complete",
+                                "#Value": "complete"
+                            }
+                        ]
+                    },
+                    "locked": false,
+                    "image": "https://sotprofilecdn.azureedge.net/2-135-8227-0/Emblem/Unlocked/F00E674B4C665779EC5DC29D5ED80724.png",
+                    "title": "Legendary Treasure Hunter",
+                    "subtitle": "You sold 30 Chest of Legends to the Mysterious Stranger!",
+                    "size": 0.85,
+                    "suppressProgress": false
+                }
+            ]
+        }
+    }
+}

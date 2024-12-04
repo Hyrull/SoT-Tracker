@@ -1,0 +1,21 @@
+#all-commendations {
+  .faction-category {
+    .emblems {
+      display: flex;
+      flex-direction: row;
+      flex-wrap: auto;
+
+      .emblem-card {
+
+        display: flex;
+        padding: 20px;
+        margin: 24px;
+
+        img {
+          width: 120px;
+          height: 120px;
+        }
+      }
+    }
+  }
+}
