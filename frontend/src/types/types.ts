@@ -5,24 +5,22 @@ export interface Emblem {
   Completed: boolean;
   Grade: number;
   MaxGrade: number;
-  image: string;
-  title: string;
-  subtitle: string;
+  subtitle?: string;
+  title?: string;
+  image?: string;
+}
+
+export interface Campaign {
+  Title:string;
+  Desc: string;
+  Emblems?: Emblem[]
 }
 
 export interface FactionData {
   Motto: string;
   Intro: string;
-  Rank: string;
-  Level: number;
-  DistinctionLevel: number;
-  PromotionsUnlocked: number;
-  PromotionsTotal: number;
-  Emblems: {
-    EmblemsTotal: number;
-    EmblemsUnlocked: number;
-    Emblems: Emblem[];
-  };
+  Emblems?: { Emblems: Emblem[] };
+  Campaigns?: Record<string, Campaign>
 }
 
 export interface AllCommsData {
