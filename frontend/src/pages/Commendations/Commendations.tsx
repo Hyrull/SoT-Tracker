@@ -1,6 +1,7 @@
 import './Commendations.scss'
 import Dropdown from '../../components/Dropdown/Dropdown'
 import EmblemCard from '../../components/EmblemCard/EmblemCard'
+import { useState } from 'react'
 
 // import allCommsData from './../../assets/user-data/hyrul-simplified.json'
 import allCommsData from './../../assets/user-data/hyrul-0412240615.json'
@@ -21,10 +22,20 @@ const factionNames: Record<string, string> = {
 };
 
 function Commendations() {
-  console.log("Rendering Commendations");
+  const [hideCompleted, setHideCompleted] = useState(false)
+
+const toggleHideCompleted = () => {
+  setHideCompleted(!hideCompleted)
+}
+
 
   return (
     <section id="all-commendations">
+      <button className='toggle-button' onClick={toggleHideCompleted}>
+        {hideCompleted ? 'Show Completed' : 'Hide Completed'}
+      </button>
+
+      {/* skip les guildes */}
       {Object.entries(allCommsData)
       .filter(([factionKey]) => factionNames[factionKey])
       .map(([factionKey, factionData]) => {
@@ -36,6 +47,8 @@ function Commendations() {
             .flatMap(campaign => campaign.Emblems || []
             )
 
+            const filteredEmblems = hideCompleted ? emblems?.filter((emblem) => !emblem.Completed) : emblems;
+
 
         return (
           <Dropdown
@@ -43,7 +56,7 @@ function Commendations() {
             title={factionNames[factionKey] || ''}
             content={
               <div className="emblems">
-                {emblems?.map((emblem, index) => (
+                {filteredEmblems?.map((emblem, index) => (
                   <EmblemCard key={index} emblem={emblem} />
                 ))}
                 </div>
