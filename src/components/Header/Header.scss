@@ -21,9 +21,14 @@ header {
 @media (max-width: 767.98px) {
   header {
     flex-direction: column;
+    margin-right: 0px;
+    max-width: 90%;
+
+    // display: none;
 
     img {
       margin-bottom: 20px;
+      width: 80%
     }
 
     nav {
@@ -34,6 +39,7 @@ header {
         justify-content: center;
         text-align: center;
         padding-left: 0px;
+        font-size: 16px;
       }
     }
   }

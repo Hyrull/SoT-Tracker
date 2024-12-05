@@ -84,6 +84,7 @@
 @media (max-width: 767.98px) {
 
   .dropdown {
+
     .dropdown-header {
       min-width: 5px;
       max-width: 90%;
@@ -96,6 +97,20 @@
       .dropdown-content {
         min-width: 10%;
         max-width: 90%;
+
+        img {
+          width: 90px;
+          height: 90px;
+          margin-right: 5px;
+        }
+
+        h4 {
+          font-size: 16px;
+        }
+
+        p {
+          font-size: 14px;
+        }
       }
     }
   }
