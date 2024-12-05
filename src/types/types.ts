@@ -2,7 +2,7 @@ export interface Emblem {
   Image: string;
   DisplayName: string;
   Description: string;
-  Completed: boolean;
+  Completed?: boolean;
   Grade: number;
   MaxGrade: number;
   subtitle?: string;
