@@ -1,4 +1,3 @@
-import React, { useState } from 'react';
 import './UserSelector.scss'
 
 const UserSelector: React.FC<{ onChange: (selected: string) => void }> = ({ onChange }) => {
@@ -6,7 +5,7 @@ const UserSelector: React.FC<{ onChange: (selected: string) => void }> = ({ onCh
     <div className="user-selector">
       <select onChange={(e) => onChange(e.target.value)} defaultValue="hyrul">
         <option value="hyrul">Hyrul</option>
-        <option value="user2">User2</option>
+        <option value="user2">Pirate 2</option>
       </select>
     </div>
   );
