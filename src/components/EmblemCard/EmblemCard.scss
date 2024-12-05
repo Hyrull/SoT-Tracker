@@ -2,3 +2,11 @@
   border: solid 1px grey;
   border-radius: 35px;
 }
+
+@media (max-width: 767.98px) {
+  .emblem-card {
+    border: 0px;
+    min-width: 80%;
+    max-width: 90%;
+  }
+}

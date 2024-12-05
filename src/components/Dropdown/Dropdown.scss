@@ -15,6 +15,7 @@
     max-width: 100vh;
     min-width: 60%;
     align-items: center;
+    text-align: center;
 
     h2 {
       font-size: 18px;
@@ -78,4 +79,25 @@
       }
     }
   }
+}
+
+@media (max-width: 767.98px) {
+
+  .dropdown {
+    .dropdown-header {
+      min-width: 5px;
+      max-width: 90%;
+    }
+
+    .dropdown-box {
+      min-width: 10%;
+      max-width: 90%;
+
+      .dropdown-content {
+        min-width: 10%;
+        max-width: 90%;
+      }
+    }
+  }
+
 }

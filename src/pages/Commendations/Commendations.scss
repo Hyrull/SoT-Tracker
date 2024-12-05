@@ -41,10 +41,25 @@
     .dropdown-content {
       .emblems {
         display: flex;
-        flex-direction: row;
         flex-wrap: wrap;
         justify-content: center;
       }
     }
   }
+}
+
+@media (max-width: 767.98px) {
+#all-commendations {
+  .dropdown {
+    width: 100%;
+  }
+  
+  .dropdown-box {
+    .dropdown-content {
+      .emblems {
+        flex-direction: column;
+      }
+    }
+  }
+}
 }
