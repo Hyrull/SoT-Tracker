@@ -5,6 +5,8 @@ import { useState } from 'react'
 
 import hyrulData from '../../assets/user-data/hyrul.json'
 import user2DataJson from '../../assets/user-data/user2.json'
+import user3DataJson from '../../assets/user-data/user3.json'
+
 import UserSelector from '../../components/UserSelector/UserSelector'
 import { Campaign, Emblem } from '../../types/types'
 
@@ -32,14 +34,17 @@ const toggleHideCompleted = () => {
 }
 
 const user2Data = user2DataJson as any
+const user3Data = user3DataJson as any
 
 const handleDataSelection = (selected: string) => {
   if (selected === 'hyrul') {
-    setCommsData(hyrulData);
+    setCommsData(hyrulData)
   } else if (selected === 'user2') {
-    setCommsData(user2Data);
+    setCommsData(user2Data)
+  } else if (selected === 'user3') {
+    setCommsData(user3Data)
   }
-};
+}
 
 
   return (
@@ -85,7 +90,7 @@ const handleDataSelection = (selected: string) => {
 
 
                 {/* Campaigns */}
-                // Checker que si y a aucune commendation, alors on display même pas le nom de la catégorie
+                {/* Checker que si y a aucune commendation, alors on display même pas le nom de la catégorie */}
                 {campaigns.map(([campaignKey, campaign]: [string, Campaign]) => {
                 const filteredEmblems = (campaign.Emblems || []).filter((emblem: Emblem) => !hideCompleted || !emblem.Completed)
                 if (filteredEmblems.length === 0) {return null}
