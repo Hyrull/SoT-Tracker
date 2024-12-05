@@ -8,8 +8,8 @@ function Header() {
     <header>
       <img src={logo} alt='Sea of Thieves logo'/>
       <nav data-itemtype="https://schema.org/SiteNavigationElement" data-itemscope="">
-        <Link data-itemprop='url' to='/'>Home</Link>
-        <Link data-itemprop='url' to='/commendations'>Commendations</Link>
+        <Link data-itemprop='url' to='/SoT-Tracker'>Home</Link>
+        <Link data-itemprop='url' to='/SoT-Tracker/commendations'>Commendations</Link>
       </nav>
     </header>
   )

@@ -13,8 +13,8 @@ ReactDOM.createRoot(document.getElementById('root')!).render(
   <BrowserRouter>
     <Header />
     <Routes>
-      <Route path='/' element={<Home />} />
-      <Route path='/commendations' element={<Commendations />} />
+      <Route path='/Sot-Tracker' element={<Home />} />
+      <Route path='/SoT-Tracker/commendations' element={<Commendations />} />
       <Route path='*' element={<ErrorPage />} /> 
     </Routes>
     <Footer />
