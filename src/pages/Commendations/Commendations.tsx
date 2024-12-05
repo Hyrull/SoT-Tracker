@@ -1,13 +1,15 @@
 import './Commendations.scss'
+import { useState } from 'react'
 import Dropdown from '../../components/Dropdown/Dropdown'
 import EmblemCard from '../../components/EmblemCard/EmblemCard'
-import { useState } from 'react'
+import UserSelector from '../../components/UserSelector/UserSelector'
 
 import hyrulData from '../../assets/user-data/hyrul.json'
 import user2DataJson from '../../assets/user-data/user2.json'
 import user3DataJson from '../../assets/user-data/user3.json'
 
-import UserSelector from '../../components/UserSelector/UserSelector'
+import checkmark from '../../assets/img/checkmark.webp'
+
 import { Campaign, Emblem } from '../../types/types'
 
 const factionNames: Record<string, string> = {
@@ -69,12 +71,15 @@ const handleDataSelection = (selected: string) => {
         const level = 0 // Temporary - I wanna keep the possibility to reintroduce level display quickly later on if i change my mind
 
 
-
         // Comportement normal (SANS CAMPAIGN)
         return (
           <Dropdown
             key={factionKey}
-            title={`${factionNames[factionKey]} - ${completedEmblems}/${totalEmblems}${level ? ` (Level: ${level})` : ''}`}
+            title=
+            <>
+            {`${factionNames[factionKey]} - ${completedEmblems}/${totalEmblems}${level ? ` (Level: ${level})` : ''}`}
+              {completedEmblems === totalEmblems && <img src={checkmark} alt='Completion checkmark' /> }
+            </>
             content={
               <div>
                 {/* Main faction emblems */}

@@ -18,10 +18,17 @@
     text-align: center;
     cursor: pointer;
 
+    
     h2 {
       font-size: 18px;
       color: white;
       background-color: #2B2F30;
+
+      img {
+        width: 18px;
+        height: 18px;
+        margin-left: 10px;
+      }
     }
 
     img {

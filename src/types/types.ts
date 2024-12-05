@@ -34,7 +34,7 @@ export interface AllCommsData {
 }
 
 export interface DropdownProps {
-  title: string
+  title: string | JSX.Element
   content: string  | JSX.Element
 }
 
