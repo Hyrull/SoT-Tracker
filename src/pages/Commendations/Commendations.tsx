@@ -3,8 +3,8 @@ import Dropdown from '../../components/Dropdown/Dropdown'
 import EmblemCard from '../../components/EmblemCard/EmblemCard'
 import { useState } from 'react'
 
-import hyrulData from '../../assets/user-data/hyrul-0412240615.json'
-import user2DataJson from '../../assets/user-data/user2-0412242321.json'
+import hyrulData from '../../assets/user-data/hyrul.json'
+import user2DataJson from '../../assets/user-data/user2.json'
 import UserSelector from '../../components/UserSelector/UserSelector'
 import { Emblem } from '../../types/types'
 
