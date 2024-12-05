@@ -4,6 +4,7 @@ footer {
   align-items: center;
   justify-content: space-around;
   margin: 25px;
+  text-align: center;
 
   a {
     text-decoration: none;
@@ -19,13 +20,11 @@ footer {
     max-width: 80%;
 
     p {
-      text-align: center;
       margin-top: 40px;
     }
 
     a {
       margin-top: 40px;
-      text-align: center;
     }
   }
 }
