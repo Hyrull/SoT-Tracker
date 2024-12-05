@@ -3,9 +3,10 @@ import Dropdown from '../../components/Dropdown/Dropdown'
 import EmblemCard from '../../components/EmblemCard/EmblemCard'
 import { useState } from 'react'
 
-import hyrulData from './../../assets/user-data/hyrul-0412240615.json'
-import user2Data from './../../assets/user-data/user2-0412242321.json'
+import hyrulData from '../../assets/user-data/hyrul-0412240615.json'
+import user2DataJson from '../../assets/user-data/user2-0412242321.json'
 import UserSelector from '../../components/UserSelector/UserSelector'
+import { Emblem } from '../../types/types'
 
 const factionNames: Record<string, string> = {
   ReapersBones: "Reaper's Bones",
@@ -29,6 +30,8 @@ function Commendations() {
 const toggleHideCompleted = () => {
   setHideCompleted(!hideCompleted)
 }
+
+const user2Data = user2DataJson as any
 
 const handleDataSelection = (selected: string) => {
   if (selected === 'hyrul') {
@@ -55,8 +58,7 @@ const handleDataSelection = (selected: string) => {
           'Emblems' in factionData
             ? factionData.Emblems?.Emblems
             : Object.values(factionData.Campaigns || {})
-            .flatMap(campaign => campaign.Emblems || []
-            )
+            .flatMap((campaign) => (campaign as { Emblems?: Emblem[] }).Emblems || [])
 
             const totalEmblems = emblems?.length || 0
             const completedEmblems = emblems?.filter((emblem) => emblem.Completed).length || 0
@@ -71,7 +73,7 @@ const handleDataSelection = (selected: string) => {
             content={
               <div className="emblems">
                 {filteredEmblems?.map((emblem, index) => (
-                  <EmblemCard key={index} emblem={emblem} />
+                  <EmblemCard key={index} emblem={emblem as any} />
                 ))}
                 </div>
               }
