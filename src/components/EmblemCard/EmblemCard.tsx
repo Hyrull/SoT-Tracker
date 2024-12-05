@@ -6,7 +6,7 @@ const EmblemCard: React.FC<EmblemCardProps> = ({ emblem }) => {
     <div className="emblem-card">
       <img src={emblem.image} alt={emblem.title || 'Emblem'} />
       <div className="card-content">
-        <h3>{emblem.title}</h3>
+        <h4>{emblem.title}</h4>
         <p>{emblem.subtitle}</p>
         {emblem.MaxGrade === 1 ? ('') : (
           <>

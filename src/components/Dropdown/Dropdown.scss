@@ -55,10 +55,23 @@
 
     .dropdown-content {
       font-family: 'Montserrat';
-      font-size: 18px;
+      font-size: 16px;
       opacity: 0;
       transition: opacity 0.3s ease;
       justify-content: center;
+      
+      h4 {
+        font-size: 22px;
+        // margin-bottom: 6px;
+      }
+
+      .category {
+        h3 {
+          font-size: 26px;
+          text-align: center;
+          margin: 15px;
+        }
+      }
 
       &.visible {
         opacity: 1;
