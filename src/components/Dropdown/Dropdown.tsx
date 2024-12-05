@@ -10,10 +10,11 @@ function Dropdown({title, content} : DropdownProps) {
 
   return (
   <div className="dropdown">
-    <div className='dropdown-header'>
+    <div className='dropdown-header'
+    onClick={() => setdisplayContent(!displayContent)}>
       <h2>{title}</h2>
       <img src={dropdownArrow} alt='Dropdown arrow' 
-      onClick={() => setdisplayContent(!displayContent)}
+      
       className={displayContent ? 'rotate' : ''}/>
     </div>
     <div className={`dropdown-box ${displayContent ? 'visible' : ''}`}>
