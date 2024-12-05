@@ -1,6 +1,30 @@
 .emblem-card {
+  border: solid 1px #202020;
+  border-radius: 25px;
+  min-height: 140px;
+  transition: background-color 0.2s ease, border 0.2s ease;
+
+  .emblem-checkmark {
+    width: 24px;
+    height: 24px;
+    position: absolute;
+    top: 0px;
+    right: 0px;
+    margin-right: 0px;
+  }
+
+  .card-content {
+    position: relative;
+
+    .progress {
+      margin-top: 5px;;
+    }
+  }
+}
+
+.emblem-card:hover {
+  background-color: rgba($color: #ffffff, $alpha: 0.05);
   border: solid 1px grey;
-  border-radius: 35px;
 }
 
 @media (max-width: 767.98px) {

@@ -51,10 +51,13 @@ const handleDataSelection = (selected: string) => {
 
   return (
     <section id="all-commendations">
+      <div className='filters'>
+
       <button className='toggle-button' onClick={toggleHideCompleted}>
-        {hideCompleted ? 'Show Completed' : 'Hide Completed'}
-      </button>
-      <UserSelector onChange={handleDataSelection}/>
+          {hideCompleted ? 'Show Completed' : 'Hide Completed'}
+        </button>
+        <UserSelector onChange={handleDataSelection}/>
+      </div>
 
       {/* skip les guildes */}
       {Object.entries(allCommsData)

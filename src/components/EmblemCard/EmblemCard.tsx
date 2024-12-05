@@ -1,5 +1,6 @@
 import { EmblemCardProps } from "../../types/types"
 import './EmblemCard.scss'
+// import checkmark from '../../assets/img/checkmark.webp'
 
 const EmblemCard: React.FC<EmblemCardProps> = ({ emblem }) => {
   return (
@@ -10,13 +11,13 @@ const EmblemCard: React.FC<EmblemCardProps> = ({ emblem }) => {
         <p>{emblem.subtitle}</p>
         {emblem.MaxGrade === 1 ? ('') : (
           <>
-            <p>
-              {emblem.Value}/{emblem.Threshold} (for grade {emblem.Grade}/{emblem.MaxGrade})
+              <p className="progress"><b>
+              Progress: {emblem.Value}/{emblem.Threshold}</b> (for grade {emblem.Grade}/{emblem.MaxGrade})
             </p>
           </>
         )}
-        <p>{emblem.Completed ? 'Completed' : 'Incomplete'}</p>
       </div>
+      {/* {emblem.Completed ? <img src={checkmark} alt='Completion checkmark' className="emblem-checkmark"/> : ''} */}
     </div>
   );
 };

@@ -9,17 +9,21 @@
   margin: 0px;
   padding: 0px;
   overflow-x: hidden;
-  font-family: 'Montserrat';
-  background-color: #0F1111;
-  color: white;
   width: 100%;
   // box-sizing: border-box;
 }
 
+body {
+  // background-color: #0F1111;
+  background-color: #101010;
+  color: white;
+  font-family: 'Montserrat';
+}
+
 .emblem-card {
   display: flex;
-  padding: 20px;
-  margin: 24px;
+  padding: 10px;
+  margin: 10px 25px;
   // background-color: blue;
   width: 25%;
   // align-items: center;
