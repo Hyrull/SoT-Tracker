@@ -65,13 +65,16 @@ const handleDataSelection = (selected: string) => {
         const totalEmblems = [...mainEmblems, ...campaigns.flatMap(([, campaign]) =>  campaign.Emblems || []),].length
         const completedEmblems = [...mainEmblems, ...campaigns.flatMap(([, campaign]) =>  campaign.Emblems || []),].filter((emblem: Emblem) => emblem.Completed).length
 
+        // const level = 'Level' in factionData ? factionData.Level : 0
+        const level = 0 // Temporary - I wanna keep the possibility to reintroduce level display quickly later on if i change my mind
+
 
 
         // Comportement normal (SANS CAMPAIGN)
         return (
           <Dropdown
             key={factionKey}
-            title={`${factionNames[factionKey]} - ${completedEmblems}/${totalEmblems}`}
+            title={`${factionNames[factionKey]} - ${completedEmblems}/${totalEmblems}${level ? ` (Level: ${level})` : ''}`}
             content={
               <div>
                 {/* Main faction emblems */}
