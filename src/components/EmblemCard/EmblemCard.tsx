@@ -9,10 +9,10 @@ const EmblemCard: React.FC<EmblemCardProps> = ({ emblem }) => {
       <div className="card-content">
         <h4>{emblem.title}</h4>
         <p>{emblem.subtitle}</p>
-        {emblem.MaxGrade === 1 ? ('') : (
+        {emblem.Threshold === 1 || emblem.Threshold === 0 ? ('') : (
           <>
-              <p className="progress"><b>
-              Progress: {emblem.Value}/{emblem.Threshold}</b> (for grade {emblem.Grade}/{emblem.MaxGrade})
+              <p className="progress">
+              {`Progress: ${emblem.Value}/${emblem.Threshold}`} {emblem.MaxGrade !== 1 && `(for grade ${emblem.Grade}/${emblem.MaxGrade})`}
             </p>
           </>
         )}
