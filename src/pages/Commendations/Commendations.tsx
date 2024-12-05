@@ -60,6 +60,9 @@ const handleDataSelection = (selected: string) => {
         const totalEmblems = [...mainEmblems, ...campaigns.flatMap(([, campaign]) =>  campaign.Emblems || []),].length
         const completedEmblems = [...mainEmblems, ...campaigns.flatMap(([, campaign]) =>  campaign.Emblems || []),].filter((emblem: Emblem) => emblem.Completed).length
 
+
+
+        // Comportement normal (SANS CAMPAIGN)
         return (
           <Dropdown
             key={factionKey}
@@ -79,19 +82,26 @@ const handleDataSelection = (selected: string) => {
                   </div>
                 )}
 
+
+
                 {/* Campaigns */}
-                {campaigns.map(([campaignKey, campaign]: [string, Campaign]) => (
-                  <div key={campaignKey} className="category">
-                    <h3>{campaign.Title}</h3>
-                    <div className="emblems">
-                      {(campaign.Emblems || [])
-                        .filter((emblem) => !hideCompleted || !emblem.Completed)
-                        .map((emblem: Emblem, index: number) => (
+                // Checker que si y a aucune commendation, alors on display même pas le nom de la catégorie
+                {campaigns.map(([campaignKey, campaign]: [string, Campaign]) => {
+                const filteredEmblems = (campaign.Emblems || []).filter((emblem: Emblem) => !hideCompleted || !emblem.Completed)
+                if (filteredEmblems.length === 0) {return null}
+
+                // Comportement normal
+                  return (
+                    <div key={campaignKey} className="category">
+                      <h3>{campaign.Title}</h3>
+                      <div className="emblems">
+                        {filteredEmblems.map((emblem: Emblem, index: number) => (
                           <EmblemCard key={`${campaignKey}-${index}`} emblem={emblem} />
                         ))}
+                      </div>
                     </div>
-                  </div>
-                ))}
+                  );
+                })}
               </div>
             }
           />
