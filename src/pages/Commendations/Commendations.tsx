@@ -104,12 +104,13 @@ const matchesSearch = (emblem: Emblem) => {
               0
             );
 
-          const completedEmblems =
-            filteredMainEmblems.filter((emblem) => emblem.Completed).length +
+            const completedEmblems =
+            filteredMainEmblems.filter((emblem) => emblem.Completed ?? false).length +
             filteredCampaigns.reduce(
               (count, campaign) =>
                 count +
-                campaign.emblems.filter((emblem) => emblem.Completed).length,
+                (campaign.emblems || [])
+                  .filter((emblem: Partial<Emblem>) => emblem.Completed ?? false).length,
               0
             );
 
