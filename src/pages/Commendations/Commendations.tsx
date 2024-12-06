@@ -10,7 +10,7 @@ import user3DataJson from '../../assets/user-data/user3.json'
 
 import checkmark from '../../assets/img/checkmark.webp'
 
-import { Campaign, Emblem } from '../../types/types'
+import { Emblem } from '../../types/types'
 
 const factionNames: Record<string, string> = {
   ReapersBones: "Reaper's Bones",
@@ -72,7 +72,7 @@ const matchesSearch = (emblem: Emblem) => {
       <input
           type="text"
           className="search-bar"
-          placeholder="Search emblems..."
+          placeholder="Search through commendations..."
           value={searchQuery}
           onChange={(e) => setSearchQuery(e.target.value)}
         />
@@ -83,10 +83,35 @@ const matchesSearch = (emblem: Emblem) => {
       .map(([factionKey, factionData]) => {
         const mainEmblems = 'Emblems' in factionData
             ? factionData.Emblems?.Emblems || [] : []
+
+            const filteredMainEmblems = mainEmblems.filter((emblem) =>
+              matchesSearch(emblem)
+            );
         
         const campaigns = 'Campaigns' in factionData && factionData.Campaigns ? Object.entries(factionData.Campaigns) : []
-        const totalEmblems = [...mainEmblems, ...campaigns.flatMap(([, campaign]) =>  campaign.Emblems || []),].length
-        const completedEmblems = [...mainEmblems, ...campaigns.flatMap(([, campaign]) =>  campaign.Emblems || []),].filter((emblem: Emblem) => emblem.Completed).length
+
+        const filteredCampaigns = campaigns.map(([campaignKey, campaign]) => ({
+          key: campaignKey,
+          title: campaign.Title,
+          emblems: (campaign.Emblems || []).filter(matchesSearch),
+        }));
+
+
+        const totalEmblems =
+            filteredMainEmblems.length +
+            filteredCampaigns.reduce(
+              (count, campaign) => count + campaign.emblems.length,
+              0
+            );
+
+          const completedEmblems =
+            filteredMainEmblems.filter((emblem) => emblem.Completed).length +
+            filteredCampaigns.reduce(
+              (count, campaign) =>
+                count +
+                campaign.emblems.filter((emblem) => emblem.Completed).length,
+              0
+            );
 
         // const level = 'Level' in factionData ? factionData.Level : 0
         const level = 0 // Temporary - I wanna keep the possibility to reintroduce level display quickly later on if i change my mind
@@ -104,10 +129,10 @@ const matchesSearch = (emblem: Emblem) => {
             content={
               <div>
                 {/* Main faction emblems */}
-                {mainEmblems.length > 0 && (
+                {filteredMainEmblems.length > 0 && (
                   <div className="category">
                     <div className="emblems">
-                      {mainEmblems
+                      {filteredMainEmblems
                         .filter((emblem) => (!hideCompleted || !emblem.Completed) && matchesSearch(emblem))
                         .map((emblem, index) => (
                           <EmblemCard key={`main-${index}`} emblem={emblem} />
@@ -120,20 +145,26 @@ const matchesSearch = (emblem: Emblem) => {
 
                 {/* Campaigns */}
                 {/* Checker que si y a aucune commendation, alors on display même pas le nom de la catégorie */}
-                {campaigns.map(([campaignKey, campaign]: [string, Campaign]) => {
-                const filteredEmblems = (campaign.Emblems || []).filter((emblem: Emblem) => (!hideCompleted || !emblem.Completed) && matchesSearch(emblem))
-                if (filteredEmblems.length === 0) {return null}
+                {filteredCampaigns.map((campaign) => {
+                    if (campaign.emblems.length === 0) return null;
 
-                // Comportement normal
-                  return (
-                    <div key={campaignKey} className="category">
-                      <h3>{campaign.Title}</h3>
-                      <div className="emblems">
-                        {filteredEmblems.map((emblem: Emblem, index: number) => (
-                          <EmblemCard key={`${campaignKey}-${index}`} emblem={emblem} />
-                        ))}
+                    return (
+                      <div key={campaign.key} className="category">
+                        <h3>{campaign.title}</h3>
+                        <div className="emblems">
+                          {campaign.emblems
+                            .filter(
+                              (emblem: Emblem) =>
+                                !hideCompleted || !emblem.Completed
+                            )
+                            .map((emblem: Emblem, index: number) => (
+                              <EmblemCard
+                                key={`${campaign.key}-${index}`}
+                                emblem={emblem}
+                              />
+                            ))}
+                        </div>
                       </div>
-                    </div>
                   );
                 })}
               </div>
