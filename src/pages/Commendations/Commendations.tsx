@@ -30,6 +30,7 @@ const factionNames: Record<string, string> = {
 function Commendations() {
   const [hideCompleted, setHideCompleted] = useState(true)
   const [allCommsData, setCommsData] = useState (hyrulData)
+  const [searchQuery, setSearchQuery] = useState("")
 
 const toggleHideCompleted = () => {
   setHideCompleted(!hideCompleted)
@@ -48,6 +49,14 @@ const handleDataSelection = (selected: string) => {
   }
 }
 
+const matchesSearch = (emblem: Emblem) => {
+  const searchLower = searchQuery.toLowerCase();
+  return (
+    emblem.DisplayName.toLowerCase().includes(searchLower) ||
+    emblem.Description.toLowerCase().includes(searchLower)
+  );
+};
+
 
   return (
     <section id="all-commendations">
@@ -58,6 +67,15 @@ const handleDataSelection = (selected: string) => {
         </button>
         <UserSelector onChange={handleDataSelection}/>
       </div>
+
+      {/* Search Bar */}
+      <input
+          type="text"
+          className="search-bar"
+          placeholder="Search emblems..."
+          value={searchQuery}
+          onChange={(e) => setSearchQuery(e.target.value)}
+        />
 
       {/* skip les guildes */}
       {Object.entries(allCommsData)
@@ -90,7 +108,7 @@ const handleDataSelection = (selected: string) => {
                   <div className="category">
                     <div className="emblems">
                       {mainEmblems
-                        .filter((emblem) => !hideCompleted || !emblem.Completed)
+                        .filter((emblem) => (!hideCompleted || !emblem.Completed) && matchesSearch(emblem))
                         .map((emblem, index) => (
                           <EmblemCard key={`main-${index}`} emblem={emblem} />
                         ))}
@@ -103,7 +121,7 @@ const handleDataSelection = (selected: string) => {
                 {/* Campaigns */}
                 {/* Checker que si y a aucune commendation, alors on display même pas le nom de la catégorie */}
                 {campaigns.map(([campaignKey, campaign]: [string, Campaign]) => {
-                const filteredEmblems = (campaign.Emblems || []).filter((emblem: Emblem) => !hideCompleted || !emblem.Completed)
+                const filteredEmblems = (campaign.Emblems || []).filter((emblem: Emblem) => (!hideCompleted || !emblem.Completed) && matchesSearch(emblem))
                 if (filteredEmblems.length === 0) {return null}
 
                 // Comportement normal
