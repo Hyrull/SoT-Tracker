@@ -4,6 +4,18 @@
   align-items: center;
   justify-content: center;
 
+  .search-bar {
+    width: 100%;
+    max-width: 400px;
+    padding: 8px 12px;
+    margin: 10px 0;
+    font-size: 16px;
+    border: 1px solid grey;
+    border-radius: 8px;
+    background-color: #2B2F30;
+    color: white;
+  }
+
   .filters {
     display: flex;
     flex-direction: row;
