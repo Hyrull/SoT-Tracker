@@ -14,8 +14,6 @@
     margin-top: 25px;
     max-width: 100vh;
     min-width: 60%;
-    align-items: center;
-    text-align: center;
     cursor: pointer;
 
     
@@ -23,6 +21,8 @@
       font-size: 18px;
       color: white;
       background-color: #2B2F30;
+      text-align: center;
+      // margin-left: 40%;
 
       img {
         width: 18px;
