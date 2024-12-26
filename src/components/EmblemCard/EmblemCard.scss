@@ -1,8 +1,20 @@
 .emblem-card {
-  border: solid 1px #202020;
+  display: flex;
+  padding: 10px;
+  margin: 10px 15px;
+  width: 25%;
+  border: solid 1px #393939;
   border-radius: 25px;
   min-height: 140px;
   transition: background-color 0.2s ease, border 0.2s ease;
+  background: #1a1a1a;
+
+  img {
+    width: 150px;
+    height: 150px;
+    flex-shrink: 0;
+    margin-right: 20px;
+  }
 
   .emblem-checkmark {
     width: 24px;
@@ -23,7 +35,7 @@
 }
 
 .emblem-card:hover {
-  background-color: rgba($color: #ffffff, $alpha: 0.05);
+  // background-color: rgba($color: #ffffff, $alpha: 0.05);
   border: solid 1px grey;
 }
 
