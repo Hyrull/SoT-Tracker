@@ -3,6 +3,7 @@
   flex-direction: column;
   align-items: center;
   justify-content: center;
+  width: 90%;
 
   .search-bar {
     width: 100%;
@@ -62,7 +63,7 @@
       .emblems {
         display: flex;
         flex-wrap: wrap;
-        justify-content: center;
+        justify-content: space-around;
       }
     }
   }

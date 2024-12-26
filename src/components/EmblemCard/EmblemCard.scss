@@ -2,12 +2,14 @@
   display: flex;
   padding: 10px;
   margin: 10px 15px;
-  width: 25%;
+  height: 215px;
+  width: 510px;
   border: solid 1px #393939;
   border-radius: 25px;
   min-height: 140px;
   transition: background-color 0.2s ease, border 0.2s ease;
   background: #1a1a1a;
+  box-sizing: border-box;
 
   img {
     width: 150px;
