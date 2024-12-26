@@ -9,40 +9,84 @@
     border-radius: 5px;
     display: flex;
     justify-content: space-between;
-    padding: 10px;
-    background-color: #2B2F30;
-    margin-top: 25px;
+    // padding: 10px;
+    // background-color: #2B2F30;
+    // margin-top: 25px;
     max-width: 100vh;
     min-width: 100%;
+    height: 110px;
     cursor: pointer;
+    position: relative;
+    flex-grow: 0;
+    border: 1px solid #1c1c1c;
 
-    
-    h2 {
-      font-size: 18px;
-      color: white;
-      background-color: #2B2F30;
-      text-align: center;
-      // margin-left: 40%;
-
-      img {
-        width: 18px;
-        height: 18px;
-        margin-left: 10px;
-      }
-    }
-
-    img {
+    .arrow {
+      transition: transform 0.3s ease;
+      // background-color: #2B2F30;
       width: 25px;
       height: 25px;
-      transition: transform 0.3s ease;
-      background-color: #2B2F30;
+      filter: invert(1);
+      transform: rotate(-90deg);
 
       &:hover {
         cursor: pointer;
       }
 
       &.rotate {
-        transform: rotate(180deg);
+        transform: rotate(90deg);
+      }
+    }
+
+    .checkmark {
+      width: 25px;
+      height: 25px;
+      margin-left: 15px;
+      filter: invert(1);
+
+    }
+
+    .faction-header {
+      // background-color: blue;
+      display: flex;
+      flex-direction: row;
+      width: 100%;
+
+      h2 {
+        font-size: 2em;
+        color: white;
+        // background-color: #2B2F30;
+        text-align: center;
+        margin-left: 12px;
+        flex-grow: 0;
+      }
+
+      h3 {
+        font-size: 1.5em;
+        margin-left: 35px;
+      }
+
+      .faction-icon {
+        width: 72px;
+        height: 72px;
+      }
+
+      .banner-container {
+        position: absolute;
+        top: 0;
+        right: 30px;
+        height: 100%;
+        width: 200%;
+        overflow-y: hidden;
+        // background: linear-gradient(to left, rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0) 50%);
+        display: flex;
+        justify-content: flex-end;
+        align-items: center;
+        z-index: 1;
+        // display: none;
+
+        .faction-banner {
+          z-index: -1;
+        }
       }
     }
   }
@@ -79,6 +123,9 @@
           font-size: 26px;
           text-align: center;
           margin: 15px;
+          padding: 15px 0px;
+          border-top: 1px solid #1c1c1c;
+          border-bottom: 1px solid #1c1c1c;
         }
       }
 

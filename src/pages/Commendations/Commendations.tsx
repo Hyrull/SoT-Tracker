@@ -8,23 +8,71 @@ import hyrulData from '../../assets/user-data/hyrul.json'
 import user2DataJson from '../../assets/user-data/user2.json'
 import user3DataJson from '../../assets/user-data/user3.json'
 
-import checkmark from '../../assets/img/checkmark.webp'
+import checkmark from '../../assets/img/Checkmark.svg'
 
 import { Emblem } from '../../types/types'
 
-const factionNames: Record<string, string> = {
-  ReapersBones: "Reaper's Bones",
-  AthenasFortune: "Athena's Fortune",
-  OrderOfSouls: "Order of Souls",
-  BilgeRats: "Bilge Rats",
-  CreatorCrew: "Creator Crew",
-  TallTales: "Tall Tales",
-  HuntersCall: "Hunter's Call",
-  MerchantAlliance: "Merchant Alliance",
-  SeaDogs: "Sea Dogs",
-  GoldHoarders: "Gold Hoarders",
-  PirateLord: "Guardians of Fortune",
-  Flameheart: "Servants of the Flame"
+const factionNames: Record<string, {name: string, logo: string, banner: string}> = {
+  ReapersBones: {
+    name: "Reaper's Bones",
+    logo: "assets/img/faction icons/Reaper's_Bones_icon.webp",
+    banner: "assets/img/faction banners/Reaper's_Bones_banner.webp",
+  },
+  AthenasFortune: {
+    name: "Athena's Fortune",
+    logo: "assets/img/faction icons/Athena's_Fortune_icon.webp",
+    banner: "assets/img/faction banners/Athena's_Fortune_banner.webp",
+  },
+  OrderOfSouls: {
+    name: "Order of Souls",
+    logo: "assets/img/faction icons/Order_of_Souls_icon.webp",
+    banner: "assets/img/faction banners/Order_of_Souls_banner.webp",
+  },
+  BilgeRats: {
+    name: "Bilge Rats",
+    logo: "assets/img/faction icons/Bilge_Rats_icon.webp",
+    banner: "assets/img/faction banners/Bilge_Rats_banner.webp",
+  },
+  CreatorCrew: {
+    name: "Creator Crew",
+    logo: "assets/img/faction icons/Creator_Crew_icon.webp",
+    banner: "assets/img/faction banners/Creator_Crew_banner.webp",
+  },
+  TallTales: {
+    name: "Tall Tales",
+    logo: "assets/img/faction icons/Tall_Tales_icon.webp",
+    banner: "assets/img/faction banners/Tall_Tales_banner.webp",
+  },
+  HuntersCall: {
+    name: "Hunter's Call",
+    logo: "assets/img/faction icons/The_Hunter's_Call_icon.webp",
+    banner: "assets/img/faction banners/The_Hunter's_Call_banner.webp",
+  },
+  MerchantAlliance: {
+    name: "Merchant Alliance",
+    logo: "assets/img/faction icons/Merchant_Alliance_icon.webp",
+    banner: "assets/img/faction banners/Merchant_Alliance_banner.webp",
+  },
+  SeaDogs: {
+    name: "Sea Dogs",
+    logo: "assets/img/faction icons/Sea_Dogs_icon.webp",
+    banner: "assets/img/faction banners/Sea_Dogs_banner.webp",
+  },
+  GoldHoarders: {
+    name: "Gold Hoarders",
+    logo: "assets/img/faction icons/Gold_Hoarders_icon.webp",
+    banner: "assets/img/faction banners/Gold_Hoarders_banner.webp",
+  },
+  PirateLord: {
+    name: "Guardians of Fortune",
+    logo: "assets/img/faction icons/Athena's_Fortune_icon.webp",
+    banner: "assets/img/faction banners/Guardians_of_Fortune_banner.webp",
+  },
+  Flameheart: {
+    name: "Servants of the Flame",
+    logo: "assets/img/faction icons/Reaper's_Bones_icon.webp",
+    banner: "assets/img/faction banners/Servants_of_the_Flame_banner.webp",
+  }
 };
 
 function Commendations() {
@@ -122,11 +170,27 @@ const matchesSearch = (emblem: Emblem) => {
         return (
           <Dropdown
             key={factionKey}
-            title=
-            <>
-            {`${factionNames[factionKey]} - ${completedEmblems}/${totalEmblems}${level ? ` (Level: ${level})` : ''}`}
-              {completedEmblems === totalEmblems && <img src={checkmark} alt='Completion checkmark' /> }
+            title={
+              <>
+              <div className='faction-header'>
+                <img
+                  className='faction-icon'
+                  src={factionNames[factionKey].logo}
+                  alt={`${factionNames[factionKey].name} icon`}
+                  />
+                <h2>{`${factionNames[factionKey].name}`}</h2>
+                <h3>{`${completedEmblems}/${totalEmblems}${level ? ` (Level: ${level})` : ''}`}</h3>
+                <div className='banner-container'>
+                  <img
+                    className='faction-banner'
+                    src={factionNames[factionKey].banner}
+                    alt={`${factionNames[factionKey].name} banner`}
+                    />
+                </div>
+              {completedEmblems === totalEmblems && <img src={checkmark} alt='Completion checkmark' className='checkmark'/> }
+              </div>
             </>
+          }
             content={
               <div>
                 {/* Main faction emblems */}
