@@ -5,7 +5,7 @@ import './EmblemCard.scss'
 const EmblemCard: React.FC<EmblemCardProps> = ({ emblem }) => {
   return (
     <div className="emblem-card">
-      <img src={emblem.image} alt={emblem.title || 'Emblem'} />
+      <img loading="lazy" src={emblem.image} alt={emblem.title || 'Emblem'} />
       <div className="card-content">
         <h4>{emblem.title}</h4>
         <p>{emblem.subtitle}</p>
