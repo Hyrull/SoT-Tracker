@@ -18,7 +18,7 @@ ReactDOM.createRoot(document.getElementById('root')!).render(
       <Route path='/Sot-Tracker' element={<Home />} />
       <Route path='/Sot-Tracker/signup' element={<Signup />} />
       <Route path='/Sot-Tracker/login' element={<Login />} />
-      {/* <Route path='/SoT-Tracker/commendations' element={<Commendations />} /> */}
+      <Route path='/SoT-Tracker/commendations' element={<Commendations />} />
       <Route path='*' element={<ErrorPage />} /> 
     </Routes>
     <Footer />
