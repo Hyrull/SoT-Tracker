@@ -19,7 +19,10 @@ function Header() {
         <Link data-itemprop='url' to='/SoT-Tracker/commendations'>Commendations</Link>
         {
           token ? (
+            <>
+            <Link data-itemprop='url' to='/SoT-Tracker/settings'>Settings</Link>
             <Link data-itemprop='url' to='/SoT-Tracker/' onClick={removeToken}>Log out</Link>
+            </>
           ) : (
             <Link data-itemprop='url' to='/SoT-Tracker/login'>Log in</Link>
         )}
