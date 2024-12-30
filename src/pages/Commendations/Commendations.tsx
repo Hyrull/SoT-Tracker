@@ -1,17 +1,12 @@
-import './Commendations.scss'
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
+import { Link } from 'react-router'
 import Dropdown from '../../components/Dropdown/Dropdown'
 import EmblemCard from '../../components/EmblemCard/EmblemCard'
-import UserSelector from '../../components/UserSelector/UserSelector'
-
-import hyrulData from '../../assets/user-data/hyrul.json'
-import user2DataJson from '../../assets/user-data/user2.json'
-import user3DataJson from '../../assets/user-data/user3.json'
-
+import { Emblem, AllCommsData } from '../../types/types'
+import './Commendations.scss'
 import checkmark from '../../assets/img/Checkmark.svg'
 
-import { Emblem } from '../../types/types'
-
+// Faction names object - I should put that in a dedicated file
 const factionNames: Record<string, {name: string, logo: string, banner: string}> = {
   ReapersBones: {
     name: "Reaper's Bones",
@@ -73,171 +68,205 @@ const factionNames: Record<string, {name: string, logo: string, banner: string}>
     logo: "assets/img/faction icons/Reaper's_Bones_icon.webp",
     banner: "assets/img/faction banners/Servants_of_the_Flame_banner.webp",
   }
-};
+}
 
-function Commendations() {
+
+const Commendations = () => {
+  const [emblems, setEmblems] = useState<AllCommsData>({})
   const [hideCompleted, setHideCompleted] = useState(true)
-  const [allCommsData, setCommsData] = useState (hyrulData)
-  const [searchQuery, setSearchQuery] = useState("")
+  const [searchQuery, setSearchQuery] = useState('')
+  const [loading, setLoading] = useState(true)
+  const [error, setError] = useState<string | null>(null)
+  const token = localStorage.getItem('token')
 
-const toggleHideCompleted = () => {
-  setHideCompleted(!hideCompleted)
-}
+  // Function to fetch emblems
+  useEffect(() => {
+    const fetchEmblems = async () => {
+      try {
+        const response = await fetch('https://sot-tracker-api.onrender.com/api/emblems/fetch', {
+          method: 'GET',
+          headers: {
+            'Content-Type': 'application/json',
+            Authorization: `Bearer ${token}`,
+          },
+        })
 
-const user2Data = user2DataJson as any
-const user3Data = user3DataJson as any
+        if (!response.ok) {
+          throw new Error('Failed to fetch data.')
+        }
 
-const handleDataSelection = (selected: string) => {
-  if (selected === 'hyrul') {
-    setCommsData(hyrulData)
-  } else if (selected === 'user2') {
-    setCommsData(user2Data)
-  } else if (selected === 'user3') {
-    setCommsData(user3Data)
+        const data: AllCommsData = await response.json() // Ensure response matches `AllCommsData`
+        setEmblems(data) // Set fetched data
+        setError(null)
+      } catch (err) {
+        setError('There was an error fetching the data.')
+      } finally {
+        setLoading(false)
+      }
+    }
+
+    fetchEmblems()
+  }, [token]) // Fetch only on component mount or token change
+
+  // Handle loading state
+  if (loading) {
+    return <div className="loading-container">Loading commendations...</div>
   }
-}
 
-const matchesSearch = (emblem: Emblem) => {
-  const searchLower = searchQuery.toLowerCase();
-  return (
-    emblem.DisplayName.toLowerCase().includes(searchLower) ||
-    emblem.Description.toLowerCase().includes(searchLower)
-  );
-};
+  // Handle error state
+  if (error) {
+    return (
+      <div className="error-container">
+        <h2>{error}</h2>
+        {!token && <Link to="/SoT-Tracker/login">Log in here</Link>}
+        {token && <Link to="/SoT-Tracker">Try logging out and logging in again.</Link>}
+      </div>
+    )
+  }
 
+  // Function to toggle completed commendations visibility
+  const toggleHideCompleted = () => {
+    setHideCompleted(!hideCompleted)
+  }
+
+  // Function to check search match
+  const matchesSearch = (emblem: Emblem) => {
+    const searchLower = searchQuery.toLowerCase()
+    return (
+      emblem.DisplayName.toLowerCase().includes(searchLower) ||
+      emblem.Description.toLowerCase().includes(searchLower)
+    )
+  }
 
   return (
     <section id="all-commendations">
-      <div className='filters'>
 
-      <button className='toggle-button' onClick={toggleHideCompleted}>
+      {/* FILTER BARS et tout */}
+      <div className="filters">
+        <button className="toggle-button" onClick={toggleHideCompleted}>
           {hideCompleted ? 'Show Completed' : 'Hide Completed'}
         </button>
-        <UserSelector onChange={handleDataSelection}/>
       </div>
-
-      {/* Search Bar */}
       <input
-          type="text"
-          className="search-bar"
-          placeholder="Search through commendations..."
-          value={searchQuery}
-          onChange={(e) => setSearchQuery(e.target.value)}
-        />
-
-      {/* skip les guildes */}
-      {Object.entries(allCommsData)
-      .filter(([factionKey]) => factionNames[factionKey])
-      .map(([factionKey, factionData]) => {
-        const mainEmblems = 'Emblems' in factionData
-            ? factionData.Emblems?.Emblems || [] : []
-
-            const filteredMainEmblems = mainEmblems.filter((emblem) =>
-              matchesSearch(emblem)
-            );
-        
-        const campaigns = 'Campaigns' in factionData && factionData.Campaigns ? Object.entries(factionData.Campaigns) : []
-
-        const filteredCampaigns = campaigns.map(([campaignKey, campaign]) => ({
-          key: campaignKey,
-          title: campaign.Title,
-          emblems: (campaign.Emblems || []).filter(matchesSearch),
-        }));
+        type="text"
+        className="search-bar"
+        placeholder="Search through commendations..."
+        value={searchQuery}
+        onChange={(e) => setSearchQuery(e.target.value)}
+      />
 
 
-        const totalEmblems =
+
+      {Object.entries(emblems)
+        .filter(([factionKey]) => factionNames[factionKey]) // Filter out unknown factions (guilds)
+
+        // Mapping the data
+        .map(([factionKey, factionData]) => {
+          const mainEmblems = factionData.Emblems?.Emblems || [] // Access main emblems - sometimes emblems are nested in campaigns
+          const filteredMainEmblems = mainEmblems.filter(matchesSearch) // Applying the search filter
+
+          // Campaigns handling
+          const campaigns = factionData.Campaigns ? Object.entries(factionData.Campaigns) : []
+          const filteredCampaigns = campaigns.map(([campaignKey, campaign]) => ({
+            key: campaignKey,
+            title: campaign.Title,
+            emblems: (campaign.Emblems || []).filter(matchesSearch),
+          }))
+
+
+          // Calculating total and completed emblems
+          const totalEmblems =
             filteredMainEmblems.length +
-            filteredCampaigns.reduce(
-              (count, campaign) => count + campaign.emblems.length,
-              0
-            );
+            filteredCampaigns.reduce((count, campaign) => count + campaign.emblems.length, 0)
 
-            const completedEmblems =
-            filteredMainEmblems.filter((emblem) => emblem.Completed ?? false).length +
+          const completedEmblems =
+            filteredMainEmblems.filter((emblem) => emblem.Completed).length +
             filteredCampaigns.reduce(
               (count, campaign) =>
-                count +
-                (campaign.emblems || [])
-                  .filter((emblem: Partial<Emblem>) => emblem.Completed ?? false).length,
+                count + campaign.emblems.filter((emblem) => emblem.Completed).length,
               0
-            );
+            )
 
-        // const level = 'Level' in factionData ? factionData.Level : 0
-        const level = 0 // Temporary - I wanna keep the possibility to reintroduce level display quickly later on if i change my mind
+          const level = 0 // Temporary placeholder for level
 
 
-        // Comportement normal (SANS CAMPAIGN)
-        return (
-          <Dropdown
-            key={factionKey}
-            title={
-              <>
-              <div className='faction-header'>
-                <img
-                  className='faction-icon'
-                  src={factionNames[factionKey].logo}
-                  alt={`${factionNames[factionKey].name} icon`}
-                  />
-                <h2>{`${factionNames[factionKey].name}`}</h2>
-                <h3>{`${completedEmblems}/${totalEmblems}${level ? ` (Level: ${level})` : ''}`}</h3>
-                <div className='banner-container'>
+          // TIME TO ACTUALLY DISPLAY ALL OF IT
+          return (
+            <Dropdown
+              key={factionKey}
+
+              // FACTION HEADER STUFF
+              title={
+                <>
+                <div className='faction-header'>
                   <img
-                    className='faction-banner'
-                    src={factionNames[factionKey].banner}
-                    alt={`${factionNames[factionKey].name} banner`}
+                    className='faction-icon'
+                    src={factionNames[factionKey].logo}
+                    alt={`${factionNames[factionKey].name} icon`}
                     />
-                </div>
-              {completedEmblems === totalEmblems && <img src={checkmark} alt='Completion checkmark' className='checkmark'/> }
-              </div>
-            </>
-          }
-            content={
-              <div>
-                {/* Main faction emblems */}
-                {filteredMainEmblems.length > 0 && (
-                  <div className="category">
-                    <div className="emblems">
-                      {filteredMainEmblems
-                        .filter((emblem) => (!hideCompleted || !emblem.Completed) && matchesSearch(emblem))
-                        .map((emblem, index) => (
-                          <EmblemCard key={`main-${index}`} emblem={emblem} />
-                        ))}
-                    </div>
+                  <h2>{`${factionNames[factionKey].name}`}</h2>
+                  <h3>{`${completedEmblems}/${totalEmblems}${level ? ` (Level: ${level})` : ''}`}</h3>
+                  <div className='banner-container'>
+                    <img
+                      className='faction-banner'
+                      src={factionNames[factionKey].banner}
+                      alt={`${factionNames[factionKey].name} banner`}
+                      />
                   </div>
-                )}
-
-
-
-                {/* Campaigns */}
-                {/* Checker que si y a aucune commendation, alors on display même pas le nom de la catégorie */}
-                {filteredCampaigns.map((campaign) => {
-                    if (campaign.emblems.length === 0) return null;
-
-                    return (
-                      <div key={campaign.key} className="category">
-                        <h3>{campaign.title}</h3>
-                        <div className="emblems">
-                          {campaign.emblems
-                            .filter(
-                              (emblem: Emblem) =>
-                                !hideCompleted || !emblem.Completed
-                            )
-                            .map((emblem: Emblem, index: number) => (
-                              <EmblemCard
-                                key={`${campaign.key}-${index}`}
-                                emblem={emblem}
-                              />
-                            ))}
-                        </div>
-                      </div>
-                  );
-                })}
-              </div>
+                {completedEmblems === totalEmblems && <img src={checkmark} alt='Completion checkmark' className='checkmark'/> }
+                </div>
+              </>
             }
-          />
-        );
-      })}
-  </section>
-)}
+
+            // ALL THE ACTUAL COMMENDATIONS
+              content={
+                <div>
+                  {/* Simple ones */}
+                  {filteredMainEmblems.length > 0 && (
+                    <div className="category">
+                      <div className="emblems">
+                        {filteredMainEmblems
+                          .filter((emblem) => (!hideCompleted || !emblem.Completed) && matchesSearch(emblem))
+                          .map((emblem, index) => (
+                            <EmblemCard key={`main-${index}`} emblem={emblem} />
+                          ))}
+                      </div>
+                    </div>
+                  )}
+  
+  
+  
+                  {/* Campaigns */}
+                  {/* Checker que si y a aucune commendation, alors on display même pas le nom de la catégorie */}
+                  {filteredCampaigns.map((campaign) => {
+                      if (campaign.emblems.length === 0) return null
+  
+                      // Campaign title display
+                      return (
+                        <div key={campaign.key} className="category">
+                          <h3>{campaign.title}</h3>
+                          <div className="emblems">
+                            {campaign.emblems
+                              .filter(
+                                (emblem: Emblem) =>
+                                  !hideCompleted || !emblem.Completed
+                              )
+                              .map((emblem: Emblem, index: number) => (
+                                <EmblemCard
+                                  key={`${campaign.key}-${index}`}
+                                  emblem={emblem}
+                                />
+                              ))}
+                          </div>
+                        </div>
+                    )
+                  })}
+                </div>
+              }
+            />
+          )
+        })}
+    </section>
+  )}
 
 export default Commendations
