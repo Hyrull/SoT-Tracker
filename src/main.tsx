@@ -14,7 +14,7 @@ ReactDOM.createRoot(document.getElementById('root')!).render(
     <Header />
     <Routes>
       <Route path='/Sot-Tracker' element={<Home />} />
-      <Route path='/SoT-Tracker/commendations' element={<Commendations />} />
+      {/* <Route path='/SoT-Tracker/commendations' element={<Commendations />} /> */}
       <Route path='*' element={<ErrorPage />} /> 
     </Routes>
     <Footer />

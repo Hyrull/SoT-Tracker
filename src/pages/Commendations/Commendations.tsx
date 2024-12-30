@@ -4,9 +4,6 @@ import Dropdown from '../../components/Dropdown/Dropdown'
 import EmblemCard from '../../components/EmblemCard/EmblemCard'
 import UserSelector from '../../components/UserSelector/UserSelector'
 
-import hyrulData from '../../assets/user-data/hyrul.json'
-import user2DataJson from '../../assets/user-data/user2.json'
-import user3DataJson from '../../assets/user-data/user3.json'
 
 import checkmark from '../../assets/img/Checkmark.svg'
 
@@ -73,28 +70,17 @@ const factionNames: Record<string, {name: string, logo: string, banner: string}>
     logo: "assets/img/faction icons/Reaper's_Bones_icon.webp",
     banner: "assets/img/faction banners/Servants_of_the_Flame_banner.webp",
   }
-};
+}
+
+
+// MAKE ALLCOMMSDATA BE THE DATA FROM THE API
 
 function Commendations() {
   const [hideCompleted, setHideCompleted] = useState(true)
-  const [allCommsData, setCommsData] = useState (hyrulData)
   const [searchQuery, setSearchQuery] = useState("")
 
 const toggleHideCompleted = () => {
   setHideCompleted(!hideCompleted)
-}
-
-const user2Data = user2DataJson as any
-const user3Data = user3DataJson as any
-
-const handleDataSelection = (selected: string) => {
-  if (selected === 'hyrul') {
-    setCommsData(hyrulData)
-  } else if (selected === 'user2') {
-    setCommsData(user2Data)
-  } else if (selected === 'user3') {
-    setCommsData(user3Data)
-  }
 }
 
 const matchesSearch = (emblem: Emblem) => {
