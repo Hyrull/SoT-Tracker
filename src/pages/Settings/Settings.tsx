@@ -31,6 +31,28 @@ const Settings: React.FC = () => {
     }
   }
 
+  const refreshData = async () => {
+    const token = localStorage.getItem('token')
+    if (!token) {
+      setMessage('User token was not found')
+      return
+    }
+
+    const response = await fetch('https://sot-tracker-api.onrender.com/api/emblems/update', {
+      method: 'PATCH',
+      headers: {
+        'Content-Type': 'application/json',
+        Authorization: `Bearer ${token}`,
+      },
+    })
+
+    if (response.ok) {
+      setMessage('Data refreshed successfully')
+    } else {
+      setMessage('Failed to refresh data.')
+    }
+  }
+
   return (
     <div>
       <h2>Settings</h2>
@@ -46,8 +68,11 @@ const Settings: React.FC = () => {
           style={{ width: '100%', padding: '8px', boxSizing: 'border-box' }}
         />
       </div>
-      <button onClick={handleUpdate} style={{ padding: '10px 20px', cursor: 'pointer' }}>
+      <button onClick={handleUpdate}>
         Update
+      </button>
+      <button onClick={refreshData}>
+        Refresh my data
       </button>
       {message && <p style={{ marginTop: '10px' }}>{message}</p>}
     </div>
