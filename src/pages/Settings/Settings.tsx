@@ -1,4 +1,5 @@
 import React, { useState } from 'react'
+import './Settings.scss'
 
 const Settings: React.FC = () => {
   const [ratToken, setRatToken] = useState('')
@@ -54,11 +55,11 @@ const Settings: React.FC = () => {
   }
 
   return (
-    <div>
+    <div className='settings-container'>
       <h2>Settings</h2>
-      <div>
+      <div className='form-group'>
         <label htmlFor="ratToken">
-          Update Rat
+          Update your Rat token here:
         </label>
         <input
           type="text"
@@ -69,12 +70,12 @@ const Settings: React.FC = () => {
         />
       </div>
       <button onClick={handleUpdate}>
-        Update
+        Update Rat
       </button>
       <button onClick={refreshData}>
-        Refresh my data
+        Refresh my commendations
       </button>
-      {message && <p style={{ marginTop: '10px' }}>{message}</p>}
+      {message && <p className='server-message'>{message}</p>}
     </div>
   )
 }
