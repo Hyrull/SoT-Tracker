@@ -25,6 +25,18 @@
 
       label {
         width: 100px;
+        display: flex;
+        align-items: center;
+      }
+
+      input {
+        width: 80%;
+        max-width: 400px;
+        padding: 8px 12px;
+        margin: 10px 0;
+        font-size: 16px;
+        border: 1px solid grey;
+        border-radius: 8px;
       }
     }
 
