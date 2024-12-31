@@ -110,7 +110,7 @@ const Commendations = () => {
 
   // Handle loading state
   if (loading) {
-    return <div className="loading-container">Loading commendations...</div>
+    return <div className="loading-container"><p>Loading commendations...</p></div>
   }
 
   // Handle error state

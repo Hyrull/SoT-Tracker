@@ -69,6 +69,45 @@
   }
 }
 
+.loading-container {
+  p {
+    font-size: 36px;
+    margin: 20px;
+  }
+}
+
+.error-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  h2 {
+    color: red;
+  }
+
+  a {
+    color: white;
+    text-decoration: none;
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+    padding: 12px 20px;
+    font-size: 16px;
+    background-color: #2B2F30;
+    color: white;
+    border: 2px solid #214B21;
+    border-radius: 20px;
+    transition: all 0.3s ease-in-out;
+    
+    /* On hover */
+    &:hover {
+      // background-color: blue; /* Darker green */
+      cursor: pointer;
+      border-color: white;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    }
+  }
+}
+
 @media (max-width: 767.98px) {
 #all-commendations {
 
