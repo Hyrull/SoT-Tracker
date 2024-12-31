@@ -57,16 +57,6 @@
       }
     }
   }
-  
-  .dropdown-box {
-    .dropdown-content {
-      .emblems {
-        display: flex;
-        flex-wrap: wrap;
-        justify-content: space-around;
-      }
-    }
-  }
 }
 
 .loading-container {
@@ -109,19 +99,14 @@
 }
 
 @media (max-width: 767.98px) {
-#all-commendations {
+  #all-commendations {
 
-  // display: none;
-  .dropdown {
     width: 100%;
-  }
-  
-  .dropdown-box {
-    .dropdown-content {
-      .emblems {
-        flex-direction: column;
-      }
+
+    .search-bar {
+      width: 90%;
+      margin-top: 25px;
+      margin-bottom: 25px;
     }
   }
-}
 }

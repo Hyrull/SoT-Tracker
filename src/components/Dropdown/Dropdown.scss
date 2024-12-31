@@ -52,19 +52,29 @@
       flex-direction: row;
       width: 100%;
 
-      h2 {
-        font-size: 2em;
-        color: white;
-        // background-color: #2B2F30;
-        text-align: center;
-        margin-left: 12px;
-        flex-grow: 0;
+      .faction-info {
+        display: flex;
+
+        .faction-text {
+          display: flex;
+          flex-direction: row;
+          
+                  h2 {
+                    font-size: 2em;
+                    color: white;
+                    // background-color: #2B2F30;
+                    text-align: center;
+                    margin-left: 12px;
+                    flex-grow: 0;
+                  }
+            
+                  h3 {
+                    font-size: 1.5em;
+                    margin-left: 35px;
+                  }
+        }
       }
 
-      h3 {
-        font-size: 1.5em;
-        margin-left: 35px;
-      }
 
       .faction-icon {
         width: 72px;
@@ -114,6 +124,12 @@
       opacity: 0;
       transition: opacity 0.3s ease;
       justify-content: center;
+
+      .emblems {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-around;
+      }
       
       h4 {
         font-size: 22px;
@@ -141,11 +157,59 @@
 @media (max-width: 767.98px) {
 
   .dropdown {
+    width: 100%;
+    display: flex;
+    justify-content: space-around;
 
     .dropdown-header {
-      min-width: 5px;
-      max-width: 90%;
+      width: 100%;
+      align-items: center;
+      justify-content: space-between;
+
+      .faction-header {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        flex-grow: 1;
+
+        .faction-icon {
+          width: 50px;
+          height: 50px;
+          margin: 0px 10px;
+          flex-shrink: 0;
+        }
+  
+        .faction-info {
+          display: flex;
+          flex-direction: row;
+          flex-grow: 1;
+          justify-content: center;
+          text-align: center; 
+
+          .faction-text {
+
+            flex-direction: column;
+            h2 {
+              font-size: 1.4em;
+            }
+    
+            h3 {
+              font-size: 1.0em;
+            }
+          }
+        }
+
+
+        .faction-banner {
+          opacity: 0.1;
+        }
+      }
+
+      .arrow {
+        margin-right: 10px;
+      }
     }
+
 
     .dropdown-box {
       min-width: 10%;
@@ -154,6 +218,22 @@
       .dropdown-content {
         min-width: 10%;
         max-width: 90%;
+
+        .emblems {
+
+          flex-direction: column;
+
+          .emblem-card {
+            width: 95%;
+            border: 1px solid #666666;
+
+            img {
+              width: 75px;
+              height: 75px;
+              flex-shrink: 0;
+            }
+          }
+        }
 
         img {
           width: 90px;

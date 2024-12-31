@@ -35,13 +35,14 @@ header {
 
     nav {
       display: flex;
+      flex-direction: column;
       
       a {
         margin-bottom: 15px;
         justify-content: center;
         text-align: center;
         padding-left: 0px;
-        font-size: 16px;
+        font-size: 1rem;
       }
     }
   }

@@ -204,8 +204,13 @@ const Commendations = () => {
                     src={factionNames[factionKey].logo}
                     alt={`${factionNames[factionKey].name} icon`}
                     />
-                  <h2>{`${factionNames[factionKey].name}`}</h2>
-                  <h3>{`${completedEmblems}/${totalEmblems}${level ? ` (Level: ${level})` : ''}`}</h3>
+                    <div className='faction-info'>
+                      <div className='faction-text'>
+                        <h2>{`${factionNames[factionKey].name}`}</h2>
+                        <h3>{`${completedEmblems}/${totalEmblems}${level ? ` (Level: ${level})` : ''}`}</h3>
+                      </div>
+                    {completedEmblems === totalEmblems && <img src={checkmark} alt='Completion checkmark' className='checkmark'/> }
+                    </div>
                   <div className='banner-container'>
                     <img
                       className='faction-banner'
@@ -213,7 +218,6 @@ const Commendations = () => {
                       alt={`${factionNames[factionKey].name} banner`}
                       />
                   </div>
-                {completedEmblems === totalEmblems && <img src={checkmark} alt='Completion checkmark' className='checkmark'/> }
                 </div>
               </>
             }
