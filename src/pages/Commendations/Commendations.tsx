@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react'
+import { useEffect, useState, useCallback } from 'react'
 import { Link } from 'react-router'
 import Dropdown from '../../components/Dropdown/Dropdown'
 import EmblemCard from '../../components/EmblemCard/EmblemCard'
@@ -77,6 +77,7 @@ const Commendations = () => {
   const [searchQuery, setSearchQuery] = useState('')
   const [loading, setLoading] = useState(true)
   const [error, setError] = useState<string | null>(null)
+  const [isSticky, setIsSticky] = useState(false);
   const token = localStorage.getItem('token')
 
   // Function to fetch emblems
@@ -108,6 +109,29 @@ const Commendations = () => {
     fetchEmblems()
   }, [token]) // Fetch only on component mount or token change
 
+
+
+  // Listening to scroll events to toggle the sticky header
+  useEffect(() => {
+    window.addEventListener('scroll', handleScroll);
+
+    return () => {
+      window.removeEventListener('scroll', handleScroll);
+    }
+  }, [])
+
+  const handleScroll = useCallback(() => {
+    const header = document.querySelector('header');
+    const headerHeight = header ? header.offsetHeight : 0;
+    setIsSticky(window.scrollY > headerHeight);
+  }, []);
+
+  useEffect(() => {
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, [handleScroll]);
+
+
   // Handle loading state
   if (loading) {
     return <div className="loading-container"><p>Loading commendations...</p></div>
@@ -138,22 +162,25 @@ const Commendations = () => {
     )
   }
 
+
+
+
   return (
     <section id="all-commendations">
 
       {/* FILTER BARS et tout */}
-      <div className="filters">
+      <div className={`filters ${isSticky ? 'sticky' : ''}`}>
         <button className="toggle-button" onClick={toggleHideCompleted}>
           {hideCompleted ? 'Show Completed' : 'Hide Completed'}
         </button>
-      </div>
       <input
         type="text"
         className="search-bar"
         placeholder="Search through commendations..."
         value={searchQuery}
         onChange={(e) => setSearchQuery(e.target.value)}
-      />
+        />
+      </div>
 
 
 
