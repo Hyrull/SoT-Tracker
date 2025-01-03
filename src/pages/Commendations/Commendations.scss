@@ -112,13 +112,16 @@
 
 @media (max-width: 767.98px) {
   #all-commendations {
-
     width: 100%;
 
-    .search-bar {
-      width: 90%;
-      margin-top: 25px;
-      margin-bottom: 25px;
+    .filters {
+      flex-direction: column;
+
+      .search-bar {
+        width: 90%;
+        margin-top: 25px;
+        margin-bottom: 25px;
+      }
     }
   }
 }
