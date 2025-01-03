@@ -78,6 +78,7 @@ const Commendations = () => {
   const [loading, setLoading] = useState(true)
   const [error, setError] = useState<string | null>(null)
   const [isSticky, setIsSticky] = useState(false);
+  const [refreshing, setRefreshing] = useState(false);
   const token = localStorage.getItem('token')
 
   // Function to fetch emblems
@@ -125,6 +126,47 @@ const Commendations = () => {
     const headerHeight = header ? header.offsetHeight : 0;
     setIsSticky(window.scrollY > headerHeight);
   }, []);
+
+  const refreshData = async () => {
+    setRefreshing(true)
+    try {
+      const token = localStorage.getItem('token');
+      const response = await fetch('https://sot-tracker-api.onrender.com/api/emblems/update', {
+        method: 'PATCH',
+        headers: {
+          'Content-Type': 'application/json',
+          Authorization: `Bearer ${token}`,
+        },
+      });
+  
+      if (!response.ok) {
+        throw new Error('Failed to refresh data.');
+      }
+  
+      // Fetch the updated data
+      const updatedResponse = await fetch('https://sot-tracker-api.onrender.com/api/emblems/fetch', {
+        method: 'GET',
+        headers: {
+          'Content-Type': 'application/json',
+          Authorization: `Bearer ${token}`,
+        },
+      });
+  
+      if (!updatedResponse.ok) {
+        throw new Error('Failed to fetch updated data.');
+      }
+  
+      const updatedData: AllCommsData = await updatedResponse.json();
+      setEmblems(updatedData) // Update the state
+    } catch (err) {
+      console.error('Error refreshing data:', err)
+      setError('Failed to refresh commendations.')
+    } finally {
+      setRefreshing(false)
+    }
+  };
+  
+
 
   useEffect(() => {
     window.addEventListener('scroll', handleScroll);
@@ -180,6 +222,9 @@ const Commendations = () => {
         value={searchQuery}
         onChange={(e) => setSearchQuery(e.target.value)}
         />
+        <button onClick={refreshData} disabled={refreshing} className="refresh-button">
+        {refreshing ? 'Refreshing...' : 'Refresh my commendations'}
+      </button>
       </div>
 
 
