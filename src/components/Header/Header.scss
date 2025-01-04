@@ -1,21 +1,28 @@
 header {
+  background-color: #1a1a1a;
+  width: 100%;
   display: flex;
-  flex-direction: row;
-  align-items: center;
-  justify-content: space-between;
-  margin-top: 20px;
-  width: 80%;
+  justify-content: center;
+  border-bottom: 1px solid #393939;
+  
+  .header-content {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    padding-top: 10px;
+    width: 80%;
 
-
-  img {
-    width: 400px;
-  }
-
-  a {
-    font-size: 24px;
-    padding-left: 24px;
-    text-decoration: none;
-    color: white;
+    img {
+      width: 400px;
+    }
+    
+    a {
+      font-size: 24px;
+      padding-left: 24px;
+      text-decoration: none;
+      color: white;
+    }
   }
 }
 

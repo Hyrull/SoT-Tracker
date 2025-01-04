@@ -13,20 +13,22 @@ const removeToken = () => {
 function Header() {
   return (
     <header>
-      <img src={logo} alt='Sea of Thieves logo'/>
-      <nav data-itemtype="https://schema.org/SiteNavigationElement" data-itemscope="">
-        <Link data-itemprop='url' to='/SoT-Tracker'>Home</Link>
-        <Link data-itemprop='url' to='/SoT-Tracker/commendations'>Commendations</Link>
-        {
-          token ? (
-            <>
-            <Link data-itemprop='url' to='/SoT-Tracker/settings'>Settings</Link>
-            <Link data-itemprop='url' to='/SoT-Tracker/' onClick={removeToken}>Log out</Link>
-            </>
-          ) : (
-            <Link data-itemprop='url' to='/SoT-Tracker/login'>Log in</Link>
-        )}
-      </nav>
+      <div className='header-content'>
+        <img src={logo} alt='Sea of Thieves logo'/>
+        <nav data-itemtype="https://schema.org/SiteNavigationElement" data-itemscope="">
+          <Link data-itemprop='url' to='/SoT-Tracker'>Home</Link>
+          <Link data-itemprop='url' to='/SoT-Tracker/commendations'>Commendations</Link>
+          {
+            token ? (
+              <>
+              <Link data-itemprop='url' to='/SoT-Tracker/settings'>Settings</Link>
+              <Link data-itemprop='url' to='/SoT-Tracker/' onClick={removeToken}>Log out</Link>
+              </>
+            ) : (
+              <Link data-itemprop='url' to='/SoT-Tracker/login'>Log in</Link>
+            )}
+        </nav>
+      </div>
     </header>
   )
 }
