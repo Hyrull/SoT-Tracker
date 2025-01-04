@@ -1,5 +1,5 @@
 import { useState } from "react"
-import dropdownArrow from './../../assets/img/Unfold.svg'
+import dropdownArrow from '/assets/img/icons/Unfold.svg'
 import './Dropdown.scss'
 
 import { DropdownProps } from "../../types/types"
