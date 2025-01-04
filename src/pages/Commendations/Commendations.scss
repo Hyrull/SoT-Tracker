@@ -33,25 +33,66 @@
       min-width: 650px;
       // margin-left: 33%;
 
-      button {
-        padding: 8px 20px;
-        margin-right: 40px;
+      .toggle-button {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        position: relative;
+        width: 200px; /* Adjusted to fit both text and slider */
+        height: 40px;
+        padding: 0 10px; /* Add padding for proper spacing */
         font-size: 16px;
         background-color: #2B2F30;
         color: white;
         border: 2px solid #214B21;
         border-radius: 10px;
         cursor: pointer;
+        overflow: hidden;
         transition: all 0.3s ease-in-out;
-        // margin-top: 20px;
-        
-        /* On hover */
-        &:hover {
-          // background-color: blue; /* Darker green */
-          border-color: white;
-          box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        margin-right: 25px;
+      
+        &.off {
+          background-color: #2B2F30;
+          border-color: #214B21;
+        }
+      
+        .toggle-text {
+          margin-right: 10px;
+          // font-weight: bold;
+          white-space: nowrap;
+          transition: color 0.3s ease-in-out;
+        }
+      
+        .slider {
+          position: relative;
+          display: inline-block;
+          width: 40px; /* Width of the slider track */
+          height: 20px; /* Height of the slider track */
+          background-color: grey;
+          border-radius: 10px;
+          transition: all 0.3s ease-in-out;
+      
+          .slider-handle {
+            position: absolute;
+            top: 2px;
+            left: 2px;
+            width: 16px; /* Diameter of the handle */
+            height: 16px;
+            background-color: #2B2F30;
+            border-radius: 50%;
+            transition: all 0.3s ease-in-out;
+          }
+        }
+      
+        &.on .slider .slider-handle {
+          left: calc(100% - 18px); /* Move handle to the right when "on" */
+        }
+
+        &.on .slider {
+          background-color: #3d863d;
         }
       }
+      
 
       .search-bar {
         width: 100%;

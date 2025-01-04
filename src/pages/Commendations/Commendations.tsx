@@ -219,8 +219,11 @@ const Commendations = () => {
       <div className={`filters ${isSticky ? 'sticky' : ''}`}>
         <div className='empty-div-on-purpose'></div>
         <div className='toggle-and-search'>
-        <button className="toggle-button" onClick={toggleHideCompleted}>
-          {hideCompleted ? 'Show Completed' : 'Hide Completed'}
+        <button className={`toggle-button ${hideCompleted ? 'off' : 'on'}`} onClick={toggleHideCompleted}>
+          <span className="toggle-text">Show Completed</span>
+          <span className="slider">
+            <span className="slider-handle"></span>
+          </span>
         </button>
         <input
           type="text"
