@@ -38,7 +38,7 @@
         align-items: center;
         justify-content: space-between;
         position: relative;
-        width: 200px; /* Adjusted to fit both text and slider */
+        width: 300px; /* Adjusted to fit both text and slider */
         height: 40px;
         padding: 0 10px; /* Add padding for proper spacing */
         font-size: 16px;
@@ -55,12 +55,17 @@
           background-color: #2B2F30;
           border-color: #214B21;
         }
+        
+        &:hover {
+          border-color: white;
+        }
       
         .toggle-text {
           margin-right: 10px;
           // font-weight: bold;
           white-space: nowrap;
           transition: color 0.3s ease-in-out;
+          // width: 100%;
         }
       
         .slider {
@@ -99,7 +104,7 @@
 
         .search-bar {
           width: 100%;
-          max-width: 400px;
+          max-width: 350px;
           padding: 8px 12px;
           // margin: 10px 0;
           font-size: 16px;
@@ -109,7 +114,7 @@
           color: white;
           transition: all 0.3s ease-in-out;
 
-          &:focus {
+          &:focus, &:hover {
             outline: none;
             border-color: white;
           }
