@@ -165,6 +165,10 @@ const Commendations = () => {
       setRefreshing(false)
     }
   };
+
+  const removeToken = () => {
+    localStorage.removeItem('token')
+  }
   
 
 
@@ -185,7 +189,7 @@ const Commendations = () => {
       <div className="error-container">
         <h2>{error}</h2>
         {!token && <Link to="/SoT-Tracker/login">Log in here</Link>}
-        {token && <Link to="/SoT-Tracker">Try logging out and logging in again.</Link>}
+        {token && <Link to="/SoT-Tracker/login" onClick={removeToken}>Try logging out and logging in again.</Link>}
       </div>
     )
   }
