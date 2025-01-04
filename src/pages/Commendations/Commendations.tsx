@@ -6,6 +6,7 @@ import { Emblem, AllCommsData } from '../../types/types'
 import './Commendations.scss'
 import checkmark from '/assets/img/icons/sot_checkmark.svg'
 import refresh from '/assets/img/icons/refresh.svg'
+import searchIcon from '/assets/img/icons/search.svg'
 
 // Faction names object - I should put that in a dedicated file
 const factionNames: Record<string, {name: string, logo: string, banner: string}> = {
@@ -225,13 +226,16 @@ const Commendations = () => {
             <span className="slider-handle"></span>
           </span>
         </button>
-        <input
-          type="text"
-          className="search-bar"
-          placeholder="Search through commendations..."
-          value={searchQuery}
-          onChange={(e) => setSearchQuery(e.target.value)}
-          />
+        <div className='search-bar-container'>
+          <input
+            type="text"
+            className="search-bar"
+            placeholder="Search through commendations..."
+            value={searchQuery}
+            onChange={(e) => setSearchQuery(e.target.value)}
+            />
+          <img src={searchIcon} alt="Search Icon" />
+        </div>
         </div>
         <button 
         onClick={refreshData} 

@@ -93,17 +93,37 @@
         }
       }
       
-
-      .search-bar {
+      .search-bar-container {
         width: 100%;
-        max-width: 400px;
-        padding: 8px 12px;
-        // margin: 10px 0;
-        font-size: 16px;
-        border: 1px solid grey;
-        border-radius: 8px;
-        background-color: #2B2F30;
-        color: white;
+        position: relative;
+
+        .search-bar {
+          width: 100%;
+          max-width: 400px;
+          padding: 8px 12px;
+          // margin: 10px 0;
+          font-size: 16px;
+          border: 1px solid grey;
+          border-radius: 8px;
+          background-color: #2B2F30;
+          color: white;
+          transition: all 0.3s ease-in-out;
+
+          &:focus {
+            outline: none;
+            border-color: white;
+          }
+        }
+
+        img {
+          width: 20px;
+          height: 20px;
+          position: absolute;
+          right: 55px;
+          top: 44%;
+          transform: translateY(-50%);
+          pointer-events: none;
+        }
       }
     }
 
