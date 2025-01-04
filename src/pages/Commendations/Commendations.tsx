@@ -5,6 +5,7 @@ import EmblemCard from '../../components/EmblemCard/EmblemCard'
 import { Emblem, AllCommsData } from '../../types/types'
 import './Commendations.scss'
 import checkmark from '/assets/img/icons/sot_checkmark.svg'
+import refresh from '/assets/img/icons/refresh.svg'
 
 // Faction names object - I should put that in a dedicated file
 const factionNames: Record<string, {name: string, logo: string, banner: string}> = {
@@ -216,19 +217,25 @@ const Commendations = () => {
 
       {/* FILTER BARS et tout */}
       <div className={`filters ${isSticky ? 'sticky' : ''}`}>
+        <div className='empty-div-on-purpose'></div>
+        <div className='toggle-and-search'>
         <button className="toggle-button" onClick={toggleHideCompleted}>
           {hideCompleted ? 'Show Completed' : 'Hide Completed'}
         </button>
-      <input
-        type="text"
-        className="search-bar"
-        placeholder="Search through commendations..."
-        value={searchQuery}
-        onChange={(e) => setSearchQuery(e.target.value)}
-        />
-        <button onClick={refreshData} disabled={refreshing} className="refresh-button">
-        {refreshing ? 'Refreshing...' : 'Refresh my commendations'}
-      </button>
+        <input
+          type="text"
+          className="search-bar"
+          placeholder="Search through commendations..."
+          value={searchQuery}
+          onChange={(e) => setSearchQuery(e.target.value)}
+          />
+        </div>
+        <button 
+        onClick={refreshData} 
+        disabled={refreshing} 
+        className={refreshing ? 'refresh-button refreshing' : 'refresh-button'}>
+        <img src={refresh} alt="Refresh Icon" />
+        </button>
       </div>
 
 
