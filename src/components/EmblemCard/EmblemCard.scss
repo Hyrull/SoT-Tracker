@@ -1,9 +1,10 @@
 .emblem-card {
   display: flex;
   padding: 10px;
-  margin: 10px 15px;
-  height: 215px;
-  width: 510px;
+  padding-left: 15px;
+  margin: 8px 8px;
+  height: 180px;
+  width: 540px;
   border: solid 1px #393939;
   border-radius: 25px;
   min-height: 140px;
@@ -12,8 +13,8 @@
   box-sizing: border-box;
 
   img {
-    width: 150px;
-    height: 150px;
+    width: 130px;
+    height: 130px;
     flex-shrink: 0;
     margin-right: 20px;
   }
@@ -29,6 +30,17 @@
 
   .card-content {
     position: relative;
+    // height: 66%;
+
+    h4 {
+      font-size: 20px;
+      // margin-bottom: 6px;
+    }
+
+    p {
+      font-size: 14px;
+      margin-top: 3px;
+    }	
 
     .progress {
       margin-top: 5px;;
