@@ -14,7 +14,7 @@
     // margin-top: 25px;
     max-width: 100vh;
     min-width: 100%;
-    height: 110px;
+    height: 85px;
     cursor: pointer;
     position: relative;
     flex-grow: 0;
@@ -60,7 +60,7 @@
           flex-direction: row;
           
                   h2 {
-                    font-size: 2em;
+                    font-size: 1.5em;
                     color: white;
                     // background-color: #2B2F30;
                     text-align: center;
@@ -69,36 +69,31 @@
                   }
             
                   h3 {
-                    font-size: 1.5em;
+                    font-size: 1.2em;
+                    margin-top: 2px;
                     margin-left: 35px;
+                    text-align: center;
                   }
         }
       }
 
 
       .faction-icon {
-        width: 72px;
-        height: 72px;
+        width: 54px;
+        height: 54px;
         margin: 0px 15px;
       }
 
-      .banner-container {
+      .faction-banner {
         position: absolute;
         top: 0;
         right: 30px;
         height: 100%;
-        width: 200%;
         overflow-y: hidden;
-        // background: linear-gradient(to left, rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0) 50%);
         display: flex;
         justify-content: flex-end;
         align-items: center;
-        z-index: 1;
-        // display: none;
-
-        .faction-banner {
-          z-index: -1;
-        }
+        z-index: -1;
       }
     }
   }

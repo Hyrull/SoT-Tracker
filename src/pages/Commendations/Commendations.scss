@@ -101,11 +101,14 @@
       .search-bar-container {
         width: 100%;
         position: relative;
-
+        align-items: center;
+        display: flex;
+        height: 40px;
+        
         .search-bar {
           width: 100%;
           max-width: 350px;
-          padding: 8px 12px;
+          padding: 10px 12px;
           // margin: 10px 0;
           font-size: 16px;
           border: 1px solid grey;
@@ -133,7 +136,7 @@
     }
 
     .refresh-button {
-      padding: 6px 10px;
+      padding: 4.5px 10px; /* 4.5 might seem odd at first glance, but I wanted it to be exactly 40px high like the other filters */
       margin-right: 40px;
       background-color: #2B2F30;
       border: 2px solid #214B21;

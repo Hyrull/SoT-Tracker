@@ -301,7 +301,7 @@ const Commendations = () => {
                       </div>
                     {completedEmblems === totalEmblems && <img src={checkmark} alt='Completion checkmark' className='checkmark'/> }
                     </div>
-                  <div className='banner-container'>
+                  <div>
                     <img
                       className='faction-banner'
                       src={factionNames[factionKey].banner}
