@@ -39,18 +39,26 @@ const Settings: React.FC = () => {
       return
     }
 
-    const response = await fetch('https://sot-tracker-api.onrender.com/api/emblems/update', {
-      method: 'PATCH',
-      headers: {
-        'Content-Type': 'application/json',
-        Authorization: `Bearer ${token}`,
-      },
-    })
+    try {
 
-    if (response.ok) {
-      setMessage('Data refreshed successfully')
-    } else {
-      setMessage('Failed to refresh data.')
+      
+      const response = await fetch('https://sot-tracker-api.onrender.com/api/emblems/update', {
+        method: 'PATCH',
+        headers: {
+          'Content-Type': 'application/json',
+          Authorization: `Bearer ${token}`,
+        },
+      })
+      
+      if (response.ok) {
+        const data = await response.json()
+        setMessage(data.message)
+      } else {
+        const errorData = await response.json()
+        setMessage(errorData.error || 'Failed to refresh data')
+      }
+    } catch (error) {
+      setMessage('A network error occured.')
     }
   }
 
