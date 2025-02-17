@@ -8,6 +8,9 @@ import checkmark from '/assets/img/icons/sot_checkmark.svg'
 import refresh from '/assets/img/icons/refresh.svg'
 import searchIcon from '/assets/img/icons/search.svg'
 
+// const apiUrl = 'https://sot-tracker-api.onrender.com/api'
+const apiUrl = 'http://localhost:10000/api'
+
 // Faction names object - I should put that in a dedicated file
 const factionNames: Record<string, {name: string, logo: string, banner: string}> = {
   ReapersBones: {
@@ -87,7 +90,7 @@ const Commendations = () => {
   useEffect(() => {
     const fetchEmblems = async () => {
       try {
-        const response = await fetch('https://sot-tracker-api.onrender.com/api/emblems/fetch', {
+        const response = await fetch(`${apiUrl}/emblems/fetch`, {
           method: 'GET',
           headers: {
             'Content-Type': 'application/json',
@@ -133,7 +136,7 @@ const Commendations = () => {
     setRefreshing(true)
     try {
       const token = localStorage.getItem('token');
-      const response = await fetch('https://sot-tracker-api.onrender.com/api/emblems/update', {
+      const response = await fetch(`${apiUrl}/emblems/update`, {
         method: 'PATCH',
         headers: {
           'Content-Type': 'application/json',
@@ -146,7 +149,7 @@ const Commendations = () => {
       }
   
       // Fetch the updated data
-      const updatedResponse = await fetch('https://sot-tracker-api.onrender.com/api/emblems/fetch', {
+      const updatedResponse = await fetch(`${apiUrl}/emblems/fetch`, {
         method: 'GET',
         headers: {
           'Content-Type': 'application/json',

@@ -19,6 +19,12 @@ const EmblemCard: React.FC<EmblemCardProps> = ({ emblem }) => {
             </p>
           </>
         )}
+        {emblem.rewardType === 'atCompletion' ? (
+          <p className="reward">{emblem.reward}</p>
+        ) : (
+          <p>NO REWARD!</p>
+          )
+        }
       </div>
       {/* {emblem.Completed ? <img src={checkmark} alt='Completion checkmark' className="emblem-checkmark"/> : ''} */}
     </div>

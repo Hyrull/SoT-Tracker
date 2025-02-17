@@ -10,6 +10,8 @@ export interface Emblem {
   image?: string;
   Value: number;
   Threshold: number;
+  rewardType?: string;
+  reward?: string;
 }
 
 export interface EmblemCardProps {
