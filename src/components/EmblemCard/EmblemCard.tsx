@@ -22,7 +22,7 @@ const EmblemCard: React.FC<EmblemCardProps> = ({ emblem }) => {
         {emblem.rewardType === 'atCompletion' ? (
           <p className="reward">{emblem.reward}</p>
         ) : (
-          <p>NO REWARD!</p>
+          <></>
           )
         }
       </div>
