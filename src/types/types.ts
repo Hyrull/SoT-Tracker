@@ -12,6 +12,7 @@ export interface Emblem {
   Threshold: number;
   rewardType?: string;
   reward?: string;
+  reward_graded?: { grade: number; reward: string }[];
 }
 
 export interface EmblemCardProps {

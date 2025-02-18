@@ -21,10 +21,11 @@ const EmblemCard: React.FC<EmblemCardProps> = ({ emblem }) => {
         )}
         {emblem.rewardType === 'atCompletion' ? (
           <p className="reward">{emblem.reward}</p>
-        ) : (
-          <></>
-          )
-        }
+        ) : null }
+        {emblem.rewardType === 'perGrade' && emblem.reward_graded ? (() => {
+          const nextGradeReward = emblem.reward_graded.find(r => r.grade === emblem.Grade);
+          return nextGradeReward ? <p className="reward">{nextGradeReward.reward}</p> : null;
+        })() : null}
       </div>
       {/* {emblem.Completed ? <img src={checkmark} alt='Completion checkmark' className="emblem-checkmark"/> : ''} */}
     </div>
