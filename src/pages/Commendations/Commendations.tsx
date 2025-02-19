@@ -214,7 +214,9 @@ const Commendations = () => {
     const searchLower = searchQuery.toLowerCase()
     return (
       emblem.DisplayName.toLowerCase().includes(searchLower) ||
-      emblem.Description.toLowerCase().includes(searchLower)
+      emblem.Description.toLowerCase().includes(searchLower) ||
+      emblem.reward?.toLowerCase().includes(searchLower) ||
+      emblem.reward_graded?.some(({ reward }) => reward.toLowerCase().includes(searchLower))
     )
   }
 
@@ -244,7 +246,7 @@ const Commendations = () => {
               />
             <img src={searchIcon} alt="Search Icon" />
           </div>
-          <button className={`toggle-button ${showRewards ? 'off' : 'on'}`} onClick={toggleShowRewards}>
+          <button className={`toggle-button ${showRewards ? 'on' : 'off'}`} onClick={toggleShowRewards}>
             <span className="toggle-text">Show Rewards</span>
             <span className="slider">
               <span className="slider-handle"></span>
