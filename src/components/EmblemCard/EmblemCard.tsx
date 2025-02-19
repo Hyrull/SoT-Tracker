@@ -2,7 +2,7 @@ import { EmblemCardProps } from "../../types/types"
 import './EmblemCard.scss'
 // import checkmark from '../../assets/img/checkmark.webp'
 
-const EmblemCard: React.FC<EmblemCardProps> = ({ emblem }) => {
+const EmblemCard: React.FC<EmblemCardProps> = ({ emblem, showRewards }) => {
   return (
     <div className="emblem-card">
       <img loading="lazy" src={emblem.image} alt={emblem.title || 'Emblem'} />
@@ -19,10 +19,10 @@ const EmblemCard: React.FC<EmblemCardProps> = ({ emblem }) => {
             </p>
           </>
         )}
-        {emblem.rewardType === 'atCompletion' ? (
+        {emblem.rewardType === 'atCompletion' && showRewards ? (
           <p className="reward">Completion: {emblem.reward}</p>
         ) : null }
-        {emblem.rewardType === 'perGrade' && emblem.reward_graded ? (() => {
+        {emblem.rewardType === 'perGrade' && emblem.reward_graded && showRewards ? (() => {
           const nextGradeReward = emblem.reward_graded.find(r => r.grade === emblem.Grade);
           return nextGradeReward ? <p className="reward">Next grade: {nextGradeReward.reward}</p> : null;
         })() : null}

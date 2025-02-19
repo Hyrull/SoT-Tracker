@@ -17,6 +17,7 @@ export interface Emblem {
 
 export interface EmblemCardProps {
   emblem: Emblem;
+  showRewards: boolean;
 }
 
 export interface Campaign {

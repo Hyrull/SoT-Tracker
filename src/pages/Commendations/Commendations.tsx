@@ -79,6 +79,7 @@ const factionNames: Record<string, {name: string, logo: string, banner: string}>
 const Commendations = () => {
   const [emblems, setEmblems] = useState<AllCommsData>({})
   const [hideCompleted, setHideCompleted] = useState(true)
+  const [showRewards, setShowRewards] = useState(false)
   const [searchQuery, setSearchQuery] = useState('')
   const [loading, setLoading] = useState(true)
   const [error, setError] = useState<string | null>(null)
@@ -204,6 +205,10 @@ const Commendations = () => {
     setHideCompleted(!hideCompleted)
   }
 
+  const toggleShowRewards = () => {
+    setShowRewards(!showRewards)
+  }
+
   // Function to check search match
   const matchesSearch = (emblem: Emblem) => {
     const searchLower = searchQuery.toLowerCase()
@@ -222,23 +227,29 @@ const Commendations = () => {
       {/* FILTER BARS et tout */}
       <div className={`filters ${isSticky ? 'sticky' : ''}`}>
         <div className='empty-div-on-purpose'></div>
-        <div className='toggle-and-search'>
-        <button className={`toggle-button ${hideCompleted ? 'off' : 'on'}`} onClick={toggleHideCompleted}>
-          <span className="toggle-text">Show Completed</span>
-          <span className="slider">
-            <span className="slider-handle"></span>
-          </span>
-        </button>
-        <div className='search-bar-container'>
-          <input
-            type="text"
-            className="search-bar"
-            placeholder="Search through commendations..."
-            value={searchQuery}
-            onChange={(e) => setSearchQuery(e.target.value)}
-            />
-          <img src={searchIcon} alt="Search Icon" />
-        </div>
+          <div className='toggle-and-search'>
+          <button className={`toggle-button ${hideCompleted ? 'off' : 'on'}`} onClick={toggleHideCompleted}>
+            <span className="toggle-text">Show Completed</span>
+            <span className="slider">
+              <span className="slider-handle"></span>
+            </span>
+          </button>
+          <div className='search-bar-container'>
+            <input
+              type="text"
+              className="search-bar"
+              placeholder="Search through commendations..."
+              value={searchQuery}
+              onChange={(e) => setSearchQuery(e.target.value)}
+              />
+            <img src={searchIcon} alt="Search Icon" />
+          </div>
+          <button className={`toggle-button ${showRewards ? 'off' : 'on'}`} onClick={toggleShowRewards}>
+            <span className="toggle-text">Show Rewards</span>
+            <span className="slider">
+              <span className="slider-handle"></span>
+            </span>
+          </button>
         </div>
         <button 
         onClick={refreshData} 
@@ -325,7 +336,7 @@ const Commendations = () => {
                         {filteredMainEmblems
                           .filter((emblem) => (!hideCompleted || !emblem.Completed) && matchesSearch(emblem))
                           .map((emblem, index) => (
-                            <EmblemCard key={`main-${index}`} emblem={emblem} />
+                            <EmblemCard key={`main-${index}`} emblem={emblem} showRewards={showRewards}/>
                           ))}
                       </div>
                     </div>
@@ -352,6 +363,7 @@ const Commendations = () => {
                                 <EmblemCard
                                   key={`${campaign.key}-${index}`}
                                   emblem={emblem}
+                                  showRewards={showRewards}
                                 />
                               ))}
                           </div>
