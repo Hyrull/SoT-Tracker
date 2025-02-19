@@ -23,6 +23,9 @@ jobs:
       - name: Build
         run: npm run build && cp ./dist/index.html ./dist/404.html
 
+      - name: Setup Pages
+        uses: actions/configure-pages@v5
+
       - name: Deploy to GitHub Pages
         uses: peaceiris/actions-gh-pages@v3
         with:
