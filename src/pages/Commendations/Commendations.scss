@@ -49,7 +49,7 @@
         cursor: pointer;
         overflow: hidden;
         transition: all 0.3s ease-in-out;
-        margin-right: 25px;
+        // margin-right: 25px;
       
         &.off {
           background-color: #2B2F30;
@@ -100,14 +100,16 @@
       
       .search-bar-container {
         width: 100%;
+        max-width: 420px;
         position: relative;
         align-items: center;
         display: flex;
         height: 40px;
+        margin: 0px 20px;
         
         .search-bar {
           width: 100%;
-          max-width: 350px;
+          max-width: 420px;
           padding: 10px 12px;
           // margin: 10px 0;
           font-size: 16px;
