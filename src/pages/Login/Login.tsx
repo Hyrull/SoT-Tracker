@@ -24,7 +24,7 @@ const Login: React.FC = () => {
       const data = await response.json();
       if (response.ok) {
         localStorage.setItem('token', data.token);
-        navigate('/SoT-Tracker/commendations')
+        navigate('/commendations')
       } else {
         setError(data.message || 'Invalid email or password');
       }
@@ -62,7 +62,7 @@ return (
     {error && <p className="error-message">{error}</p>}
   <p className='signup-here'>
     Don't have an account? You can{' '}
-    <span onClick={() => navigate('/SoT-Tracker/signup')} className="signup-link">
+    <span onClick={() => navigate('/signup')} className="signup-link">
       sign up here
     </span>.
   </p>
