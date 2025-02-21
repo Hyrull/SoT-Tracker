@@ -8,8 +8,9 @@ import checkmark from '/assets/img/icons/sot_checkmark.svg'
 import refresh from '/assets/img/icons/refresh.svg'
 import searchIcon from '/assets/img/icons/search.svg'
 
-const apiUrl = 'https://sot-tracker-api.onrender.com/api'
+// const apiUrl = 'https://sot-tracker-api.onrender.com/api'
 // const apiUrl = 'http://localhost:10000/api'
+const apiUrl = 'https://backend.sot-tracker.com/api'
 
 // Faction names object - I should put that in a dedicated file
 const factionNames: Record<string, {name: string, logo: string, banner: string}> = {

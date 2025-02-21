@@ -13,7 +13,7 @@ const Settings: React.FC = () => {
     }
 
     try {
-      const response = await fetch('https://sot-tracker-api.onrender.com/api/auth/ratUpdate', {
+      const response = await fetch('http://localhost:10000/api/auth/ratUpdate', {
         method: 'PATCH',
         headers: {
           'Content-Type': 'application/json',
@@ -42,7 +42,7 @@ const Settings: React.FC = () => {
     try {
 
       
-      const response = await fetch('https://sot-tracker-api.onrender.com/api/emblems/update', {
+      const response = await fetch('https://backend.sot-tracker.com/api/emblems/update', {
         method: 'PATCH',
         headers: {
           'Content-Type': 'application/json',

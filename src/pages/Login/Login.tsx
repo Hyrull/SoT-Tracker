@@ -11,7 +11,7 @@ const Login: React.FC = () => {
   const handleSubmit = async (event: React.FormEvent) => {
     event.preventDefault();
     try {
-      const response = await fetch('https://sot-tracker-api.onrender.com/api/auth/login', {
+      const response = await fetch('https://backend.sot-tracker.com/api/auth/login', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
