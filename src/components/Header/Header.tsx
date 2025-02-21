@@ -7,7 +7,7 @@ const token = localStorage.getItem('token')
 
 const removeToken = () => {
   localStorage.removeItem('token')
-  window.location.href = '/SoT-Tracker'
+  window.location.href = '/'
 }
 
 function Header() {
@@ -16,16 +16,16 @@ function Header() {
       <div className='header-content'>
         <img src={logo} alt='Sea of Thieves logo'/>
         <nav data-itemtype="https://schema.org/SiteNavigationElement" data-itemscope="">
-          <Link data-itemprop='url' to='/SoT-Tracker'>Home</Link>
-          <Link data-itemprop='url' to='/SoT-Tracker/commendations'>Commendations</Link>
+          <Link data-itemprop='url' to='/'>Home</Link>
+          <Link data-itemprop='url' to='/commendations'>Commendations</Link>
           {
             token ? (
               <>
-              <Link data-itemprop='url' to='/SoT-Tracker/settings'>Settings</Link>
-              <Link data-itemprop='url' to='/SoT-Tracker/' onClick={removeToken}>Log out</Link>
+              <Link data-itemprop='url' to='/settings'>Settings</Link>
+              <Link data-itemprop='url' to='/' onClick={removeToken}>Log out</Link>
               </>
             ) : (
-              <Link data-itemprop='url' to='/SoT-Tracker/login'>Log in</Link>
+              <Link data-itemprop='url' to='/login'>Log in</Link>
             )}
         </nav>
       </div>

@@ -5,7 +5,7 @@ function ErrorPage() {
   return (
     <>
     <h1>You kind of got lost! Want to see your commendations?</h1>
-    <Link data-itemprop='url' to='/SoT-Tracker/commendations'>Commendations</Link>
+    <Link data-itemprop='url' to='/commendations'>Commendations</Link>
     </>
   )
 }
