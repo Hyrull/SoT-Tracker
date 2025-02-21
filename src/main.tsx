@@ -16,11 +16,11 @@ ReactDOM.createRoot(document.getElementById('root')!).render(
   <BrowserRouter>
     <Header />
     <Routes>
-      <Route path='/Sot-Tracker' element={<Home />} />
-      <Route path='/Sot-Tracker/signup' element={<Signup />} />
-      <Route path='/Sot-Tracker/login' element={<Login />} />
-      <Route path='/SoT-Tracker/settings' element={<Settings />} />'
-      <Route path='/SoT-Tracker/commendations' element={<Commendations />} />
+      <Route path='/' element={<Home />} />
+      <Route path='/signup' element={<Signup />} />
+      <Route path='/login' element={<Login />} />
+      <Route path='/settings' element={<Settings />} />'
+      <Route path='/commendations' element={<Commendations />} />
       <Route path='*' element={<ErrorPage />} /> 
     </Routes>
     <Footer />
