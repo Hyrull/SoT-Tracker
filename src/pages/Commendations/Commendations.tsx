@@ -80,7 +80,7 @@ const factionNames: Record<string, {name: string, logo: string, banner: string}>
 const Commendations = () => {
   const [emblems, setEmblems] = useState<AllCommsData>({})
   const [hideCompleted, setHideCompleted] = useState(true)
-  const [showRewards, setShowRewards] = useState(false)
+  const [showRewards, setShowRewards] = useState(true)
   const [searchQuery, setSearchQuery] = useState('')
   const [loading, setLoading] = useState(true)
   const [error, setError] = useState<string | null>(null)
@@ -215,13 +215,12 @@ const Commendations = () => {
     const searchLower = searchQuery.toLowerCase()
     return (
       emblem.DisplayName.toLowerCase().includes(searchLower) ||
-      emblem.Description.toLowerCase().includes(searchLower) ||
+      emblem.Description?.toLowerCase().includes(searchLower) ||
       emblem.reward?.toLowerCase().includes(searchLower) ||
-      emblem.reward_graded?.some(({ reward }) => reward.toLowerCase().includes(searchLower))
+      emblem.reward_graded?.some(r => r.reward.toLowerCase().includes(searchLower))
     )
   }
-
-
+// Note that "Description?" implies that it's an optional field - the data merge currently doesn't check if the user's commendation exists in the data. This is a workaround before I fix this!
 
 
   return (
