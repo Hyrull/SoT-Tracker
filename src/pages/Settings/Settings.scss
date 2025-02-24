@@ -57,6 +57,26 @@
     }
   }
 
+  .delete-confirmation {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 30px;
+    display: none;
+
+    &.visible {
+      display: flex;
+    }
+  }
+
+  .delete-button {
+    &:hover {
+      // background-color: blue; /* Darker green */
+      border-color: red;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    }
+  }
+
   .server-message {
     margin: 10px;
     font-size: 1.5rem;

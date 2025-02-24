@@ -5,6 +5,8 @@ const Settings: React.FC = () => {
   const [ratToken, setRatToken] = useState('')
   const [message, setMessage] = useState('')
 
+  const [showDeleteBox, setShowDeleteBox] = useState(false)
+
   const handleUpdate = async () => {
     const token = localStorage.getItem('token')
     if (!token) {
@@ -62,6 +64,33 @@ const Settings: React.FC = () => {
     }
   }
 
+  const deleteUser = async () => {
+    const token = localStorage.getItem('token')
+    if (!token) {
+      setMessage('No token found. Please log in again.')
+      return
+    }
+
+    try {
+      const response = await fetch('https://backend.sot-tracker.com/api/auth/delete', {
+        method: 'DELETE',
+        headers: {
+          'Content-Type': 'application/json',
+          Authorization: `Bearer ${token}`,
+        },
+      })
+
+      if (response.ok) {
+        setMessage('Deletion successful. You have been logged out - please refresh the page.')
+        localStorage.removeItem('token')
+      } else {
+        setMessage('Failed to delete your profile.')
+      }
+    } catch (error) {
+      setMessage('Failed to reach the server for deletion.')
+    }
+  }
+
   return (
     <div className='settings-container'>
       <h2>Settings</h2>
@@ -83,6 +112,15 @@ const Settings: React.FC = () => {
       <button onClick={refreshData}>
         Refresh my commendations
       </button>
+      <button className='delete-button' onClick={() => setShowDeleteBox(!showDeleteBox)}>
+        Delete my account and data
+      </button>
+      <div className={`delete-confirmation ${showDeleteBox ? 'visible' : ''}`}>
+        <p>This action is irreversible. Your profile and data will be deleted.</p>
+        <button className='delete-button' onClick={deleteUser}>
+          Yes, delete
+        </button>
+      </div>
       {message && <p className='server-message'>{message}</p>}
     </div>
   )
