@@ -4,6 +4,7 @@ import './Settings.scss'
 const Settings: React.FC = () => {
   const [ratToken, setRatToken] = useState('')
   const [message, setMessage] = useState('')
+  const [password, setPassword] = useState('')
 
   const [showDeleteBox, setShowDeleteBox] = useState(false)
 
@@ -78,6 +79,9 @@ const Settings: React.FC = () => {
           'Content-Type': 'application/json',
           Authorization: `Bearer ${token}`,
         },
+        body: JSON.stringify({ 
+          password
+        }),
       })
 
       if (response.ok) {
@@ -117,6 +121,16 @@ const Settings: React.FC = () => {
       </button>
       <div className={`delete-confirmation ${showDeleteBox ? 'visible' : ''}`}>
         <p>This action is irreversible. Your profile and data will be deleted.</p>
+        <div className="form-group">
+          <label htmlFor="password">Confirm your password:</label>
+          <input
+            type="password"
+            id="password"
+            value={password}
+            onChange={(e) => setPassword(e.target.value)}
+            required
+          />
+        </div>
         <button className='delete-button' onClick={deleteUser}>
           Yes, delete
         </button>
