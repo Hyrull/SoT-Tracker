@@ -7,8 +7,6 @@ import { DropdownProps } from "../../types/types"
 function Dropdown({title, content} : DropdownProps) {
 
   const [displayContent, setdisplayContent] = useState(false)
-  console.log(title)
-
   return (
   <div className="dropdown">
     <div className='dropdown-header'

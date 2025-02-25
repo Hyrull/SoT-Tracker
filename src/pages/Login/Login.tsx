@@ -23,8 +23,9 @@ const Login: React.FC = () => {
       })
       const data = await response.json();
       if (response.ok) {
-        localStorage.setItem('token', data.token);
+        localStorage.setItem('token', data.token)
         navigate('/commendations')
+        window.location.reload()
       } else {
         setError(data.message || 'Invalid email or password');
       }
