@@ -52,6 +52,11 @@
       // font-weight: bold;
     }
   }
+
+  &.completed {
+    border: 1px solid #214B21;
+    background-color: #121212;
+  }
 }
 
 .emblem-card:hover {
