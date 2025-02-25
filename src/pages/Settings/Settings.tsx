@@ -1,10 +1,12 @@
 import React, { useState } from 'react'
+import { useNavigate } from 'react-router'
 import './Settings.scss'
 
 const Settings: React.FC = () => {
   const [ratToken, setRatToken] = useState('')
   const [message, setMessage] = useState('')
   const [password, setPassword] = useState('')
+  const navigate = useNavigate()
 
   const [showDeleteBox, setShowDeleteBox] = useState(false)
 
@@ -85,8 +87,10 @@ const Settings: React.FC = () => {
       })
 
       if (response.ok) {
-        setMessage('Deletion successful. You have been logged out - please refresh the page.')
         localStorage.removeItem('token')
+        navigate('/')
+        window.location.reload()
+        setMessage('Deletion successful.')
       } else {
         setMessage('Failed to delete your profile.')
       }

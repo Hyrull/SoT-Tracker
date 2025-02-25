@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { useNavigate } from 'react-router';
+import { useNavigate } from 'react-router'
 import './Login.scss'
 
 const Login: React.FC = () => {
