@@ -5,10 +5,18 @@ const Signup: React.FC = () => {
   const [nickname, setNickname] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const [passwordCheck, setPasswordCheck] = useState('');
   const [apiResponse, setApiResponse] = useState<string | null>(null);
 
   const handleSubmit = async (event: React.FormEvent) => {
-    event.preventDefault();
+    event.preventDefault()
+
+    // If password and password-check don't match, return an error message
+    if (password !== passwordCheck) {
+      setApiResponse('Passwords do not match!')
+      return
+    }
+
     try {
       const response = await fetch('https://backend.sot-tracker.com/api/auth/signup', {
         method: 'POST',
@@ -62,6 +70,19 @@ const Signup: React.FC = () => {
             id="password"
             value={password}
             onChange={(e) => setPassword(e.target.value)}
+            required
+          />
+        </div>
+        <div className="form-group">
+            <label htmlFor="password">Confirm password</label>
+            {/* {password && !/^(?=.*[A-Z])(?=.*\d).{6,}$/.test(password) && (
+            <p className="error-message"><br/>Your password must be six characters long or more, and include a capitalized character and a number.</p>
+            )} */}
+          <input
+            type="password"
+            id="password-check"
+            value={passwordCheck}
+            onChange={(e) => setPasswordCheck(e.target.value)}
             required
           />
         </div>
