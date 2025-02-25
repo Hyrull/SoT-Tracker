@@ -5,7 +5,7 @@ import './EmblemCard.scss'
 const EmblemCard: React.FC<EmblemCardProps> = ({ emblem, showRewards }) => {
   return (
     <div className={`emblem-card ${emblem.Completed ? 'completed' : ''}`} key={emblem.title}>
-      <img loading="lazy" src={emblem.image} alt={emblem.title || 'Emblem'} />
+      <img loading="lazy" src={emblem.image} alt={`Commendation picture for ${emblem.title}` || 'Emblem'} />
       <div className="card-content">
         <h4>{emblem.title}</h4>
         <p>{emblem.subtitle}</p>
