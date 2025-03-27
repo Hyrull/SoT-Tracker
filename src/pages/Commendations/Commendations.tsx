@@ -243,6 +243,7 @@ const Commendations = () => {
               placeholder="Search through commendations..."
               value={searchQuery}
               onChange={(e) => setSearchQuery(e.target.value)}
+              aria-label='Search commendations'
               />
             <img src={searchIcon} alt="Search Icon" />
           </div>

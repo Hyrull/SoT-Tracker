@@ -1,9 +1,12 @@
 import React, { useState } from 'react'
+import { useNavigate } from 'react-router'
 import './Settings.scss'
 
 const Settings: React.FC = () => {
   const [ratToken, setRatToken] = useState('')
   const [message, setMessage] = useState('')
+  const [password, setPassword] = useState('')
+  const navigate = useNavigate()
 
   const [showDeleteBox, setShowDeleteBox] = useState(false)
 
@@ -78,11 +81,16 @@ const Settings: React.FC = () => {
           'Content-Type': 'application/json',
           Authorization: `Bearer ${token}`,
         },
+        body: JSON.stringify({ 
+          password
+        }),
       })
 
       if (response.ok) {
-        setMessage('Deletion successful. You have been logged out - please refresh the page.')
         localStorage.removeItem('token')
+        navigate('/')
+        window.location.reload()
+        setMessage('Deletion successful.')
       } else {
         setMessage('Failed to delete your profile.')
       }
@@ -117,6 +125,16 @@ const Settings: React.FC = () => {
       </button>
       <div className={`delete-confirmation ${showDeleteBox ? 'visible' : ''}`}>
         <p>This action is irreversible. Your profile and data will be deleted.</p>
+        <div className="form-group">
+          <label htmlFor="password">Confirm your password:</label>
+          <input
+            type="password"
+            id="password"
+            value={password}
+            onChange={(e) => setPassword(e.target.value)}
+            required
+          />
+        </div>
         <button className='delete-button' onClick={deleteUser}>
           Yes, delete
         </button>
