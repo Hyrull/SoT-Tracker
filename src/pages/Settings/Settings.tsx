@@ -109,9 +109,10 @@ const Settings: React.FC = () => {
         <input
           type="text"
           id="ratToken"
+          placeholder='Input your Rat token here...'
+          autoComplete='one-time-code'
           value={ratToken}
           onChange={(e) => setRatToken(e.target.value)}
-          style={{ width: '100%', padding: '8px', boxSizing: 'border-box' }}
         />
       </div>
       <button onClick={handleUpdate}>
@@ -124,7 +125,7 @@ const Settings: React.FC = () => {
         Delete my account and data
       </button>
       <div className={`delete-confirmation ${showDeleteBox ? 'visible' : ''}`}>
-        <p>This action is irreversible. Your profile and data will be deleted.</p>
+        <p>This action is irreversible. Your profile and data will be deleted from this website.</p>
         <div className="form-group">
           <label htmlFor="password">Confirm your password:</label>
           <input
