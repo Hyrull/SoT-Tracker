@@ -6,6 +6,7 @@ import { Emblem, AllCommsData } from '../../types/types'
 import './Commendations.scss'
 import checkmark from '/assets/img/icons/sot_checkmark.svg'
 import refresh from '/assets/img/icons/refresh.svg'
+import crossIcon from '/assets/img/icons/Cross.svg'
 import searchIcon from '/assets/img/icons/search.svg'
 
 // const apiUrl = 'https://sot-tracker-api.onrender.com/api'
@@ -244,8 +245,14 @@ const Commendations = () => {
               value={searchQuery}
               onChange={(e) => setSearchQuery(e.target.value)}
               aria-label='Search commendations'
-              />
-            <img src={searchIcon} alt="Search Icon" />
+            />
+            <button className='clear-search'
+              onClick={() => setSearchQuery('')} 
+              aria-label='Clear search' 
+              style={{ visibility: searchQuery ? 'visible' : 'hidden' }}>
+                <img src={crossIcon} alt="Clear search" />
+            </button>
+            <img src={searchIcon} alt="Search icon" style={{ visibility: searchQuery ? 'hidden' : 'visible' }} className='search-icon'/>
           </div>
           <button className={`toggle-button ${showRewards ? 'on' : 'off'}`} onClick={toggleShowRewards}>
             <span className="toggle-text">Show Rewards</span>
