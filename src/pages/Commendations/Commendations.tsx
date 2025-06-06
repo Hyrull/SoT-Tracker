@@ -93,7 +93,7 @@ const Commendations = () => {
   useEffect(() => {
     const fetchEmblems = async () => {
       try {
-        const response = await fetch(`${apiUrl}/emblems/fetch`, {
+        const response = await fetch(`${apiUrl}/data/emblems`, {
           method: 'GET',
           headers: {
             'Content-Type': 'application/json',
@@ -139,7 +139,7 @@ const Commendations = () => {
     setRefreshing(true)
     try {
       const token = localStorage.getItem('token');
-      const response = await fetch(`${apiUrl}/emblems/update`, {
+      const response = await fetch(`${apiUrl}/data/update`, {
         method: 'PATCH',
         headers: {
           'Content-Type': 'application/json',
@@ -152,7 +152,7 @@ const Commendations = () => {
       }
   
       // Fetch the updated data
-      const updatedResponse = await fetch(`${apiUrl}/emblems/fetch`, {
+      const updatedResponse = await fetch(`${apiUrl}/data/emblems`, {
         method: 'GET',
         headers: {
           'Content-Type': 'application/json',
