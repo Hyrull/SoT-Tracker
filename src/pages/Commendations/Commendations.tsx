@@ -109,7 +109,7 @@ const Commendations = () => {
         setEmblems(data) // Set fetched data
         setError(null)
       } catch (err) {
-        setError('There was an error fetching the data.')
+        setError(`There was an error fetching the data : ${err instanceof Error ? err.message : 'Unknown error'}`)
       } finally {
         setLoading(false)
       }

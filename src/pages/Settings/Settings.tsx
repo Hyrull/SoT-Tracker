@@ -34,6 +34,7 @@ const Settings: React.FC = () => {
       }
     } catch (error) {
       setMessage('Failed to send a token update request')
+      console.error('Error updating rat token:', error)
     }
   }
 
@@ -64,6 +65,7 @@ const Settings: React.FC = () => {
       }
     } catch (error) {
       setMessage('A network error occured.')
+      console.log('Error refreshing data:', error)
     }
   }
 
@@ -96,6 +98,7 @@ const Settings: React.FC = () => {
       }
     } catch (error) {
       setMessage('Failed to reach the server for deletion.')
+      console.log('Error deleting user:', error)
     }
   }
 
