@@ -48,7 +48,7 @@ const Settings: React.FC = () => {
     try {
 
       
-      const response = await fetch('https://backend.sot-tracker.com/api/emblems/update', {
+      const response = await fetch('https://backend.sot-tracker.com/api/data/update', {
         method: 'PATCH',
         headers: {
           'Content-Type': 'application/json',
