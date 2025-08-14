@@ -31,8 +31,8 @@ const factionNames: Record<string, {name: string, logo: string, banner: string}>
     banner: "assets/img/faction banners/Order_of_Souls_banner.webp",
   },
   BilgeRats: {
-    name: "Bilge Rats",
-    logo: "assets/img/faction logos/Bilge_Rats_logo.webp",
+    name: "Adventures at Sea",
+    logo: "assets/img/faction logos/Adventures_at_Sea_logo_lowres.webp",
     banner: "assets/img/faction banners/Bilge_Rats_banner.webp",
   },
   CreatorCrew: {
@@ -127,7 +127,7 @@ const Commendations = () => {
     return () => {
       window.removeEventListener('scroll', handleScroll);
     }
-  }, [])
+  })
 
   const handleScroll = useCallback(() => {
     const header = document.querySelector('header');
