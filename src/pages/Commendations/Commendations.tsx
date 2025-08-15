@@ -32,7 +32,7 @@ const factionNames: Record<string, {name: string, logo: string, banner: string}>
   },
   BilgeRats: {
     name: "Adventures at Sea",
-    logo: "assets/img/faction logos/Adventures_at_Sea_logo_lowres.webp",
+    logo: "assets/img/faction logos/Adventures_at_Sea_logo.webp",
     banner: "assets/img/faction banners/Bilge_Rats_banner.webp",
   },
   CreatorCrew: {
