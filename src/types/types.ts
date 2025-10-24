@@ -42,3 +42,15 @@ export interface DropdownProps {
   content: string  | JSX.Element
 }
 
+export interface FiltersBarProps {
+  hideCompleted: boolean
+  toggleHideCompleted: () => void
+  showRewards: boolean
+  toggleShowRewards: () => void
+  searchQuery: string
+  setSearchQuery: (value: string) => void
+  refreshData: () => void
+  refreshing: boolean
+  isSticky?: boolean
+}
+

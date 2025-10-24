@@ -1,0 +1,194 @@
+  .filters {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    width: 90%;
+    align-items: center;
+    margin: 5px 0;
+
+    padding: 10px;
+    z-index: 1000;
+    transition: box-shadow 0.3s ease, background-color 0.3s ease;
+
+    &.sticky {
+      position: fixed;
+      margin-top: 0px;;
+      top: 0;
+      width: 100%;
+      background-color: rgb(19, 19, 19);
+      box-shadow: 0 3px 5px rgba(255, 255, 255, 0.1);
+      border-bottom: 2px solid #393939;
+    }
+    
+    .toggle-and-search {
+      display: flex;
+      flex-direction: row;
+      min-width: 650px;
+      // margin-left: 33%;
+
+      .toggle-button {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        position: relative;
+        width: 300px; /* Adjusted to fit both text and slider */
+        height: 40px;
+        padding: 0 10px; /* Add padding for proper spacing */
+        font-size: 16px;
+        background-color: #2B2F30;
+        color: white;
+        border: 2px solid #214B21;
+        border-radius: 10px;
+        cursor: pointer;
+        overflow: hidden;
+        transition: all 0.3s ease-in-out;
+        // margin-right: 25px;
+      
+        &.off {
+          background-color: #2B2F30;
+          border-color: #214B21;
+        }
+        
+        &:hover {
+          border-color: white;
+        }
+      
+        .toggle-text {
+          margin-right: 10px;
+          // font-weight: bold;
+          white-space: nowrap;
+          transition: color 0.3s ease-in-out;
+          // width: 100%;
+        }
+      
+        .slider {
+          position: relative;
+          display: inline-block;
+          width: 40px; /* Width of the slider track */
+          height: 20px; /* Height of the slider track */
+          background-color: grey;
+          border-radius: 10px;
+          transition: all 0.3s ease-in-out;
+      
+          .slider-handle {
+            position: absolute;
+            top: 2px;
+            left: 2px;
+            width: 16px; /* Diameter of the handle */
+            height: 16px;
+            background-color: #2B2F30;
+            border-radius: 50%;
+            transition: all 0.3s ease-in-out;
+          }
+        }
+      
+        &.on .slider .slider-handle {
+          left: calc(100% - 18px); /* Move handle to the right when "on" */
+        }
+
+        &.on .slider {
+          background-color: #3d863d;
+        }
+      }
+      
+      .search-bar-container {
+        width: 100%;
+        max-width: 420px;
+        position: relative;
+        align-items: center;
+        display: flex;
+        height: 40px;
+        margin: 0px 20px;
+
+        .search-icon {
+          position: absolute;
+          right: 15px;
+          top: 50%;
+          transform: translateY(-50%);
+          width: 20px;
+          height: 20px;
+        }
+        
+        .search-bar {
+          width: 100%;
+          max-width: 420px;
+          padding: 10px 12px;
+          // margin: 10px 0;
+          font-size: 16px;
+          border: 1px solid grey;
+          border-radius: 8px;
+          background-color: #2B2F30;
+          color: white;
+          transition: all 0.3s ease-in-out;
+
+          &:focus, &:hover {
+            outline: none;
+            border-color: white;
+          }
+        }
+
+        
+        .clear-search {
+          all: unset;
+          position: absolute;
+          right: 15px;
+          top: 50%;
+          transform: translateY(-50%);
+          width: 26px;
+          height: 26px;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          cursor: pointer;
+          opacity: 83%;
+          transition: background-color 0.2s ease-in-out, box-shadow 0.2s ease-in-out, border-radius 0.2s ease-in-out;
+          background-color: transparent;
+
+          &:hover {
+            background-color: rgba(61, 134, 61, 0.2);
+            border-radius: 50%;
+            box-shadow: 0 0 12px 2px rgba(61, 134, 61, 0.4);
+          }
+        }
+      }
+    }
+
+    .refresh-button {
+      padding: 4.5px 10px; /* 4.5 might seem odd at first glance, but I wanted it to be exactly 40px high like the other filters */
+      margin-right: 40px;
+      background-color: #2B2F30;
+      border: 2px solid #214B21;
+      border-radius: 10px;
+      cursor: pointer;
+      transition: all 0.3s ease-in-out;
+      width: auto;
+
+      img {
+        filter: invert(1);
+      }
+
+      &.refreshing {
+        @keyframes rotate-counterclockwise {
+          0% {
+            transform: rotate(0deg) scale(1);
+          }
+          50% {
+            transform: rotate(-180deg) scale(1.1);
+          }
+          100% {
+            transform: rotate(-360deg) scale(1);
+          }
+        }
+
+        img {
+          animation: rotate-counterclockwise 1s linear infinite;
+        }
+      }
+
+      &:hover:not(.refreshing) {
+        // background-color: blue; /* Darker green */
+        border-color: white;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+      }
+    }
+  }
