@@ -1,3 +1,25 @@
 .homepage {
   display: flex;
+  flex-direction: column;
+  width: 90%;
+  max-width: 1000px;
+  margin: 50px auto;
+  gap: 30px;
+  font-family: 'Segoe UI', Roboto, sans-serif;
+
+  h1 {
+    font-size: 2.5rem;
+    text-align: center;
+    margin-bottom: 30px;
+    color: #3AA33A;
+    text-shadow: 2px 2px 6px rgba(0,0,0,0.6);
+  }
+
+  a {
+    color: #4CAF50;
+    text-decoration: underline;
+    &:hover {
+      color: #62e667;
+    }
+  }
 }
