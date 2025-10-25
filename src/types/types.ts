@@ -54,3 +54,11 @@ export interface FiltersBarProps {
   isSticky?: boolean
 }
 
+export interface FactionDropdownProps {
+  factionKey: string;
+  factionData: FactionData;
+  hideCompleted: boolean;
+  showRewards: boolean;
+  searchQuery: string;
+}
+

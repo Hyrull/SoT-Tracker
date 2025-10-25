@@ -1,11 +1,9 @@
 import { useEffect, useState, useCallback } from 'react'
 import { Link } from 'react-router'
-import Dropdown from '../../components/Dropdown/Dropdown'
-import EmblemCard from '../../components/EmblemCard/EmblemCard'
-import { Emblem, AllCommsData } from '../../types/types'
+import { AllCommsData } from '../../types/types'
 import './Commendations.scss'
-import checkmark from '/assets/img/icons/sot_checkmark.svg'
 import FiltersBar from './Components/FiltersBar'
+import FactionDropdown from './Components/FactionDropdown'
 
 
 // quick toggle for me when working the backend
@@ -211,150 +209,33 @@ const Commendations = () => {
     setShowRewards(!showRewards)
   }
 
-  // Function to check search match
-  const matchesSearch = (emblem: Emblem) => {
-    const searchLower = searchQuery.toLowerCase()
-    return (
-      emblem.DisplayName.toLowerCase().includes(searchLower) ||
-      emblem.Description?.toLowerCase().includes(searchLower) ||
-      emblem.reward?.toLowerCase().includes(searchLower) ||
-      emblem.reward_graded?.some(r => r.reward.toLowerCase().includes(searchLower))
-    )
-  }
-// Note that "Description?" implies that it's an optional field - the data merge currently doesn't check if the user's commendation exists in the data. This is a workaround before I fix this!
+return (
+  <section id="all-commendations">
+    <FiltersBar
+      hideCompleted={hideCompleted}
+      toggleHideCompleted={toggleHideCompleted}
+      showRewards={showRewards}
+      toggleShowRewards={toggleShowRewards}
+      searchQuery={searchQuery}
+      setSearchQuery={setSearchQuery}
+      refreshData={refreshData}
+      refreshing={refreshing}
+      isSticky={isSticky}
+    />
 
-
-  return (
-    <section id="all-commendations">
-      <FiltersBar
-        hideCompleted={hideCompleted}
-        toggleHideCompleted={toggleHideCompleted}
-        showRewards={showRewards}
-        toggleShowRewards={toggleShowRewards}
-        searchQuery={searchQuery}
-        setSearchQuery={setSearchQuery}
-        refreshData={refreshData}
-        refreshing={refreshing}
-        isSticky={isSticky}
-      />
-
-
-
-      {Object.entries(emblems)
-        .filter(([factionKey]) => factionNames[factionKey]) // Filter out unknown factions (guilds)
-
-        // Mapping the data
-        .map(([factionKey, factionData]) => {
-          const mainEmblems = factionData.Emblems?.Emblems || [] // Access main emblems - sometimes emblems are nested in campaigns
-          const filteredMainEmblems = mainEmblems.filter(matchesSearch) // Applying the search filter
-
-          // Campaigns handling
-          const campaigns = factionData.Campaigns ? Object.entries(factionData.Campaigns) : []
-          const filteredCampaigns = campaigns.map(([campaignKey, campaign]) => ({
-            key: campaignKey,
-            title: campaign.Title,
-            emblems: (campaign.Emblems || []).filter(matchesSearch),
-          }))
-
-
-          // Calculating total and completed emblems
-          const totalEmblems =
-            filteredMainEmblems.length +
-            filteredCampaigns.reduce((count, campaign) => count + campaign.emblems.length, 0)
-
-          const completedEmblems =
-            filteredMainEmblems.filter((emblem) => emblem.Completed).length +
-            filteredCampaigns.reduce(
-              (count, campaign) =>
-                count + campaign.emblems.filter((emblem) => emblem.Completed).length,
-              0
-            )
-
-          const level = 0 // Temporary placeholder for level
-
-
-          // TIME TO ACTUALLY DISPLAY ALL OF IT
-          return (
-            <Dropdown
-              key={factionKey}
-
-              // FACTION HEADER STUFF
-              title={
-                <>
-                <div className='faction-header'>
-                  <img
-                    className='faction-icon'
-                    src={factionNames[factionKey].logo}
-                    alt={`${factionNames[factionKey].name} icon`}
-                    />
-                    <div className='faction-info'>
-                      <div className='faction-text'>
-                        <h2>{`${factionNames[factionKey].name}`}</h2>
-                        <h3>{`${completedEmblems}/${totalEmblems}${level ? ` (Level: ${level})` : ''}`}</h3>
-                      </div>
-                    {completedEmblems === totalEmblems && <img src={checkmark} alt='Completion checkmark' className='checkmark'/> }
-                    </div>
-                  <div>
-                    <img
-                      className='faction-banner'
-                      src={factionNames[factionKey].banner}
-                      alt={`${factionNames[factionKey].name} banner`}
-                      />
-                  </div>
-                </div>
-              </>
-            }
-
-            // ALL THE ACTUAL COMMENDATIONS
-              content={
-                <div>
-                  {/* Simple ones */}
-                  {filteredMainEmblems.length > 0 && (
-                    <div className="category">
-                      <div className="emblems">
-                        {filteredMainEmblems
-                          .filter((emblem) => (!hideCompleted || !emblem.Completed) && matchesSearch(emblem))
-                          .map((emblem, index) => (
-                            <EmblemCard key={`main-${index}`} emblem={emblem} showRewards={showRewards}/>
-                          ))}
-                      </div>
-                    </div>
-                  )}
-  
-  
-  
-                  {/* Campaigns */}
-                  {/* Checker que si y a aucune commendation, alors on display même pas le nom de la catégorie */}
-                  {filteredCampaigns.map((campaign) => {
-                      if (campaign.emblems.length === 0) return null
-  
-                      // Campaign title display
-                      return (
-                        <div key={campaign.key} className="category">
-                          <h3>{campaign.title}</h3>
-                          <div className="emblems">
-                            {campaign.emblems
-                              .filter(
-                                (emblem: Emblem) =>
-                                  !hideCompleted || !emblem.Completed
-                              )
-                              .map((emblem: Emblem, index: number) => (
-                                <EmblemCard
-                                  key={`${campaign.key}-${index}`}
-                                  emblem={emblem}
-                                  showRewards={showRewards}
-                                />
-                              ))}
-                          </div>
-                        </div>
-                    )
-                  })}
-                </div>
-              }
-            />
-          )
-        })}
-    </section>
-  )}
+    {Object.entries(emblems)
+      .filter(([factionKey]) => factionNames[factionKey])
+      .map(([factionKey, factionData]) => (
+        <FactionDropdown
+          key={factionKey}
+          factionKey={factionKey}
+          factionData={factionData}
+          hideCompleted={hideCompleted}
+          showRewards={showRewards}
+          searchQuery={searchQuery}
+        />
+      ))}
+  </section>
+)}
 
 export default Commendations
