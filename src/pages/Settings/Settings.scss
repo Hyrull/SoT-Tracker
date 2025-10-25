@@ -100,4 +100,23 @@
     font-size: 1.5rem;
     color: #214B21;
   }
+
+  .profile-link {
+    display: flex;
+    margin-bottom: 8px;
+    font-size: 14px;
+    color: #4CAF50;
+    text-decoration: underline;
+    &:hover {
+      color: #62e667;
+    }
+  }
+
+  .external-link-icon {
+    width: 18px;
+    height: 18px;
+    filter: brightness(0) saturate(100%) invert(76%) sepia(10%) saturate(3170%) hue-rotate(66deg) brightness(81%) contrast(68%);
+    margin-left: 2px;
+  }
+
 }

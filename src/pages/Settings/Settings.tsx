@@ -1,5 +1,6 @@
 import React, { useState } from 'react'
 import { useNavigate } from 'react-router'
+import externalLinkIcon from '/assets/img/icons/external_link.svg'
 import './Settings.scss'
 
 const Settings: React.FC = () => {
@@ -117,6 +118,14 @@ const Settings: React.FC = () => {
           value={ratToken}
           onChange={(e) => setRatToken(e.target.value)}
         />
+        <a 
+          href="https://www.seaofthieves.com/profile/overview" 
+          target="_blank" 
+          rel="noopener noreferrer"
+          className="profile-link"
+        >Sea of Thieves profile page
+        <img src={externalLinkIcon} alt="External link" className="external-link-icon" />
+        </a>
       </div>
       <button onClick={handleUpdate}>
         Update Rat
@@ -128,7 +137,7 @@ const Settings: React.FC = () => {
         Delete my account and data
       </button>
       <div className={`delete-confirmation ${showDeleteBox ? 'visible' : ''}`}>
-        <p>This action is irreversible. Your profile and data will be deleted from this website.</p>
+        <p>This action is irreversible. Your profile and data will be permanently deleted from this website.</p>
         <div className="form-group">
           <label htmlFor="password">Confirm your password:</label>
           <input
