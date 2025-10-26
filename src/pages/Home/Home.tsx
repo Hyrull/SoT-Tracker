@@ -6,7 +6,7 @@ function Home() {
   return (
     <>
     <div className="homepage">
-      <h1>SoT Tracker - A commendations companion app, because the in-game one is a mess</h1>
+      <h1>SoT Tracker - A commendations companion app, because the in-game menus are a mess</h1>
       {/* <h2>This page is under construction - check out the Commendations page!</h2> */}
 
       {/* One day, I'll add a carousel here with some cool pics. One day. Not today. */}
