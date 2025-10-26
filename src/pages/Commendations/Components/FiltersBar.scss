@@ -190,5 +190,15 @@
         border-color: white;
         box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
       }
+
+      &.demo-version {
+        border-color: grey;
+        cursor:not-allowed;
+        opacity: 50%;
+
+        &:hover {
+          border-color: grey;
+        }
+      }
     }
   }

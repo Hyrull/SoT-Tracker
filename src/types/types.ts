@@ -52,6 +52,7 @@ export interface FiltersBarProps {
   refreshData: () => void
   refreshing: boolean
   isSticky?: boolean
+  isDemo: boolean
 }
 
 export interface FactionDropdownProps {

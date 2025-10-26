@@ -12,7 +12,7 @@ const FiltersBar = ({
   showRewards, toggleShowRewards, 
   searchQuery, setSearchQuery, 
   refreshData, refreshing, 
-  isSticky}: FiltersBarProps) => (
+  isSticky, isDemo}: FiltersBarProps) => (
 
 
   <div className={`filters ${isSticky ? 'sticky' : ''}`}>
@@ -47,7 +47,10 @@ const FiltersBar = ({
       </button>
     </div>
 
-    <button onClick={refreshData} disabled={refreshing} className={refreshing ? 'refresh-button refreshing' : 'refresh-button'}>
+    <button onClick={refreshData} 
+      disabled={refreshing || isDemo} 
+      className={`refresh-button ${refreshing ? 'refreshing' : ''} ${isDemo ? 'demo-version' : ''}`}
+      title={isDemo ? "Can't refresh in demo mode!" : 'Refresh your data'}>
     <img src={refresh} alt="Refresh" />
     </button>
   </div>

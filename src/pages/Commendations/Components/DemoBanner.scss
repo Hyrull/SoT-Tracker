@@ -1,0 +1,26 @@
+.demo-banner {
+  position: fixed;
+  bottom: 40px; // a little space above the browser edge
+  left: 50%;
+  transform: translateX(-50%);
+  background-color: #1a1a1a;
+  border: 2px solid #214B21;
+  border-radius: 20px;
+  padding: 1rem 1.5rem;
+  color: white;
+  max-width: 90%;
+  text-align: center;
+  font-size: 1rem;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+  z-index: 1000;
+
+  a {
+    color: #4CAF50;
+    text-decoration: underline;
+    margin: 0 0.2rem;
+
+    &:hover {
+      color: #62e667;
+    }
+  }
+}

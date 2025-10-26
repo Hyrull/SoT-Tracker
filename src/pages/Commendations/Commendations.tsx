@@ -5,6 +5,7 @@ import './Commendations.scss'
 import FiltersBar from './Components/FiltersBar'
 import FactionDropdown from './Components/FactionDropdown'
 import factionNames from './Data/FactionNames'
+import DemoBanner from './Components/DemoBanner'
 
 
 // quick toggle for me when working the backend
@@ -21,23 +22,32 @@ const Commendations = () => {
   const [isSticky, setIsSticky] = useState(false);
   const [refreshing, setRefreshing] = useState(false);
   const token = localStorage.getItem('token')
+  const isDemo = !token
 
   // Function to fetch emblems
   useEffect(() => {
     const fetchEmblems = async () => {
       try {
-        const response = await fetch(`${apiUrl}/data/emblems`, {
-          method: 'GET',
-          headers: {
-            'Content-Type': 'application/json',
-            Authorization: `Bearer ${token}`,
-          },
-        })
 
+        let response: Response
+
+        if (isDemo) {
+          // Fetching demo data, if user isn't logged in to any account
+          response = await fetch('/data/exampleData.json')
+        } else {
+          response = await fetch(`${apiUrl}/data/emblems`, {
+            method: 'GET',
+            headers: {
+              'Content-Type': 'application/json',
+              Authorization: `Bearer ${token}`,
+            },
+          })
+        }
+        
         if (!response.ok) {
           throw new Error('Failed to fetch data.')
         }
-
+        
         const data: AllCommsData = await response.json() // Ensure response matches `AllCommsData`
         setEmblems(data) // Set fetched data
         setError(null)
@@ -69,6 +79,10 @@ const Commendations = () => {
   }, []);
 
   const refreshData = async () => {
+    if (isDemo) {
+      return null
+    } // Surely some smart ones will enable the sync button in the demo page to see what it'd do
+
     setRefreshing(true)
     try {
       const token = localStorage.getItem('token');
@@ -157,6 +171,7 @@ return (
       refreshData={refreshData}
       refreshing={refreshing}
       isSticky={isSticky}
+      isDemo={isDemo}
     />
 
     {Object.entries(emblems)
@@ -170,7 +185,11 @@ return (
           showRewards={showRewards}
           searchQuery={searchQuery}
         />
-      ))}
+      ))
+    }
+
+    <DemoBanner isDemo={isDemo} />
+    
   </section>
 )}
 
