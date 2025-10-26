@@ -11,6 +11,7 @@
   transition: background-color 0.2s ease, border 0.2s ease;
   background: #1a1a1a;
   box-sizing: border-box;
+  box-shadow: 0 6px 15px rgba(0,0,0,0.6);
 
   img {
     width: 130px;
@@ -62,6 +63,7 @@
 .emblem-card:hover {
   // background-color: rgba($color: #ffffff, $alpha: 0.05);
   border: solid 1px grey;
+  box-shadow: 0 10px 20px rgba(0,0,0,0.8);
 }
 
 @media (max-width: 767.98px) {
