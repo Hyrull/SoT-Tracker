@@ -30,7 +30,7 @@ const RatInfoModal: React.FC<RatInfoModalProps> = ({ isOpen, onClose }) => {
             Open <a href="https://www.seaofthieves.com/profile/overview" target="_blank" rel="noopener noreferrer">
               your Sea of Thieves profile
             <img src={externalLinkIcon} alt="External link" className="external-link-icon" />
-           </a>.
+           </a> and log in to your account.
           </li>
           <li>Press <strong>F12</strong> to open Developer Tools.</li>
           <li>Go to the <strong>{isChromium ? 'Application' : 'Storage'}</strong> tab.</li>
