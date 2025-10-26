@@ -10,6 +10,11 @@ interface RatInfoModalProps {
 const RatInfoModal: React.FC<RatInfoModalProps> = ({ isOpen, onClose }) => {
   if (!isOpen) return null
 
+  const isChromium = React.useMemo(
+  () => /Chrome|Chromium|Edg|Brave/i.test(navigator.userAgent),
+  []
+)
+
   return (
     <div className="rat-modal-overlay" onClick={onClose}>
       <div className="rat-modal" onClick={(e) => e.stopPropagation()}>
@@ -28,7 +33,7 @@ const RatInfoModal: React.FC<RatInfoModalProps> = ({ isOpen, onClose }) => {
            </a>.
           </li>
           <li>Press <strong>F12</strong> to open Developer Tools.</li>
-          <li>Go to the <strong>Application</strong> tab.</li>
+          <li>Go to the <strong>{isChromium ? 'Application' : 'Storage'}</strong> tab.</li>
           <li>Under <strong>Cookies</strong> → select <code>https://www.seaofthieves.com</code>.</li>
           <li>Find the cookie named <strong>rat</strong> and copy its value.</li>
           <li>Paste it into the field on the Settings page and press <strong>Update Rat</strong>.</li>
