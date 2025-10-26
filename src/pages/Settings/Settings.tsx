@@ -1,12 +1,14 @@
 import React, { useState } from 'react'
 import { useNavigate } from 'react-router'
 import externalLinkIcon from '/assets/img/icons/external_link.svg'
+import RatInfoModal from './Components/RatInfoModal'
 import './Settings.scss'
 
 const Settings: React.FC = () => {
   const [ratToken, setRatToken] = useState('')
   const [message, setMessage] = useState('')
   const [password, setPassword] = useState('')
+  const [isRatModalOpen, setIsRatModalOpen] = useState(false)
   const navigate = useNavigate()
 
   const [showDeleteBox, setShowDeleteBox] = useState(false)
@@ -109,6 +111,14 @@ const Settings: React.FC = () => {
       <div className='form-group'>
         <label htmlFor="ratToken">
           Update your Rat token here:
+            <button
+              type="button"
+              className="info-button"
+              onClick={() => setIsRatModalOpen(true)}
+              title="What’s 'rat'?"
+            >
+              ?
+            </button>
         </label>
         <input
           type="text"
@@ -154,6 +164,7 @@ const Settings: React.FC = () => {
         </button>
       </div>
       {message && <p className='server-message'>{message}</p>}
+      <RatInfoModal isOpen={isRatModalOpen} onClose={() => setIsRatModalOpen(false)} />
     </div>
   )
 }

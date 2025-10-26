@@ -1,0 +1,80 @@
+.rat-modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: rgba(0, 0, 0, 0.7);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+}
+
+.rat-modal {
+  background-color: #1a1a1a;
+  border: 2px solid #214B21;
+  border-radius: 20px;
+  width: 90%;
+  max-width: 500px;
+  padding: 2rem;
+  color: white;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+  text-align: left;
+  animation: fadeIn 0.2s ease-in-out;
+
+  h3 {
+    margin-top: 0;
+    margin-bottom: 12px;
+    font-size: 1.8rem;
+    text-align: center;
+  }
+
+  h4 {
+    margin-top: 1.5rem;
+    font-size: 1.2rem;
+    color: #4CAF50;
+  }
+
+  p, li {
+    font-size: 1rem;
+    line-height: 1.5;
+  }
+
+  ol {
+    padding-left: 1.2rem;
+    padding-top: 0.2rem;
+  }
+
+  a {
+    color: #4CAF50;
+    text-decoration: underline;
+
+    &:hover {
+      color: #62e667;
+    }
+  }
+
+  .okay-button {
+    margin-top: 1.5rem;
+    width: 100%;
+    padding: 10px;
+    border: 2px solid #214B21;
+    background-color: #2B2F30;
+    color: white;
+    border-radius: 20px;
+    cursor: pointer;
+    font-size: 1rem;
+    transition: all 0.3s ease-in-out;
+
+    &:hover {
+      border-color: white;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+    }
+  }
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: scale(0.95); }
+  to { opacity: 1; transform: scale(1); }
+}
