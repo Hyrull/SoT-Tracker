@@ -1,6 +1,7 @@
 import './Home.scss'
 import HomeQuestion from "./Components/HomeQuestion"
 import CarouselBanner from './Components/CarouselBanner'
+import { Link } from 'react-router'
 
 function Home() {
   return (
@@ -34,15 +35,8 @@ function Home() {
       title="What does it look like?"
       content={
         <>
-        See a couple screenshots{' '}
-        <a
-          href="https://imgur.com/a/sot-tracker-25-10-25-preview-fBANLxu"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          here
-        </a>
-        , or try a demo page here (coming soon!).
+        See a couple screenshots on the carousel above or try browsing the <Link data-itemprop='url' to='/commendations'>Commendations</Link> page - 
+        even without making an account, you can browse a demo page with my own commendations from late October, 2025.
         </>
       }
       />
