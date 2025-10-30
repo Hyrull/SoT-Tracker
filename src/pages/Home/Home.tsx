@@ -1,15 +1,17 @@
 import './Home.scss'
 import HomeQuestion from "./Components/HomeQuestion"
-
+import CarouselBanner from './Components/CarouselBanner'
 
 function Home() {
   return (
     <>
-    <div className="homepage">
+    <div className='homepage-carousel'>
       <h1>SoT Tracker - A commendations companion app, because the in-game menus are a mess</h1>
+      <CarouselBanner/>
+    </div>
+    <div className="homepage">
       {/* <h2>This page is under construction - check out the Commendations page!</h2> */}
 
-      {/* One day, I'll add a carousel here with some cool pics. One day. Not today. */}
       
       <HomeQuestion 
       title="What is this website?" 
