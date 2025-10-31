@@ -1,5 +1,5 @@
 import ReactDOM from "react-dom/client";
-import { BrowserRouter, Routes, Route } from "react-router";
+import { HashRouter as Router, Routes, Route } from "react-router";
 
 import './global.scss'
 
@@ -13,7 +13,7 @@ import Commendations from "./pages/Commendations/Commendations.tsx";
 import ErrorPage from "./pages/ErrorPage/ErrorPage";
 
 ReactDOM.createRoot(document.getElementById('root')!).render(
-  <BrowserRouter>
+  <Router>
     <Header />
     <Routes>
       <Route path='/' element={<Home />} />
@@ -24,5 +24,5 @@ ReactDOM.createRoot(document.getElementById('root')!).render(
       <Route path='*' element={<ErrorPage />} /> 
     </Routes>
     <Footer />
-  </BrowserRouter>
+  </Router>
 );
