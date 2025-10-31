@@ -4,7 +4,7 @@
     justify-content: space-between;
     width: 90%;
     align-items: center;
-    margin: 5px 0;
+    margin: 0px 0px;
 
     padding: 10px;
     z-index: 1000;
@@ -12,7 +12,8 @@
 
     &.sticky {
       position: fixed;
-      margin-top: 0px;;
+      margin-top: 0px;
+      margin-bottom: 0px;
       top: 0;
       width: 100%;
       background-color: rgb(19, 19, 19);
@@ -25,6 +26,7 @@
       flex-direction: row;
       min-width: 650px;
       // margin-left: 33%;
+      margin: 2px 0px;
 
       .toggle-button {
         display: flex;
@@ -98,7 +100,7 @@
         align-items: center;
         display: flex;
         height: 40px;
-        margin: 0px 20px;
+        margin: 1px 20px;
 
         .search-icon {
           position: absolute;
@@ -120,6 +122,10 @@
           background-color: #2B2F30;
           color: white;
           transition: all 0.3s ease-in-out;
+          line-height: normal;
+          box-sizing: border-box;
+          transform: translateY(0);
+          height: 40px;
 
           &:focus, &:hover {
             outline: none;
