@@ -32,7 +32,7 @@ The homepage carousel displays example screenshots. You can also explore the [Co
 ---
 
 ## Desktop-only for now
-Currently, the site is optimized for desktop, and is 100% broken on mobile I will fix this eventually.
+Currently, the site is optimized for desktop, and is 100% broken on mobile. I will fix this eventually.
 
 ---
 
