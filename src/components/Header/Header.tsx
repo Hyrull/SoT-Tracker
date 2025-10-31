@@ -14,7 +14,12 @@ function Header() {
   return (
     <header>
       <div className='header-content'>
-        <img src={logo} alt='Sea of Thieves logo'/>
+        <Link to='/'>
+          <img 
+            src={logo} 
+            alt='Sea of Thieves logo'
+          />
+        </Link>
         <nav data-itemtype="https://schema.org/SiteNavigationElement" data-itemscope="">
           <Link data-itemprop='url' to='/'>Home</Link>
           <Link data-itemprop='url' to='/commendations'>Commendations</Link>
