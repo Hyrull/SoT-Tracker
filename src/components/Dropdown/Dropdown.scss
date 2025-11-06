@@ -120,7 +120,7 @@
       transition: opacity 0.3s ease;
       justify-content: center;
 
-      .emblems {
+      ul {
         display: flex;
         flex-wrap: wrap;
         justify-content: space-around;
@@ -209,7 +209,7 @@
         min-width: 10%;
         max-width: 90%;
 
-        .emblems {
+        ul {
 
           flex-direction: column;
 

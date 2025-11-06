@@ -92,13 +92,13 @@ const FactionDropdown = ({
           {/* Simple ones */}
           {filteredMainEmblems.length > 0 && (
             <div className="category">
-              <div className="emblems">
+              <ul>
                 {filteredMainEmblems
                   .filter((emblem) => (!hideCompleted || !emblem.Completed) && matchesSearch(emblem))
                   .map((emblem, index) => (
                     <EmblemCard key={`main-${index}`} emblem={emblem} showRewards={showRewards}/>
                   ))}
-              </div>
+              </ul>
             </div>
           )}
 
