@@ -60,6 +60,7 @@ const FactionDropdown = ({
       title={
         <>
         <div className='faction-header'>
+          <progress value={completedEmblems} max={totalEmblems}></progress>
           <img
             className='faction-icon'
             src={factionNames[factionKey].logo}
