@@ -19,7 +19,6 @@
       background-color: rgb(20, 20, 20,0.85);
       backdrop-filter: blur(4px);
       box-shadow: 0 3px 5px rgba(0, 0, 0, 0.5);
-      //border-bottom: 2px solid #393939;
     }
     
     .toggle-and-search {
@@ -41,7 +40,7 @@
         background-color: #2B2F30;
         color: white;
         border: 2px solid #214B21;
-        border-radius: 10px;
+        border-radius: 3px;
         cursor: pointer;
         overflow: hidden;
         transition: all 0.3s ease-in-out;
@@ -119,7 +118,7 @@
           // margin: 10px 0;
           font-size: 16px;
           border: 1px solid grey;
-          border-radius: 8px;
+          border-radius: 3px;
           background-color: #2B2F30;
           color: white;
           transition: all 0.3s ease-in-out;
@@ -165,7 +164,7 @@
       margin-right: 40px;
       background-color: #2B2F30;
       border: 2px solid #214B21;
-      border-radius: 10px;
+      border-radius: 3px;
       cursor: pointer;
       transition: all 0.3s ease-in-out;
       width: auto;
