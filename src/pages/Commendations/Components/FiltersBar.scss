@@ -16,9 +16,10 @@
       margin-bottom: 0px;
       top: 0;
       width: 100%;
-      background-color: rgb(19, 19, 19);
-      box-shadow: 0 3px 5px rgba(255, 255, 255, 0.1);
-      border-bottom: 2px solid #393939;
+      background-color: rgb(20, 20, 20,0.85);
+      backdrop-filter: blur(4px);
+      box-shadow: 0 3px 5px rgba(0, 0, 0, 0.5);
+      //border-bottom: 2px solid #393939;
     }
     
     .toggle-and-search {
