@@ -47,6 +47,14 @@ const FactionDropdown = ({
 
   const level = 0 // Placeholder for now - I'll introduce the level display someday (maybe)
 
+  // To avoid the custom progress bar's class to be "Athenas-Fortune" rather than "Athena's.Fortune"
+  const sanitizeClass = (name: any) =>
+  String(name || '')
+    .replace(/['’\u2019]/g, '')        // remove ASCII + common Unicode apostrophes
+    .replace(/\./g, '-')               // replace dots with hyphens
+    .replace(/[^A-Za-z0-9_-]+/g, '-')  // collapse any other weird chars into '-'
+    .replace(/^-+|-+$/g, '');          // trim leading/trailing hyphens
+
 
   ////////////////////////////////////
   // Time to actually display stuff
@@ -60,7 +68,9 @@ const FactionDropdown = ({
       title={
         <>
         <div className='faction-header'>
-          <progress value={completedEmblems} max={totalEmblems}></progress>
+          <progress value={completedEmblems} max={totalEmblems} 
+          className={sanitizeClass(factionNames[factionKey].name)}>
+          </progress>
           <img
             className='faction-icon'
             src={factionNames[factionKey].logo}
