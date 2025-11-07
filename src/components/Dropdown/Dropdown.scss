@@ -46,11 +46,37 @@
 
     }
 
+    .progress-bar {
+      position: absolute;
+      top: 0;
+      left: 0;
+      height: 100%;
+      background-color: #21dd75;
+      z-index: -1;
+      transition: width 0.4s ease;
+      opacity: 20%;
+
+      &.Tall-Tales {
+        background-color: white;
+      }
+
+      &.Adventures-at-Sea {
+        background-color: rgb(151, 73, 73);
+      }
+
+      &.Gold-Hoarders {
+        background-color: rgb(197, 197, 197);
+      }
+
+    }
+
     .faction-header {
       // background-color: blue;
       display: flex;
       flex-direction: row;
       width: 100%;
+      position: relative;
+       padding: 10px;
 
       .faction-info {
         display: flex;

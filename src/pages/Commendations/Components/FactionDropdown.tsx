@@ -68,9 +68,11 @@ const FactionDropdown = ({
       title={
         <>
         <div className='faction-header'>
-          <progress value={completedEmblems} max={totalEmblems} 
-          className={sanitizeClass(factionNames[factionKey].name)}>
-          </progress>
+        <div className={`progress-bar ${sanitizeClass(factionNames[factionKey].name)}`}
+              style={{
+                width: `${(completedEmblems / totalEmblems) * 100}%`,
+              }}
+            />
           <img
             className='faction-icon'
             src={factionNames[factionKey].logo}
