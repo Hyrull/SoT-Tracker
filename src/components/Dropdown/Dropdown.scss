@@ -23,6 +23,8 @@
 
     .arrow {
       transition: transform 0.3s ease;
+      position: absolute;
+      right: 20px; // distance from right edge
       // background-color: #2B2F30;
       width: 25px;
       height: 25px;

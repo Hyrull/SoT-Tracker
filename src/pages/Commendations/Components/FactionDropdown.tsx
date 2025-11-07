@@ -3,6 +3,7 @@ import EmblemCard from '../../../components/EmblemCard/EmblemCard'
 import checkmark from '/assets/img/icons/sot_checkmark.svg'
 import { FactionDropdownProps, Emblem } from '../../../types/types'
 import factionNames from '../Data/FactionNames'
+import dropdownArrow from '/assets/img/icons/Unfold.svg'
 
 
 const FactionDropdown = ({
@@ -65,7 +66,7 @@ const FactionDropdown = ({
     key={factionKey}
 
       // FACTION HEADER
-      title={
+      title={({ displayContent }) => (
         <>
         <div className='faction-header'>
         <div className={`progress-bar ${sanitizeClass(factionNames[factionKey].name)}`}
@@ -92,9 +93,15 @@ const FactionDropdown = ({
               alt={`${factionNames[factionKey].name} banner`}
               />
           </div>
+
+          <img
+            src={dropdownArrow}
+            alt="Dropdown arrow"
+            className={`arrow ${displayContent ? 'rotate' : ''}`}
+          />
         </div>
       </>
-    }
+  )}
 
 
 
