@@ -1,3 +1,5 @@
+@use './../../variables.scss' as *;
+
 .emblem-card {
   display: flex;
   padding: 10px;
@@ -7,7 +9,7 @@
   width: 540px;
   border: solid 1px #393939;
   border-left: solid 3px #393939;
-  border-radius: 5px;
+  border-radius: $global-border-radius;
   min-height: 140px;
   transition: background-color 0.2s ease, border 0.2s ease;
   background: #181818;

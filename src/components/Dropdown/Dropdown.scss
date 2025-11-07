@@ -1,3 +1,5 @@
+@use './../../variables.scss' as *;
+
 .dropdown {
   display: flex;
   flex-direction: column;
@@ -6,7 +8,7 @@
   margin-bottom: 15px;
 
   .dropdown-header {
-    border-radius: 5px;
+    border-radius: $global-border-radius;
     display: flex;
     justify-content: space-between;
     background-color: rgba(19,19,19,1);
@@ -16,7 +18,6 @@
     cursor: pointer;
     position: relative;
     flex-grow: 0;
-    border-radius: 0px;
     overflow: hidden;
 
     box-shadow: 0 6px 15px rgba(0,0,0,0.6);
@@ -24,8 +25,7 @@
     .arrow {
       transition: transform 0.3s ease;
       position: absolute;
-      right: 20px; // distance from right edge
-      // background-color: #2B2F30;
+      right: 20px;
       width: 25px;
       height: 25px;
       filter: invert(1);
@@ -52,7 +52,7 @@
       position: absolute;
       bottom: 0px;
       height: 5px;
-      background-color: #214C22;
+      background-color: #214C22; // Shouldn't be used since every case is manually handled below
       transition: width 0.4s ease;
       z-index: 20;
 
@@ -108,21 +108,21 @@
           display: flex;
           flex-direction: row;
           
-                  h2 {
-                    font-size: 1.5em;
-                    color: white;
-                    // background-color: #2B2F30;
-                    text-align: center;
-                    margin-left: 12px;
-                    flex-grow: 0;
-                  }
-            
-                  h3 {
-                    font-size: 1.2em;
-                    margin-top: 2px;
-                    margin-left: 35px;
-                    text-align: center;
-                  }
+          h2 {
+            font-size: 1.5em;
+            color: white;
+            // background-color: #2B2F30;
+            text-align: center;
+            margin-left: 12px;
+            flex-grow: 0;
+          }
+    
+          h3 {
+            font-size: 1.2em;
+            margin-top: 2px;
+            margin-left: 35px;
+            text-align: center;
+          }
         }
       }
 
@@ -264,7 +264,6 @@
         max-width: 90%;
 
         ul {
-
           flex-direction: column;
 
           .emblem-card {
@@ -295,5 +294,4 @@
       }
     }
   }
-
 }

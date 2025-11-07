@@ -1,6 +1,6 @@
-@forward './variables.scss';
-
 /* montserrat-regular - latin */
+@use './variables.scss' as *;
+
 @font-face {
   font-display: swap; /* Check https://developer.mozilla.org/en-US/docs/Web/CSS/@font-face/font-display for other options. */
   font-family: 'Montserrat';
@@ -25,7 +25,7 @@
 
 body {
   // background-color: #0F1111;
-  background-color: #101010;
+  background-color: $main-bg-color;
   color: white;
   font-family: 'Montserrat';
 }

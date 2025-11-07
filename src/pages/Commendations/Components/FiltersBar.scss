@@ -1,3 +1,5 @@
+  @use './../../../variables.scss' as *;
+  
   .filters {
     display: flex;
     flex-direction: row;
@@ -40,7 +42,7 @@
         background-color: #2B2F30;
         color: white;
         border: 2px solid #214B21;
-        border-radius: 3px;
+        border-radius: $global-border-radius;
         cursor: pointer;
         overflow: hidden;
         transition: all 0.3s ease-in-out;
@@ -118,7 +120,7 @@
           // margin: 10px 0;
           font-size: 16px;
           border: 1px solid grey;
-          border-radius: 3px;
+          border-radius: $global-border-radius;
           background-color: #2B2F30;
           color: white;
           transition: all 0.3s ease-in-out;
@@ -164,7 +166,7 @@
       margin-right: 40px;
       background-color: #2B2F30;
       border: 2px solid #214B21;
-      border-radius: 3px;
+      border-radius: $global-border-radius;
       cursor: pointer;
       transition: all 0.3s ease-in-out;
       width: auto;

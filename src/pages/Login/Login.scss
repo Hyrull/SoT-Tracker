@@ -1,10 +1,12 @@
+@use './../../variables.scss' as *;
+
 .signup-container {
   display: flex;
   justify-content: center;
   align-items: center;
   flex-direction: column;
   background-color: rgba(19,19,19,1);
-  border-top: solid 3px #214B21;
+  border-top: solid 3px $main-accent-color;
   box-shadow: 0 6px 15px rgba(0,0,0,0.6);
 
   width: 50%;
@@ -61,15 +63,15 @@
       font-size: 16px;
       background-color: #2B2F30;
       color: white;
-      border: 0px solid #214B21;
-      border-left: 3px solid #214B21;
+      border: 0px solid $main-accent-color;
+      border-left: 3px solid $main-accent-color;
       cursor: pointer;
       transition: all 0.3s ease-in-out;
       width: auto;
       
       /* On hover */
       &:hover {
-        background-color: #214B21;
+        background-color: $main-accent-color;
         box-shadow: 0 6px 15px rgba(0,0,0,0.6);
       }
     }
@@ -79,13 +81,13 @@
     margin: 20px;
     
     .signup-link {
-      color: #214B21;
+      color: $main-accent-color;
       font-weight: bold;
       text-decoration: underline;
       transition: all 0.3s ease-in-out;
       
       &:hover {
-        color: white;
+        color: #62e667;
         cursor: pointer;
       }
     }

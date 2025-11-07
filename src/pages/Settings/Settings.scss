@@ -1,9 +1,11 @@
+@use './../../variables.scss' as *;
+
 .settings-container {
   display: flex;
   flex-direction: column;
   align-items: center;
   background-color: rgba(19,19,19,1);
-  border-top: solid 3px #214B21;
+  border-top: solid 3px $main-accent-color;
   box-shadow: 0 6px 15px rgba(0,0,0,0.6);
 
   width: 50%;
@@ -58,15 +60,15 @@
     font-size: 16px;
     background-color: #2B2F30;
     color: white;
-    border: 0px solid #214B21;
-    border-left: 3px solid #214B21;
+    border: 0px solid $main-accent-color;
+    border-left: 3px solid $main-accent-color;
     cursor: pointer;
     transition: all 0.3s ease-in-out;
     width: auto;
     
     /* On hover */
     &:hover {
-      background-color: #214B21;
+      background-color: $main-accent-color;
       box-shadow: 0 6px 15px rgba(0,0,0,0.6);
     }
   }
@@ -94,7 +96,7 @@
         margin: 10px 0;
         font-size: 16px;
         border: 1px solid grey;
-        border-radius: 8px;
+        border-radius: $global-border-radius;
       }
     }
 
@@ -116,9 +118,9 @@
     margin: 10px;
     padding: 10px;
     font-size: 1.5rem;
-    color: #214B21;
+    color: $main-accent-color;
     background-color: rgba(15,15,15,1);
-    border-bottom: 3px solid #214B21;
+    border-bottom: 3px solid $main-accent-color;
   }
 
   .profile-link {
