@@ -123,7 +123,7 @@ const FactionDropdown = ({
             return (
               <div key={campaign.key} className="category">
                 <h3>{campaign.title}</h3>
-                <div className="emblems">
+                <ul>
                   {campaign.emblems
                     .filter(
                       (emblem: Emblem) =>
@@ -139,7 +139,7 @@ const FactionDropdown = ({
                       />
                     ))
                   }
-                </div>
+                </ul>
               </div>
             )
           })}
