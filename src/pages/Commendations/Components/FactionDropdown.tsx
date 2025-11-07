@@ -48,7 +48,7 @@ const FactionDropdown = ({
   const level = 0 // Placeholder for now - I'll introduce the level display someday (maybe)
 
   // To avoid the custom progress bar's class to be "Athenas-Fortune" rather than "Athena's.Fortune"
-  const sanitizeClass = (name: any) =>
+  const sanitizeClass = (name: string) =>
   String(name || '')
     .replace(/['’\u2019]/g, '')        // remove ASCII + common Unicode apostrophes
     .replace(/\./g, '-')               // replace dots with hyphens
