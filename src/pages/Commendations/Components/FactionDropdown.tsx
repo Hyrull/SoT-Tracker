@@ -3,6 +3,7 @@ import EmblemCard from '../../../components/EmblemCard/EmblemCard'
 import checkmark from '/assets/img/icons/sot_checkmark.svg'
 import { FactionDropdownProps, Emblem } from '../../../types/types'
 import factionNames from '../Data/FactionNames'
+import dropdownArrow from '/assets/img/icons/Unfold.svg'
 
 
 const FactionDropdown = ({
@@ -47,6 +48,14 @@ const FactionDropdown = ({
 
   const level = 0 // Placeholder for now - I'll introduce the level display someday (maybe)
 
+  // To avoid the custom progress bar's class to be "Athenas-Fortune" rather than "Athena's.Fortune"
+  const sanitizeClass = (name: string) =>
+  String(name || '')
+    .replace(/['’\u2019]/g, '')        // remove ASCII + common Unicode apostrophes
+    .replace(/\./g, '-')               // replace dots with hyphens
+    .replace(/[^A-Za-z0-9_-]+/g, '-')  // collapse any other weird chars into '-'
+    .replace(/^-+|-+$/g, '');          // trim leading/trailing hyphens
+
 
   ////////////////////////////////////
   // Time to actually display stuff
@@ -57,9 +66,14 @@ const FactionDropdown = ({
     key={factionKey}
 
       // FACTION HEADER
-      title={
+      title={({ displayContent }) => (
         <>
         <div className='faction-header'>
+        <div className={`progress-bar ${sanitizeClass(factionNames[factionKey].name)}`}
+              style={{
+                width: `${(completedEmblems / totalEmblems) * 100}%`,
+              }}
+            />
           <img
             className='faction-icon'
             src={factionNames[factionKey].logo}
@@ -79,9 +93,15 @@ const FactionDropdown = ({
               alt={`${factionNames[factionKey].name} banner`}
               />
           </div>
+
+          <img
+            src={dropdownArrow}
+            alt="Dropdown arrow"
+            className={`arrow ${displayContent ? 'rotate' : ''}`}
+          />
         </div>
       </>
-    }
+  )}
 
 
 
@@ -91,13 +111,13 @@ const FactionDropdown = ({
           {/* Simple ones */}
           {filteredMainEmblems.length > 0 && (
             <div className="category">
-              <div className="emblems">
+              <ul>
                 {filteredMainEmblems
                   .filter((emblem) => (!hideCompleted || !emblem.Completed) && matchesSearch(emblem))
                   .map((emblem, index) => (
                     <EmblemCard key={`main-${index}`} emblem={emblem} showRewards={showRewards}/>
                   ))}
-              </div>
+              </ul>
             </div>
           )}
 
@@ -112,7 +132,7 @@ const FactionDropdown = ({
             return (
               <div key={campaign.key} className="category">
                 <h3>{campaign.title}</h3>
-                <div className="emblems">
+                <ul>
                   {campaign.emblems
                     .filter(
                       (emblem: Emblem) =>
@@ -128,7 +148,7 @@ const FactionDropdown = ({
                       />
                     ))
                   }
-                </div>
+                </ul>
               </div>
             )
           })}

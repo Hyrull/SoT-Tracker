@@ -38,8 +38,8 @@ export interface AllCommsData {
 }
 
 export interface DropdownProps {
-  title: string | JSX.Element
-  content: string  | JSX.Element
+  title: React.ReactNode | ((props: { displayContent: boolean }) => React.ReactNode);
+  content: React.ReactNode | string;
 }
 
 export interface FiltersBarProps {

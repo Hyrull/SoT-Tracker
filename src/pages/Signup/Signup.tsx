@@ -46,6 +46,7 @@ const Signup: React.FC = () => {
             type="text"
             id="nickname"
             value={nickname}
+            placeholder="ThreeSheetsNeate"
             onChange={(e) => setNickname(e.target.value)}
             required
           />
@@ -56,6 +57,7 @@ const Signup: React.FC = () => {
             type="email"
             id="email"
             value={email}
+            placeholder="joe.neate@rare.sot"
             onChange={(e) => setEmail(e.target.value)}
             required
           />
@@ -69,6 +71,7 @@ const Signup: React.FC = () => {
             type="password"
             id="password"
             value={password}
+            placeholder='"ShroudedGhostIsReal1985"'
             onChange={(e) => setPassword(e.target.value)}
             required
           />
@@ -82,6 +85,7 @@ const Signup: React.FC = () => {
             type="password"
             id="password-check"
             value={passwordCheck}
+            placeholder='"ShroudedGhostIsReal1985"'
             onChange={(e) => setPasswordCheck(e.target.value)}
             required
           />

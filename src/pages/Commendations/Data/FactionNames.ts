@@ -51,12 +51,12 @@ const factionNames: Record<string, {name: string, logo: string, banner: string}>
   },
   PirateLord: {
     name: "Guardians of Fortune",
-    logo: "assets/img/faction logos/Athena's_Fortune_logo.webp",
+    logo: "assets/img/faction logos/Guardians_of_Fortune_logo.webp",
     banner: "assets/img/faction banners/Guardians_of_Fortune_banner.webp",
   },
   Flameheart: {
     name: "Servants of the Flame",
-    logo: "assets/img/faction logos/Reaper's_Bones_logo.webp",
+    logo: "assets/img/faction logos/Servants_of_The_Flame_logo.webp",
     banner: "assets/img/faction banners/Servants_of_the_Flame_banner.webp",
   }
 }

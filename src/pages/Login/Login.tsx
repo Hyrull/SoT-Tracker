@@ -44,6 +44,7 @@ return (
           type="email"
           id="email"
           value={email}
+          placeholder="joe.neate@rare.sot"
           onChange={(e) => setEmail(e.target.value)}
           required
         />
@@ -54,6 +55,7 @@ return (
           type="password"
           id="password"
           value={password}
+          placeholder='"ShroudedGhostIsReal1985"'
           onChange={(e) => setPassword(e.target.value)}
           required
         />
