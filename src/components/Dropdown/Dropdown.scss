@@ -3,23 +3,23 @@
   flex-direction: column;
   align-items: center;
   width: 100%;
+  margin-bottom: 15px;
 
   .dropdown-header {
-    // background-color: $main-color;
     border-radius: 5px;
     display: flex;
     justify-content: space-between;
-    // padding: 10px;
-    // background-color: #2B2F30;
-    // margin-top: 25px;
-    max-width: 100vh;
-    min-width: 100%;
+    background-color: rgba(19,19,19,1);
+    max-width: 95%;
+    min-width: 95%;
     height: 85px;
     cursor: pointer;
     position: relative;
     flex-grow: 0;
-    border: 1px solid #1c1c1c;
     border-radius: 0px;
+    overflow: hidden;
+
+    box-shadow: 0 6px 15px rgba(0,0,0,0.6);
 
     .arrow {
       transition: transform 0.3s ease;
@@ -50,38 +50,59 @@
 
     .progress-bar {
       position: absolute;
-      top: 0;
-      left: 0;
-      height: 100%;
-      background-color: #21dd75;
-      z-index: -1;
+      bottom: 0px;
+      height: 5px;
+      background-color: #214C22;
       transition: width 0.4s ease;
-      opacity: 20%;
+      z-index: 20;
 
       &.Tall-Tales {
-        background-color: white;
-      }
+        background-color: #93712F; }
 
       &.Adventures-at-Sea {
-        background-color: rgb(151, 73, 73);
-      }
+        background-color: #BE701D; }
 
       &.Gold-Hoarders {
-        background-color: rgb(197, 197, 197);
-      }
+        background-color: #EFE93E; }
+
+      &.Order-of-Souls {
+        background-color: #B24C81; }
+
+      &.Merchant-Alliance {
+        background-color: #1395B2; }
+
+      &.Athenas-Fortune {
+        background-color: #69EBA6; }
+
+      &.Reapers-Bones {
+        background-color: #B22517; }
+
+      &.Hunters-Call {
+        background-color: #668B91; }
+
+      &.Sea-Dogs {
+        background-color: #E8A72F; }
+
+      &.Creator-Crew {
+        background-color: #C79645; }
+
+      &.Guardians-of-Fortune {
+        background-color: #56CF8A; }
+
+      &.Servants-of-the-Flame {
+        background-color: #B73F34; }
 
     }
 
     .faction-header {
-      // background-color: blue;
       display: flex;
       flex-direction: row;
       width: 100%;
-      position: relative;
-       padding: 10px;
 
       .faction-info {
         display: flex;
+        position: absolute;
+        left: 5%;
 
         .faction-text {
           display: flex;
@@ -105,11 +126,10 @@
         }
       }
 
-
       .faction-icon {
-        width: 54px;
-        height: 54px;
-        margin: 0px 15px;
+        width: 4%;
+        height: 4%;
+        margin: 0.5%;
       }
 
       .faction-banner {
@@ -121,7 +141,7 @@
         display: flex;
         justify-content: flex-end;
         align-items: center;
-        z-index: -1;
+        z-index: 1;
       }
     }
   }
@@ -171,6 +191,12 @@
     }
   }
 }
+
+.dropdown-header:hover {
+  background-color: rgba(24,24,24,1);
+  transition: 0.5s;
+}
+
 
 @media (max-width: 767.98px) {
 

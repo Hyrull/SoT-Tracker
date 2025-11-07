@@ -6,6 +6,7 @@
   height: 180px;
   width: 540px;
   border: solid 1px #393939;
+  border-left: solid 3px #393939;
   border-radius: 5px;
   min-height: 140px;
   transition: background-color 0.2s ease, border 0.2s ease;
@@ -56,6 +57,7 @@
 
   &.completed {
     border: 1px solid #214B21;
+    border-left: solid 3px #3D863D;
     opacity: 40%;
   }
 }
