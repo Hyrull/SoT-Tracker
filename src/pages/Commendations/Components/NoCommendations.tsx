@@ -11,10 +11,10 @@ function NoCommendations() {
           Looks like you haven't imported your Sea of Thieves data yet. Head to your {' '}
           <span onClick={() => navigate('/settings')} className="settings-link">
             settings page
-          </span> and import your it from there - click the "?" button if you need instructions.
+          </span> and import it from there - click the "?" button if you need instructions.
         </p>
 
-        <button className="okay-button" onClick={() => navigate('/settings')}>Got it</button>
+        <button className="okay-button" onClick={() => navigate('/settings')}>Go to Settings</button>
     </div>
   )
 }
