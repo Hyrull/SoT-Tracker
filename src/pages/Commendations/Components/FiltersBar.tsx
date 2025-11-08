@@ -16,7 +16,7 @@ const FiltersBar = ({
 
 
   <div className={`filters ${isSticky ? 'sticky' : ''}`}>
-    <div className='empty-div-on-purpose'></div>
+    {/* <div className='empty-div-on-purpose'></div> */}
     <div className='toggle-and-search'>
       <button className={`toggle-button ${hideCompleted ? 'off' : 'on'}`} onClick={toggleHideCompleted}>
         <span className="toggle-text">Show Completed</span>

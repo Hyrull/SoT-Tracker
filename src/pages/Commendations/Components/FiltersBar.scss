@@ -3,7 +3,7 @@
   .filters {
     display: flex;
     flex-direction: row;
-    justify-content: space-between;
+    justify-content: center;
     width: 90%;
     align-items: center;
     margin: 0px 0px;
@@ -170,6 +170,8 @@
       cursor: pointer;
       transition: all 0.3s ease-in-out;
       width: auto;
+      position: absolute;
+      right: 5%;
 
       img {
         filter: invert(1);
