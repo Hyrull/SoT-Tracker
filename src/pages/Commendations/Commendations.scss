@@ -7,6 +7,11 @@
   justify-content: center;
   width: 90%;
 
+  ul {
+  min-width: 100%;
+  max-width: 100%;
+  }
+
   .offset {
     &.active {
       height: 66px;
