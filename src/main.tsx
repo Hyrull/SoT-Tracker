@@ -1,19 +1,21 @@
-import ReactDOM from "react-dom/client";
-import { BrowserRouter, Routes, Route } from "react-router";
+import ReactDOM from "react-dom/client"
+import { BrowserRouter, Routes, Route } from "react-router"
 
 import './global.scss'
 
-import Header from "./components/Header/Header";
-import Footer from "./components/Footer/Footer";
-import Home from "./pages/Home/Home";
-import Signup from "./pages/Signup/Signup.tsx";
-import Login from "./pages/Login/Login.tsx";
-import Settings from "./pages/Settings/Settings.tsx";
-import Commendations from "./pages/Commendations/Commendations.tsx";
-import ErrorPage from "./pages/ErrorPage/ErrorPage";
+import Header from "./components/Header/Header"
+import Footer from "./components/Footer/Footer"
+import Home from "./pages/Home/Home"
+import Signup from "./pages/Signup/Signup.tsx"
+import Login from "./pages/Login/Login.tsx"
+import Settings from "./pages/Settings/Settings.tsx"
+import Commendations from "./pages/Commendations/Commendations.tsx"
+import ErrorPage from "./pages/ErrorPage/ErrorPage"
+import { ToastProvider } from "./contexts/ToastContext.tsx"
 
 ReactDOM.createRoot(document.getElementById('root')!).render(
   <BrowserRouter>
+  <ToastProvider>
     <Header />
     <Routes>
       <Route path='/' element={<Home />} />
@@ -24,5 +26,6 @@ ReactDOM.createRoot(document.getElementById('root')!).render(
       <Route path='*' element={<ErrorPage />} /> 
     </Routes>
     <Footer />
+  </ToastProvider>
   </BrowserRouter>
-);
+)

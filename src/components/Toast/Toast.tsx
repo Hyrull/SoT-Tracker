@@ -4,7 +4,7 @@ import './Toast.scss'
 export interface ToastProps {
   content: string,
   duration?: number // has to be in ms, default is 3s / 3000ms
-  type?: 'success' | 'error'
+  type?: 'success' | 'error' | 'info'
   onClose?: () => void
 }
 
