@@ -6,11 +6,12 @@ import FiltersBar from './Components/FiltersBar'
 import FactionDropdown from './Components/FactionDropdown'
 import factionNames from './Data/FactionNames'
 import DemoBanner from './Components/DemoBanner'
+import NoCommendations from './Components/NoCommendations'
 
 
 // quick toggle for me when working the backend
-// const apiUrl = 'http://localhost:10000/api'
-const apiUrl = 'https://backend.sot-tracker.com/api'
+const apiUrl = 'http://localhost:10000/api'
+// const apiUrl = 'https://backend.sot-tracker.com/api'
 
 const Commendations = () => {
   const [emblems, setEmblems] = useState<AllCommsData>({})
@@ -42,6 +43,14 @@ const Commendations = () => {
               Authorization: `Bearer ${token}`,
             },
           })
+        }
+
+        if (response.status === 204) {
+          // No data - fresh account, probably
+          setEmblems({})
+          setError(null)
+          setLoading(false)
+          return
         }
         
         if (!response.ok) {
@@ -157,6 +166,10 @@ const Commendations = () => {
 
   const toggleShowRewards = () => {
     setShowRewards(!showRewards)
+  }
+
+  if (!error && !loading && Object.keys(emblems).length === 0) {
+  return <NoCommendations />
   }
 
 return (
