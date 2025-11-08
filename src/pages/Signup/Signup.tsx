@@ -1,4 +1,5 @@
 import React, { useState } from 'react'
+import { useToast } from '../../contexts/ToastContext'
 import './Signup.scss'
 
 const Signup: React.FC = () => {
@@ -6,14 +7,14 @@ const Signup: React.FC = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [passwordCheck, setPasswordCheck] = useState('');
-  const [apiResponse, setApiResponse] = useState<string | null>(null);
+  const { showToast } = useToast()
 
   const handleSubmit = async (event: React.FormEvent) => {
     event.preventDefault()
 
     // If password and password-check don't match, return an error message
     if (password !== passwordCheck) {
-      setApiResponse('Passwords do not match!')
+      showToast('Passwords do not match!', 'error')
       return
     }
 
@@ -30,7 +31,7 @@ const Signup: React.FC = () => {
         }),
       })
       const data = await response.json();
-      setApiResponse(data.message || 'Error creating the account! Email might already be in use.');
+      showToast(data.message || 'Error creating the account! Email might already be in use.', 'error');
     } catch (error) {
       console.error('There was an error signing up!', error)
     }
@@ -92,7 +93,6 @@ const Signup: React.FC = () => {
         </div>
         <button type="submit">Sign Up</button>
       </form>
-      {apiResponse && <p className="api-response">{apiResponse}</p>}
     </main>
   )
 }

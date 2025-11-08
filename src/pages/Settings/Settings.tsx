@@ -2,21 +2,22 @@ import React, { useState } from 'react'
 import { useNavigate } from 'react-router'
 import externalLinkIcon from '/assets/img/icons/external_link.svg'
 import RatInfoModal from './Components/RatInfoModal'
+import { useToast } from '../../contexts/ToastContext'
 import './Settings.scss'
 
 const Settings: React.FC = () => {
   const [ratToken, setRatToken] = useState('')
-  const [message, setMessage] = useState('')
   const [password, setPassword] = useState('')
   const [isRatModalOpen, setIsRatModalOpen] = useState(false)
   const navigate = useNavigate()
+  const { showToast } = useToast()
 
   const [showDeleteBox, setShowDeleteBox] = useState(false)
 
   const handleUpdate = async () => {
     const token = localStorage.getItem('token')
     if (!token) {
-      setMessage('User token was not found')
+      showToast('User token was not found', 'error')
       return
     }
 
@@ -31,12 +32,12 @@ const Settings: React.FC = () => {
       })
 
       if (response.ok) {
-        setMessage('Rat token updated successfully')
+        showToast('Rat token updated successfully', 'success')
       } else {
-        setMessage('Failed to update rat token')
+        showToast('Failed to update rat token', 'error')
       }
     } catch (error) {
-      setMessage('Failed to send a token update request')
+      showToast('Failed to send a token update request', 'error')
       console.error('Error updating rat token:', error)
     }
   }
@@ -44,13 +45,11 @@ const Settings: React.FC = () => {
   const refreshData = async () => {
     const token = localStorage.getItem('token')
     if (!token) {
-      setMessage('User token was not found')
+      showToast('User token was not found', 'error')
       return
     }
 
     try {
-
-      
       const response = await fetch('https://backend.sot-tracker.com/api/data/update', {
         method: 'PATCH',
         headers: {
@@ -61,13 +60,13 @@ const Settings: React.FC = () => {
       
       if (response.ok) {
         const data = await response.json()
-        setMessage(data.message)
+        showToast(data.message, 'success')
       } else {
         const errorData = await response.json()
-        setMessage(errorData.error || 'Failed to refresh data')
+        showToast(errorData.error || 'Failed to refresh data', 'error')
       }
     } catch (error) {
-      setMessage('A network error occured.')
+      showToast('A network error occured.', 'error')
       console.log('Error refreshing data:', error)
     }
   }
@@ -75,7 +74,7 @@ const Settings: React.FC = () => {
   const deleteUser = async () => {
     const token = localStorage.getItem('token')
     if (!token) {
-      setMessage('No token found. Please log in again.')
+      showToast('No token found. Please log in again.', 'error')
       return
     }
 
@@ -95,12 +94,12 @@ const Settings: React.FC = () => {
         localStorage.removeItem('token')
         navigate('/')
         window.location.reload()
-        setMessage('Deletion successful.')
+        showToast('Deletion successful.', 'success')
       } else {
-        setMessage('Failed to delete your profile.')
+        showToast('Failed to delete your profile.', 'error')
       }
     } catch (error) {
-      setMessage('Failed to reach the server for deletion.')
+      showToast('Failed to reach the server for deletion.', 'error')
       console.log('Error deleting user:', error)
     }
   }
@@ -163,7 +162,6 @@ const Settings: React.FC = () => {
           Yes, delete
         </button>
       </div>
-      {message && <p className='server-message'>{message}</p>}
       <RatInfoModal isOpen={isRatModalOpen} onClose={() => setIsRatModalOpen(false)} />
     </main>
   )

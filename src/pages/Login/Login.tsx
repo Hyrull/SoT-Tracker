@@ -1,12 +1,13 @@
 import React, { useState } from 'react'
 import { useNavigate } from 'react-router'
+import { useToast } from '../../contexts/ToastContext'
 import './Login.scss'
 
 const Login: React.FC = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
-  const [error, setError] = useState<string | null>(null);
   const navigate = useNavigate()
+  const { showToast } = useToast()
 
   const handleSubmit = async (event: React.FormEvent) => {
     event.preventDefault();
@@ -27,7 +28,7 @@ const Login: React.FC = () => {
         navigate('/commendations')
         window.location.reload()
       } else {
-        setError(data.message || 'Invalid email or password');
+        showToast(data.message || 'Invalid email or password', 'error');
       }
     } catch (error) {
       console.error('There was an error logging in!', error)
@@ -62,7 +63,6 @@ return (
       </div>
       <button type="submit">Log in</button>
     </form>
-    {error && <p className="error-message">{error}</p>}
   <p className='signup-here'>
     Don't have an account? You can{' '}
     <span onClick={() => navigate('/signup')} className="signup-link">
