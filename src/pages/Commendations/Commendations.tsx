@@ -161,6 +161,9 @@ const Commendations = () => {
 
 return (
   <section id="all-commendations">
+    <div className={`offset ${isSticky ? 'active' : ''}`} />
+    {/* Empty div with the FiltersBar height to prevent offset when the FilterBar becomes sticky on top of the screen (thus pushing everything up for its height) */}
+
     <FiltersBar
       hideCompleted={hideCompleted}
       toggleHideCompleted={toggleHideCompleted}
@@ -174,19 +177,22 @@ return (
       isDemo={isDemo}
     />
 
+
+    <ul>
     {Object.entries(emblems)
       .filter(([factionKey]) => factionNames[factionKey])
       .map(([factionKey, factionData]) => (
         <FactionDropdown
-          key={factionKey}
-          factionKey={factionKey}
-          factionData={factionData}
-          hideCompleted={hideCompleted}
-          showRewards={showRewards}
-          searchQuery={searchQuery}
+        key={factionKey}
+        factionKey={factionKey}
+        factionData={factionData}
+        hideCompleted={hideCompleted}
+        showRewards={showRewards}
+        searchQuery={searchQuery}
         />
       ))
     }
+    </ul>
 
     <DemoBanner isDemo={isDemo} />
     
