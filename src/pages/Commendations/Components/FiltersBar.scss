@@ -21,6 +21,10 @@
       background-color: rgb(20, 20, 20,0.85);
       backdrop-filter: blur(4px);
       box-shadow: 0 3px 5px rgba(0, 0, 0, 0.5);
+
+      .refresh-button {
+        right: 5.5%;
+      }
     }
     
     .toggle-and-search {
@@ -169,6 +173,7 @@
       border-radius: $global-border-radius;
       cursor: pointer;
       transition: all 0.3s ease-in-out;
+      transition: right 0s ease-in-out;
       width: auto;
       position: absolute;
       right: 5%;
