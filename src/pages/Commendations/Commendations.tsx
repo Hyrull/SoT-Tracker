@@ -1,5 +1,5 @@
 import { useEffect, useState, useCallback } from 'react'
-import { Link } from 'react-router'
+import { Link, useNavigate } from 'react-router'
 import { AllCommsData } from '../../types/types'
 import './Commendations.scss'
 import FiltersBar from './Components/FiltersBar'
@@ -14,6 +14,7 @@ const apiUrl = 'http://localhost:10000/api'
 // const apiUrl = 'https://backend.sot-tracker.com/api'
 
 const Commendations = () => {
+  const navigate = useNavigate()
   const [emblems, setEmblems] = useState<AllCommsData>({})
   const [hideCompleted, setHideCompleted] = useState(true)
   const [showRewards, setShowRewards] = useState(true)
@@ -24,7 +25,7 @@ const Commendations = () => {
   const [refreshing, setRefreshing] = useState(false);
   const token = localStorage.getItem('token')
   const isDemo = !token
-
+  
   // Function to fetch emblems
   useEffect(() => {
     const fetchEmblems = async () => {
@@ -51,6 +52,13 @@ const Commendations = () => {
           setError(null)
           setLoading(false)
           return
+        }
+
+        if (response.status === 401) {
+          // Token invalid or expired
+          setError('Your session has expired. Please log in again.')
+          setLoading(false)
+            return
         }
         
         if (!response.ok) {
@@ -134,8 +142,6 @@ const Commendations = () => {
     localStorage.removeItem('token')
   }
   
-
-
   useEffect(() => {
     window.addEventListener('scroll', handleScroll);
     return () => window.removeEventListener('scroll', handleScroll);
@@ -154,7 +160,11 @@ const Commendations = () => {
       <div className="error-container">
         <h2>{error}</h2>
         {!token && <Link to="/login">Log in here</Link>}
-        {token && <Link to="/login" onClick={removeToken}>Try logging out and logging in again.</Link>}
+        {token && <span className='relog-button' onClick={() => {
+          removeToken()
+          navigate('/login')
+          window.location.reload()
+        }}>Log in again</span>}
       </div>
     )
   }
