@@ -7,12 +7,8 @@ import FactionDropdown from './Components/FactionDropdown'
 import factionNames from './Data/FactionNames'
 import DemoBanner from './Components/DemoBanner'
 import NoCommendations from './Components/NoCommendations'
-import Toast from '../../components/Toast/Toast'
-
-
-// quick toggle for me when working the backend
-// const apiUrl = 'http://localhost:10000/api'
-const apiUrl = 'https://backend.sot-tracker.com/api'
+import { useToast } from '../../contexts/ToastContext'
+import { fetchEmblems, refreshEmblems } from '../../services/emblems'
 
 const Commendations = () => {
   const navigate = useNavigate()
@@ -24,61 +20,38 @@ const Commendations = () => {
   const [error, setError] = useState<string | null>(null)
   const [isSticky, setIsSticky] = useState(false)
   const [refreshing, setRefreshing] = useState(false)
-  const [toast, setToast] = useState<{ content: string; type: 'success' | 'error' } | null>(null)
   const token = localStorage.getItem('token')
   const isDemo = !token
+  const { showToast } = useToast()
   
   // Function to fetch emblems
-  useEffect(() => {
-    const fetchEmblems = async () => {
-      try {
+useEffect(() => {
+  const getEmblems = async () => {
+    setLoading(true)
+    const { data, error } = await fetchEmblems(token, isDemo)
+    setEmblems(data)
+    if (error) setError(error)
+    else setError(null)
+    setLoading(false)
+  }
 
-        let response: Response
+  getEmblems()
+}, [token])
 
-        if (isDemo) {
-          // Fetching demo data, if user isn't logged in to any account
-          response = await fetch('/data/exampleData.json')
-        } else {
-          response = await fetch(`${apiUrl}/data/emblems`, {
-            method: 'GET',
-            headers: {
-              'Content-Type': 'application/json',
-              Authorization: `Bearer ${token}`,
-            },
-          })
-        }
 
-        if (response.status === 204) {
-          // No data - fresh account, probably
-          setEmblems({})
-          setError(null)
-          setLoading(false)
-          return
-        }
+const handleRefreshClick = async () => {
+  if (!token) return // failproof for demo mode
 
-        if (response.status === 401) {
-          // Token invalid or expired
-          setError('Your session has expired. Please log in again.')
-          setLoading(false)
-            return
-        }
-        
-        if (!response.ok) {
-          throw new Error('Failed to fetch data.')
-        }
-        
-        const data: AllCommsData = await response.json() // Ensure response matches `AllCommsData`
-        setEmblems(data) // Set fetched data
-        setError(null)
-      } catch (err) {
-        setError(`There was an error fetching the data : ${err instanceof Error ? err.message : 'Unknown error'}`)
-      } finally {
-        setLoading(false)
-      }
-    }
-
-    fetchEmblems()
-  }, [token]) // Fetch only on component mount or token change
+  setRefreshing(true)
+  const { data, error } = await refreshEmblems(token, isDemo)
+  if (data) {
+    setEmblems(data)
+    showToast('Data successfully refreshed!', 'success')
+  } else if (error) {
+    showToast(error, 'error')
+  }
+  setRefreshing(false)
+}
 
   // Listening to scroll events to toggle the sticky header
   useEffect(() => {
@@ -94,59 +67,6 @@ const Commendations = () => {
     const headerHeight = header ? header.offsetHeight : 0
     setIsSticky(window.scrollY > headerHeight)
   }, [])
-
-  const refreshData = async () => {
-    if (isDemo) {
-      return false
-    } // Surely some smart ones will enable the sync button in the demo page to see what it'd do
-
-    setRefreshing(true)
-    try {
-      const token = localStorage.getItem('token')
-      const response = await fetch(`${apiUrl}/data/update`, {
-        method: 'PATCH',
-        headers: {
-          'Content-Type': 'application/json',
-          Authorization: `Bearer ${token}`,
-        },
-      })
-  
-      if (!response.ok) {
-        throw new Error('Failed to refresh data.')
-      }
-  
-      // Fetch the updated data
-      const updatedResponse = await fetch(`${apiUrl}/data/emblems`, {
-        method: 'GET',
-        headers: {
-          'Content-Type': 'application/json',
-          Authorization: `Bearer ${token}`,
-        },
-      })
-  
-      if (!updatedResponse.ok) {
-        throw new Error('Failed to fetch updated data.')
-      }
-  
-      const updatedData: AllCommsData = await updatedResponse.json()
-      setEmblems(updatedData) // Update the state
-      return true
-    } catch (err) {
-      console.error('Error refreshing data:', err)
-      return false
-    } finally {
-      setRefreshing(false)
-    }
-  }
-
-  const handleRefreshClick = async () => {
-    const success = await refreshData();
-    if (success) {
-      setToast({ content: 'Data successfully refreshed!', type: 'success' });
-    } else {
-      setToast({ content: 'Data refresh failed. Please update your rat token.', type: 'error' });
-    }
-  }
 
   const removeToken = () => {
     localStorage.removeItem('token')
@@ -196,15 +116,6 @@ return (
   <section id="all-commendations">
     <div className={`offset ${isSticky ? 'active' : ''}`} />
     {/* Empty div with the FiltersBar height to prevent offset when the FilterBar becomes sticky on top of the screen (thus pushing everything up for its height) */}
-
-    {toast && (
-      <Toast
-        content={toast.content}
-        type={toast.type} // success or error
-        duration={5000}
-        onClose={() => setToast(null)}
-      />
-    )}
 
     <FiltersBar
       hideCompleted={hideCompleted}

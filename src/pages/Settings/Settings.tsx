@@ -3,6 +3,10 @@ import { useNavigate } from 'react-router'
 import externalLinkIcon from '/assets/img/icons/external_link.svg'
 import RatInfoModal from './Components/RatInfoModal'
 import { useToast } from '../../contexts/ToastContext'
+import { refreshEmblems } from '../../services/emblems'
+import { updateRatToken } from '../../services/ratToken';
+import { deleteUser as deleteUserService } from '../../services/user'
+
 import './Settings.scss'
 
 const Settings: React.FC = () => {
@@ -16,91 +20,28 @@ const Settings: React.FC = () => {
 
   const handleUpdate = async () => {
     const token = localStorage.getItem('token')
-    if (!token) {
-      showToast('User token was not found', 'error')
-      return
-    }
-
-    try {
-      const response = await fetch('https://backend.sot-tracker.com/api/auth/ratUpdate', {
-        method: 'PATCH',
-        headers: {
-          'Content-Type': 'application/json',
-          Authorization: `Bearer ${token}`,
-        },
-        body: JSON.stringify({ ratToken }),
-      })
-
-      if (response.ok) {
-        showToast('Rat token updated successfully', 'success')
-      } else {
-        showToast('Failed to update rat token', 'error')
-      }
-    } catch (error) {
-      showToast('Failed to send a token update request', 'error')
-      console.error('Error updating rat token:', error)
-    }
+    const { success, error } = await updateRatToken(ratToken, token)
+    if (success) showToast('Rat token updated successfully', 'success')
+    else showToast(error || 'Failed to update rat token', 'error')
   }
 
   const refreshData = async () => {
     const token = localStorage.getItem('token')
-    if (!token) {
-      showToast('User token was not found', 'error')
-      return
-    }
-
-    try {
-      const response = await fetch('https://backend.sot-tracker.com/api/data/update', {
-        method: 'PATCH',
-        headers: {
-          'Content-Type': 'application/json',
-          Authorization: `Bearer ${token}`,
-        },
-      })
-      
-      if (response.ok) {
-        const data = await response.json()
-        showToast(data.message, 'success')
-      } else {
-        const errorData = await response.json()
-        showToast(errorData.error || 'Failed to refresh data', 'error')
-      }
-    } catch (error) {
-      showToast('A network error occured.', 'error')
-      console.log('Error refreshing data:', error)
-    }
+    const { data, error } = await refreshEmblems(token, false)
+    if (data) showToast('Data successfully refreshed!', 'success')
+    else showToast(error || 'Failed to refresh data', 'error')
   }
 
   const deleteUser = async () => {
     const token = localStorage.getItem('token')
-    if (!token) {
-      showToast('No token found. Please log in again.', 'error')
-      return
-    }
-
-    try {
-      const response = await fetch('https://backend.sot-tracker.com/api/auth/delete', {
-        method: 'DELETE',
-        headers: {
-          'Content-Type': 'application/json',
-          Authorization: `Bearer ${token}`,
-        },
-        body: JSON.stringify({ 
-          password
-        }),
-      })
-
-      if (response.ok) {
-        localStorage.removeItem('token')
-        navigate('/')
-        window.location.reload()
-        showToast('Deletion successful.', 'success')
-      } else {
-        showToast('Failed to delete your profile.', 'error')
-      }
-    } catch (error) {
-      showToast('Failed to reach the server for deletion.', 'error')
-      console.log('Error deleting user:', error)
+    const { success, error } = await deleteUserService(password, token)
+    if (success) {
+      localStorage.removeItem('token')
+      showToast('Deletion successful.', 'success')
+      navigate('/')
+      window.location.reload()
+    } else {
+      showToast(error || 'Failed to delete your profile.', 'error')
     }
   }
 

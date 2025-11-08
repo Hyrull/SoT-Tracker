@@ -1,5 +1,6 @@
 import React, { useState } from 'react'
 import { useToast } from '../../contexts/ToastContext'
+import { signup as signupService } from '../../services/auth';
 import './Signup.scss'
 
 const Signup: React.FC = () => {
@@ -12,29 +13,15 @@ const Signup: React.FC = () => {
   const handleSubmit = async (event: React.FormEvent) => {
     event.preventDefault()
 
-    // If password and password-check don't match, return an error message
     if (password !== passwordCheck) {
       showToast('Passwords do not match!', 'error')
-      return
+      return;
     }
 
-    try {
-      const response = await fetch('https://backend.sot-tracker.com/api/auth/signup', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({
-          nickname,
-          email,
-          password,
-        }),
-      })
-      const data = await response.json();
-      showToast(data.message || 'Error creating the account! Email might already be in use.', 'error');
-    } catch (error) {
-      console.error('There was an error signing up!', error)
-    }
+    const { success, message, error } = await signupService(nickname, email, password)
+
+    if (success) showToast(message || 'Account created successfully!', 'success')
+    else showToast(error || 'Error creating the account', 'error')
   }
 
   return (

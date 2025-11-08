@@ -1,6 +1,7 @@
 import React, { useState } from 'react'
 import { useNavigate } from 'react-router'
 import { useToast } from '../../contexts/ToastContext'
+import { login as loginService } from '../../services/auth';
 import './Login.scss'
 
 const Login: React.FC = () => {
@@ -10,28 +11,15 @@ const Login: React.FC = () => {
   const { showToast } = useToast()
 
   const handleSubmit = async (event: React.FormEvent) => {
-    event.preventDefault();
-    try {
-      const response = await fetch('https://backend.sot-tracker.com/api/auth/login', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({
-          email,
-          password,
-        }),
-      })
-      const data = await response.json();
-      if (response.ok) {
-        localStorage.setItem('token', data.token)
-        navigate('/commendations')
-        window.location.reload()
-      } else {
-        showToast(data.message || 'Invalid email or password', 'error');
-      }
-    } catch (error) {
-      console.error('There was an error logging in!', error)
+    event.preventDefault()
+    const { success, token, error } = await loginService(email, password)
+
+    if (success && token) {
+      localStorage.setItem('token', token)
+      navigate('/commendations')
+      window.location.reload()
+    } else {
+      showToast(error || 'Invalid email or password', 'error')
     }
   }
 
