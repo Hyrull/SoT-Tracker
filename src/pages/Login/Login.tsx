@@ -35,7 +35,7 @@ const Login: React.FC = () => {
   }
 
 return (
-  <div className="signup-container">
+  <main>
     <h2>Log in</h2>
     <form onSubmit={handleSubmit}>
       <div className="form-group">
@@ -69,7 +69,7 @@ return (
       sign up here
     </span>.
   </p>
-  </div>
+  </main>
 )
 }
 

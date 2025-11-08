@@ -5,7 +5,7 @@ import { Link } from 'react-router'
 
 function Home() {
   return (
-    <>
+    <main>
     <div className='homepage-carousel'>
       <h1>SoT Tracker - A commendations companion app, because the in-game menus are a mess</h1>
       <CarouselBanner/>
@@ -70,7 +70,7 @@ function Home() {
       content="Either send an issue on the repos above, or ping me on any Sea of Thieves Discord server I'm on (I'm on most). I'm @hyrul."
       />
     </div>
-    </>
+    </main>
 
   )
 }

@@ -37,7 +37,7 @@ const Signup: React.FC = () => {
   }
 
   return (
-    <div className="signup-container">
+    <main>
       <h2>Sign Up</h2>
       <form onSubmit={handleSubmit}>
         <div className="form-group">
@@ -93,7 +93,7 @@ const Signup: React.FC = () => {
         <button type="submit">Sign Up</button>
       </form>
       {apiResponse && <p className="api-response">{apiResponse}</p>}
-    </div>
+    </main>
   )
 }
 

@@ -106,7 +106,7 @@ const Settings: React.FC = () => {
   }
 
   return (
-    <div className='settings-container'>
+    <main>
       <h2>Settings</h2>
       <div className='form-group'>
         <label htmlFor="ratToken">
@@ -165,7 +165,7 @@ const Settings: React.FC = () => {
       </div>
       {message && <p className='server-message'>{message}</p>}
       <RatInfoModal isOpen={isRatModalOpen} onClose={() => setIsRatModalOpen(false)} />
-    </div>
+    </main>
   )
 }
 
