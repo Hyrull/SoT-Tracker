@@ -61,101 +61,105 @@ const FactionDropdown = ({
   // Time to actually display stuff
   // Using the Dropdown component, and nesting the EmblemCard component in it. Fun!
 
-  return (
-    <Dropdown
-    key={factionKey}
-
-      // FACTION HEADER
-      title={({ displayContent }) => (
-        <>
-        <div className='faction-header'>
-        <div className={`progress-bar ${sanitizeClass(factionNames[factionKey].name)}`}
-              style={{
-                width: `${(completedEmblems / totalEmblems) * 100}%`,
-              }}
-            />
-          <img
-            className='faction-icon'
-            src={factionNames[factionKey].logo}
-            alt={`${factionNames[factionKey].name} icon`}
-            />
-            <div className='faction-info'>
-              <div className='faction-text'>
-                <h2>{`${factionNames[factionKey].name}`}</h2>
-                <h3>{`${completedEmblems}/${totalEmblems}${level ? ` (Level: ${level})` : ''}`}</h3>
-              </div>
-            {completedEmblems === totalEmblems && <img src={checkmark} alt='Completion checkmark' className='checkmark'/> }
-            </div>
-          <div>
-            <img
-              className='faction-banner'
-              src={factionNames[factionKey].banner}
-              alt={`${factionNames[factionKey].name} banner`}
+  if(totalEmblems == 0) {
+    return ''
+  } else {
+      return (
+        <Dropdown
+        key={factionKey}
+        
+        // FACTION HEADER
+        title={({ displayContent }) => (
+          <>
+          <div className='faction-header'>
+          <div className={`progress-bar ${sanitizeClass(factionNames[factionKey].name)}`}
+                style={{
+                  width: `${(completedEmblems / totalEmblems) * 100}%`,
+                }}
               />
-          </div>
-
-          <img
-            src={dropdownArrow}
-            alt="Dropdown arrow"
-            className={`arrow ${displayContent ? 'rotate' : ''}`}
-          />
-        </div>
-      </>
-  )}
-
-
-
-    // Actual commendations display
-    content={
-      <div>
-          {/* Simple ones */}
-          {filteredMainEmblems.length > 0 && (
-            <div className="category">
-              <ul>
-                {filteredMainEmblems
-                  .filter((emblem) => (!hideCompleted || !emblem.Completed) && matchesSearch(emblem))
-                  .map((emblem, index) => (
-                    <EmblemCard key={`main-${index}`} emblem={emblem} showRewards={showRewards}/>
-                  ))}
-              </ul>
+            <img
+              className='faction-icon'
+              src={factionNames[factionKey].logo}
+              alt={`${factionNames[factionKey].name} icon`}
+              />
+              <div className='faction-info'>
+                <div className='faction-text'>
+                  <h2>{`${factionNames[factionKey].name}`}</h2>
+                  <h3>{`${completedEmblems}/${totalEmblems}${level ? ` (Level: ${level})` : ''}`}</h3>
+                </div>
+              {completedEmblems === totalEmblems && <img src={checkmark} alt='Completion checkmark' className='checkmark'/> }
+              </div>
+            <div>
+              <img
+                className='faction-banner'
+                src={factionNames[factionKey].banner}
+                alt={`${factionNames[factionKey].name} banner`}
+                />
             </div>
-          )}
+
+            <img
+              src={dropdownArrow}
+              alt="Dropdown arrow"
+              className={`arrow ${displayContent ? 'rotate' : ''}`}
+            />
+          </div>
+        </>
+    )}
 
 
 
-          {/* Campaigns */}
-          {/* Checker que si y a aucune commendation, alors on display même pas le nom de la catégorie */}
-          {filteredCampaigns.map((campaign) => {
-            if (campaign.emblems.length === 0) return null
-
-            // Campaign title display
-            return (
-              <div key={campaign.key} className="category">
-                <h3>{campaign.title}</h3>
+      // Actual commendations display
+      content={
+        <div>
+            {/* Simple ones */}
+            {filteredMainEmblems.length > 0 && (
+              <div className="category">
                 <ul>
-                  {campaign.emblems
-                    .filter(
-                      (emblem: Emblem) =>
-                        !hideCompleted || !emblem.Completed
-                    )
-                    .map((emblem: Emblem, index: number) => (
-
-                      // Commendation itself display
-                      <EmblemCard
-                        key={`${campaign.key}-${index}`}
-                        emblem={emblem}
-                        showRewards={showRewards}
-                      />
-                    ))
-                  }
+                  {filteredMainEmblems
+                    .filter((emblem) => (!hideCompleted || !emblem.Completed) && matchesSearch(emblem))
+                    .map((emblem, index) => (
+                      <EmblemCard key={`main-${index}`} emblem={emblem} showRewards={showRewards}/>
+                    ))}
                 </ul>
               </div>
-            )
-          })}
-      </div>
-    }
-    />
-  )  
+            )}
+
+
+
+            {/* Campaigns */}
+            {/* Checker que si y a aucune commendation, alors on display même pas le nom de la catégorie */}
+            {filteredCampaigns.map((campaign) => {
+              if (campaign.emblems.length === 0) return null
+
+              // Campaign title display
+              return (
+                <div key={campaign.key} className="category">
+                  <h3>{campaign.title}</h3>
+                  <ul>
+                    {campaign.emblems
+                      .filter(
+                        (emblem: Emblem) =>
+                          !hideCompleted || !emblem.Completed
+                      )
+                      .map((emblem: Emblem, index: number) => (
+
+                        // Commendation itself display
+                        <EmblemCard
+                          key={`${campaign.key}-${index}`}
+                          emblem={emblem}
+                          showRewards={showRewards}
+                        />
+                      ))
+                    }
+                  </ul>
+                </div>
+              )
+            })}
+        </div>
+      }
+      />
+    )  
+}
 }
 
 export default FactionDropdown
