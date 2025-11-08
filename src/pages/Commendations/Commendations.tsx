@@ -10,8 +10,8 @@ import NoCommendations from './Components/NoCommendations'
 
 
 // quick toggle for me when working the backend
-const apiUrl = 'http://localhost:10000/api'
-// const apiUrl = 'https://backend.sot-tracker.com/api'
+// const apiUrl = 'http://localhost:10000/api'
+const apiUrl = 'https://backend.sot-tracker.com/api'
 
 const Commendations = () => {
   const navigate = useNavigate()
