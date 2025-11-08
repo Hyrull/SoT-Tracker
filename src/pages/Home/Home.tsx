@@ -5,7 +5,7 @@ import { Link } from 'react-router'
 
 function Home() {
   return (
-    <div className='homepage' role='main'>
+    <div className='main' role='main'>
       <div className='homepage-carousel'>
         <h1>SoT Tracker - A commendations companion app, because the in-game menus are a mess</h1>
         <CarouselBanner/>
