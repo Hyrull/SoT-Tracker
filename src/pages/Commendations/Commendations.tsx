@@ -7,6 +7,7 @@ import FactionDropdown from './Components/FactionDropdown'
 import factionNames from './Data/FactionNames'
 import DemoBanner from './Components/DemoBanner'
 import NoCommendations from './Components/NoCommendations'
+import Toast from '../../components/Toast/Toast'
 
 
 // quick toggle for me when working the backend
@@ -21,8 +22,9 @@ const Commendations = () => {
   const [searchQuery, setSearchQuery] = useState('')
   const [loading, setLoading] = useState(true)
   const [error, setError] = useState<string | null>(null)
-  const [isSticky, setIsSticky] = useState(false);
-  const [refreshing, setRefreshing] = useState(false);
+  const [isSticky, setIsSticky] = useState(false)
+  const [refreshing, setRefreshing] = useState(false)
+  const [toast, setToast] = useState<{ content: string; type: 'success' | 'error' } | null>(null)
   const token = localStorage.getItem('token')
   const isDemo = !token
   
@@ -78,41 +80,39 @@ const Commendations = () => {
     fetchEmblems()
   }, [token]) // Fetch only on component mount or token change
 
-
-
   // Listening to scroll events to toggle the sticky header
   useEffect(() => {
-    window.addEventListener('scroll', handleScroll);
+    window.addEventListener('scroll', handleScroll)
 
     return () => {
-      window.removeEventListener('scroll', handleScroll);
+      window.removeEventListener('scroll', handleScroll)
     }
   })
 
   const handleScroll = useCallback(() => {
-    const header = document.querySelector('header');
-    const headerHeight = header ? header.offsetHeight : 0;
-    setIsSticky(window.scrollY > headerHeight);
-  }, []);
+    const header = document.querySelector('header')
+    const headerHeight = header ? header.offsetHeight : 0
+    setIsSticky(window.scrollY > headerHeight)
+  }, [])
 
   const refreshData = async () => {
     if (isDemo) {
-      return null
+      return false
     } // Surely some smart ones will enable the sync button in the demo page to see what it'd do
 
     setRefreshing(true)
     try {
-      const token = localStorage.getItem('token');
+      const token = localStorage.getItem('token')
       const response = await fetch(`${apiUrl}/data/update`, {
         method: 'PATCH',
         headers: {
           'Content-Type': 'application/json',
           Authorization: `Bearer ${token}`,
         },
-      });
+      })
   
       if (!response.ok) {
-        throw new Error('Failed to refresh data.');
+        throw new Error('Failed to refresh data.')
       }
   
       // Fetch the updated data
@@ -122,21 +122,31 @@ const Commendations = () => {
           'Content-Type': 'application/json',
           Authorization: `Bearer ${token}`,
         },
-      });
+      })
   
       if (!updatedResponse.ok) {
-        throw new Error('Failed to fetch updated data.');
+        throw new Error('Failed to fetch updated data.')
       }
   
-      const updatedData: AllCommsData = await updatedResponse.json();
+      const updatedData: AllCommsData = await updatedResponse.json()
       setEmblems(updatedData) // Update the state
+      return true
     } catch (err) {
       console.error('Error refreshing data:', err)
-      setError('Failed to refresh commendations.')
+      return false
     } finally {
       setRefreshing(false)
     }
-  };
+  }
+
+  const handleRefreshClick = async () => {
+    const success = await refreshData();
+    if (success) {
+      setToast({ content: 'Data successfully refreshed!', type: 'success' });
+    } else {
+      setToast({ content: 'Data refresh failed. Please update your rat token.', type: 'error' });
+    }
+  }
 
   const removeToken = () => {
     localStorage.removeItem('token')
@@ -187,6 +197,15 @@ return (
     <div className={`offset ${isSticky ? 'active' : ''}`} />
     {/* Empty div with the FiltersBar height to prevent offset when the FilterBar becomes sticky on top of the screen (thus pushing everything up for its height) */}
 
+    {toast && (
+      <Toast
+        content={toast.content}
+        type={toast.type} // success or error
+        duration={5000}
+        onClose={() => setToast(null)}
+      />
+    )}
+
     <FiltersBar
       hideCompleted={hideCompleted}
       toggleHideCompleted={toggleHideCompleted}
@@ -194,7 +213,7 @@ return (
       toggleShowRewards={toggleShowRewards}
       searchQuery={searchQuery}
       setSearchQuery={setSearchQuery}
-      refreshData={refreshData}
+      refreshData={handleRefreshClick}
       refreshing={refreshing}
       isSticky={isSticky}
       isDemo={isDemo}
