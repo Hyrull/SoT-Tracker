@@ -1,11 +1,16 @@
 @use './../../variables.scss' as *;
 
-.dropdown {
+li {
   display: flex;
   flex-direction: column;
   align-items: center;
   width: 100%;
   margin-bottom: 15px;
+  list-style: none;
+
+  * {
+  align-items: center;
+  }
 
   .dropdown-header {
     border-radius: $global-border-radius;

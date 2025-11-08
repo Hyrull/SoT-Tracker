@@ -7,7 +7,7 @@ function Dropdown({title, content} : DropdownProps) {
 
   const [displayContent, setdisplayContent] = useState(false)
   return (
-  <div className="dropdown">
+  <li className="dropdown">
     <div className='dropdown-header'
     onClick={() => setdisplayContent(!displayContent)}>
       {typeof title === 'function' ? title({ displayContent }) : title}
@@ -20,7 +20,7 @@ function Dropdown({title, content} : DropdownProps) {
             <>{content}</>
           )}</div>
     </div>
-  </div>
+  </li>
   )
 }
 
