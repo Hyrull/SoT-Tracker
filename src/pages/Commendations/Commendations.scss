@@ -20,6 +20,14 @@
 }
 
 .loading-container {
+  margin: 25px 0px;
+
+  border-left: solid 3px gray;
+  border-top-right-radius: $global-border-radius;
+  border-bottom-right-radius: $global-border-radius;
+  background-color: $alt-bg-color;
+  box-shadow: 0 6px 15px rgba(0, 0, 0, 0.6);
+
   p {
     font-size: 36px;
     margin: 20px;
@@ -42,7 +50,7 @@
     padding: 10px;
     border: 0px solid black;
     border-left: 3px solid $main-accent-color;
-    background-color: #2B2F30;
+    background-color: $alt-bg-color;
     color: white;
     font-size: 1.1rem;
     transition: all 0.4s ease-in-out;

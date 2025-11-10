@@ -4,12 +4,13 @@
     display: flex;
     flex-direction: row;
     justify-content: center;
-    width: 90%;
     align-items: center;
-    margin: 0px 0px;
 
+    margin: 0px 0px;
     padding: 10px;
+
     z-index: 1000;
+
     transition: box-shadow 0.3s ease, background-color 0.3s ease;
 
     &.sticky {
@@ -18,7 +19,6 @@
       margin-bottom: 0px;
       top: 0;
       width: 100%;
-      background-color: rgb(20, 20, 20,0.85);
       backdrop-filter: blur(4px);
       box-shadow: 0 3px 5px rgba(0, 0, 0, 0.5);
 
@@ -42,23 +42,24 @@
         width: 300px; /* Adjusted to fit both text and slider */
         height: 40px;
         padding: 0 10px; /* Add padding for proper spacing */
+
         font-size: 16px;
-        background-color: #2B2F30;
         color: white;
-        border: 2px solid #214B21;
-        border-radius: $global-border-radius;
+
+        background-color: $main-button-color;
+        border: 0px solid black;
+        border-left: 3px solid gray;
+
         cursor: pointer;
-        overflow: hidden;
         transition: all 0.3s ease-in-out;
         // margin-right: 25px;
       
         &.off {
-          background-color: #2B2F30;
-          border-color: #214B21;
+          border-color: gray;
         }
         
         &:hover {
-          border-color: white;
+          border-color: $main-accent-color;
         }
       
         .toggle-text {
@@ -66,7 +67,6 @@
           // font-weight: bold;
           white-space: nowrap;
           transition: color 0.3s ease-in-out;
-          // width: 100%;
         }
       
         .slider {
@@ -110,32 +110,36 @@
 
         .search-icon {
           position: absolute;
-          right: 15px;
+          right: 8px;
           top: 50%;
           transform: translateY(-50%);
-          width: 20px;
-          height: 20px;
+          width: 90hv;
+          height: 90hv;
+          filter: invert(52%) sepia(4%) saturate(7%) hue-rotate(319deg) brightness(96%) contrast(86%);
         }
         
         .search-bar {
           width: 100%;
           max-width: 420px;
+          height: 40px;
           padding: 10px 12px;
-          // margin: 10px 0;
+
           font-size: 16px;
-          border: 1px solid grey;
-          border-radius: $global-border-radius;
-          background-color: #2B2F30;
           color: white;
-          transition: all 0.3s ease-in-out;
           line-height: normal;
+
+          border: 0px solid black;
+          border-bottom: 2px solid grey;
+
+          background-color: #1a1a1a;
+
+          transition: all 0.3s ease-in-out;
           box-sizing: border-box;
           transform: translateY(0);
-          height: 40px;
 
           &:focus, &:hover {
             outline: none;
-            border-color: white;
+            border-color: $main-accent-color;
           }
         }
 
@@ -166,20 +170,21 @@
     }
 
     .refresh-button {
-      padding: 4.5px 10px; /* 4.5 might seem odd at first glance, but I wanted it to be exactly 40px high like the other filters */
+      width: 40px;
+      height: 40px;
+      position: absolute;
+      right: 5%;
       margin-right: 40px;
-      background-color: #2B2F30;
-      border: 2px solid #214B21;
-      border-radius: $global-border-radius;
+
+      background-color: $main-button-color;
+      border: 0px solid black;
+
       cursor: pointer;
       transition: all 0.3s ease-in-out;
       transition: right 0s ease-in-out;
-      width: auto;
-      position: absolute;
-      right: 5%;
 
       img {
-        filter: invert(1);
+        filter: invert(52%) sepia(4%) saturate(7%) hue-rotate(319deg) brightness(96%) contrast(86%);
       }
 
       &.refreshing {
@@ -197,13 +202,17 @@
 
         img {
           animation: rotate-counterclockwise 1s linear infinite;
+          filter: invert(100%);
         }
       }
 
       &:hover:not(.refreshing) {
         // background-color: blue; /* Darker green */
-        border-color: white;
-        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        border-color: $main-accent-color;
+
+        img{
+          filter: invert(100%);
+        }
       }
 
       &.demo-version {
