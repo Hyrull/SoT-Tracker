@@ -1,26 +1,29 @@
 @use './../../variables.scss' as *;
 
 .toast-container {
+  width: 400px;
   position: fixed;
   top: 10%;
-  left: 41%;
-  transform: translateX(-50%);
+  left: calc(50% - 400px / 2);
   z-index: 83000;
   pointer-events: none;
-  background-color: rgba(20,20,20,0.85);
-  border-top: 2px solid $main-accent-color;
-  border-radius: $global-border-radius;
+  background-color: $alt-transparent-bg-color;
+  border-top: 3px solid gray;
+  border-bottom-left-radius: $global-border-radius;
+  border-bottom-right-radius: $global-border-radius;
   backdrop-filter: blur(4px);
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
   animation: fadeInOut var(--toast-duration, 3000ms) ease-in-out forwards;
   // Duration is passed from the .tsx component, and is 3s by default
 
+  text-align: center;
+
   &.success {
-    border-top: 2px solid $main-accent-color;
+    border-top: 3px solid $main-accent-color;
   }
 
   &.error {
-    border-top: 2px solid red;
+    border-top: 3px solid red;
   }
   
   .toast-message {
