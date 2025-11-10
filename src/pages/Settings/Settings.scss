@@ -1,15 +1,18 @@
 @use './../../variables.scss' as *;
 
 main {
+  width: 1100px;
+  margin: 25px 0px;
+  padding: 25px 0px;
+  
   display: flex;
   flex-direction: column;
   align-items: center;
-  background-color: rgba(19,19,19,1);
-  border-top: solid 3px $main-accent-color;
-  box-shadow: 0 6px 15px rgba(0,0,0,0.6);
 
-  width: 50%;
-  margin-top: 5%;
+  border-top: solid 3px $main-accent-color;
+  border-bottom-left-radius: $global-border-radius;
+  border-bottom-right-radius: $global-border-radius;
+  box-shadow: 0 6px 15px rgba(0,0,0,0.6);
 
   h2 {
     margin-top: 1rem;
@@ -56,15 +59,19 @@ main {
   button {
     margin-top: 1rem;
     margin-bottom: 1rem;
-    padding: 12px 80px;
+    padding: 12px 40px;
+    width: auto;
+
     font-size: 16px;
-    background-color: #2B2F30;
     color: white;
+
+    background-color: $main-button-color;
+
     border: 0px solid $main-accent-color;
     border-left: 3px solid $main-accent-color;
+
     cursor: pointer;
     transition: all 0.3s ease-in-out;
-    width: auto;
     
     /* On hover */
     &:hover {
@@ -90,13 +97,17 @@ main {
     
     .form-group {
       input {
-        width: 80%;
-        max-width: 400px;
-        padding: 10px 20px;
+        width: 100%;
+        padding: 8px 12px;
         margin: 10px 0;
         font-size: 16px;
-        border: 1px solid grey;
-        border-radius: $global-border-radius;
+        border: 0px solid black;
+        border-bottom: 2px solid gray;
+        color: white;
+        background-color: #1a1a1a;
+        appearance: none;
+        -webkit-appearance: none;
+        -moz-appearance: none;
       }
     }
 
@@ -106,9 +117,9 @@ main {
   }
 
   .delete-button {
+    border-left: solid 3px red;
+
     &:hover {
-      // background-color: blue; /* Darker green */
-      border-color: red;
       background-color: red;
       box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
     }
@@ -127,10 +138,10 @@ main {
     display: flex;
     margin-bottom: 8px;
     font-size: 14px;
-    color: #4CAF50;
+    color: $main-links-color;
     text-decoration: underline;
     &:hover {
-      color: #62e667;
+      color: $main-links-hover-color;
     }
   }
 

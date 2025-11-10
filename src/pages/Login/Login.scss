@@ -1,16 +1,19 @@
 @use './../../variables.scss' as *;
 
 main {
+  width: 1100px;
+  margin: 25px 0px;
+  padding: 25px 0px;
+  
   display: flex;
-  justify-content: center;
-  align-items: center;
   flex-direction: column;
-  background-color: rgba(19,19,19,1);
-  border-top: solid 3px $main-accent-color;
-  box-shadow: 0 6px 15px rgba(0,0,0,0.6);
+  align-items: center;
 
-  width: 50%;
-  margin-top: 5%;
+  background-color: $alt-bg-color;
+  border-top: solid 3px $main-accent-color;
+  border-bottom-left-radius: $global-border-radius;
+  border-bottom-right-radius: $global-border-radius;
+  box-shadow: 0 6px 15px rgba(0,0,0,0.6);
 
   h2 {
     margin-top: 1rem;
@@ -45,8 +48,7 @@ main {
         font-size: 16px;
         border: 0px solid black;
         border-bottom: 2px solid grey;
-        color: white;
-        background-color: #1a1a1a;
+        background-color: $main-button-color;
         appearance: none;
         -webkit-appearance: none;
         -moz-appearance: none;
