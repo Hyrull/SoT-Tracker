@@ -11,13 +11,19 @@ footer {
 
     a {
       text-decoration: none;
-      color: white;
+      color: #4CAF50;
+      text-decoration: underline;
     }
 
     img {
-     filter: invert(1);
-     height: 16px;
+     filter: invert(60%) sepia(24%) saturate(1055%) hue-rotate(73deg) brightness(93%) contrast(85%);
+     height: 19px;
      padding-left: 4px;
+    }
+    
+    &:hover {
+      a {color: #62e667;}
+      img {filter: invert(100%) sepia(43%) saturate(3534%) hue-rotate(50deg) brightness(106%) contrast(80%);}
     }
   }
 }
