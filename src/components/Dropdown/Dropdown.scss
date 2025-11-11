@@ -105,7 +105,7 @@ li {
       .faction-info {
         display: flex;
         position: absolute;
-        left: 5%;
+        left: 70px;
 
         .faction-text {
           display: flex;
@@ -113,18 +113,19 @@ li {
           
           h2 {
             font-size: 1.5em;
-            color: white;
-            // background-color: #2B2F30;
             text-align: center;
             margin-left: 12px;
             flex-grow: 0;
+
+            z-index: 2;
           }
     
           h3 {
             font-size: 1.2em;
             margin-top: 2px;
             margin-left: 35px;
-            text-align: center;
+
+            z-index: 2;
           }
         }
       }
@@ -230,21 +231,20 @@ li {
         }
   
         .faction-info {
-          display: flex;
-          flex-direction: row;
-          flex-grow: 1;
-          justify-content: center;
-          text-align: center; 
+          text-align: left; 
+          left: 65px;
 
           .faction-text {
+            display: block;
 
-            flex-direction: column;
             h2 {
               font-size: 1.4em;
+              margin: 0 12px;
             }
     
             h3 {
               font-size: 1.0em;
+              margin: 0 12px;
             }
           }
         }
