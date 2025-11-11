@@ -1,7 +1,7 @@
 import { Link } from 'react-router'
 import './Header.scss'
 // import logo from '/assets/img/sot-tracker-logo1.png'
-import logo from '/assets/img/sot-tracker-logo-light.webp'
+import logo from '/assets/img/sot-tracker-logo-large-light.webp'
 
 const token = localStorage.getItem('token')
 
