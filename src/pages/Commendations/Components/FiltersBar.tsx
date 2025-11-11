@@ -45,14 +45,16 @@ const FiltersBar = ({
           <span className="toggle-text">Show Rewards</span>
           <span className="slider"><span className="slider-handle"></span></span>
       </button>
+      
+      <button onClick={refreshData} 
+        disabled={refreshing || isDemo} 
+        className={`refresh-button ${refreshing ? 'refreshing' : ''} ${isDemo ? 'demo-version' : ''}`}
+        title={isDemo ? "Can't refresh in demo mode!" : 'Refresh your data'}>
+      <img src={refresh} alt="Refresh" />
+      </button>
     </div>
 
-    <button onClick={refreshData} 
-      disabled={refreshing || isDemo} 
-      className={`refresh-button ${refreshing ? 'refreshing' : ''} ${isDemo ? 'demo-version' : ''}`}
-      title={isDemo ? "Can't refresh in demo mode!" : 'Refresh your data'}>
-    <img src={refresh} alt="Refresh" />
-    </button>
+
   </div>
 )
 export default FiltersBar;

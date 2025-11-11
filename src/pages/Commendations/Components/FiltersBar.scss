@@ -169,11 +169,11 @@
     }
 
     .refresh-button {
+      display: block;
       width: 40px;
       height: 40px;
-      position: absolute;
-      right: 5%;
-      margin-right: 40px;
+      margin-left: 20px;
+      padding: 0 28px 0 8px;
 
       background-color: $main-button-color;
       border: 0px solid black;
