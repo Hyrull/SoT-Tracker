@@ -1,3 +1,5 @@
+@use './../../variables.scss' as *;
+
 header {
   background-color: #1a1a1a;
   width: 100%;
@@ -12,7 +14,7 @@ header {
     justify-content: space-between;
     padding-top: 10px;
     padding-bottom: 10px;
-    width: 80%;
+    width: 90%;
 
     img {
       width: 400px;
@@ -20,9 +22,12 @@ header {
     
     a {
       font-size: 24px;
-      padding-left: 24px;
       text-decoration: none;
       color: white;
+    }
+
+    nav a{
+      padding: 0 12px;
     }
   }
 }
