@@ -3,9 +3,9 @@
 
 .demo-banner {
   position: fixed;
-  width: 900px;
+  width: 700px;
   padding: 15px 25px;
-  left: calc(50% - 950px/2); // 50% - (width + 2 * horizontal padding ) / 2 
+  left: calc(50% - 750px/2); // 50% - (width + 2 * horizontal padding ) / 2 
   bottom: 40px; // a little space above the browser edge
 
   background-color: $alt-transparent-bg-color;
@@ -29,4 +29,16 @@
       color: #62e667;
     }
   }
+}
+
+@media (max-width: 767.98px) {
+
+.demo-banner {
+  width: 100%;
+  left: 0;
+  bottom: 0;
+
+  padding: 12px 0;
+}
+
 }
