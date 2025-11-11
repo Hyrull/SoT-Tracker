@@ -8,7 +8,7 @@
   left: calc(50% - 950px/2); // 50% - (width + 2 * horizontal padding ) / 2 
   bottom: 40px; // a little space above the browser edge
 
-  background-color: $alt-bg-color;
+  background-color: $alt-transparent-bg-color;
   backdrop-filter: blur(4px);
   border-top: 3px solid $main-accent-color;
   border-bottom-left-radius: $global-border-radius;

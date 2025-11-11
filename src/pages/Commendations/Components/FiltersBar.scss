@@ -147,9 +147,9 @@
         .clear-search {
           all: unset;
           position: absolute;
-          right: 15px;
+          right: 8px;
           top: 50%;
-          transform: translateY(-50%);
+          transform: translateY(-55%);
           width: 26px;
           height: 26px;
           display: flex;
@@ -159,11 +159,10 @@
           opacity: 83%;
           transition: background-color 0.2s ease-in-out, box-shadow 0.2s ease-in-out, border-radius 0.2s ease-in-out;
           background-color: transparent;
+          filter: invert(60%) sepia(10%) saturate(10%) hue-rotate(317deg) brightness(82%) contrast(84%);
 
           &:hover {
-            background-color: rgba(61, 134, 61, 0.2);
-            border-radius: 50%;
-            box-shadow: 0 0 12px 2px rgba(61, 134, 61, 0.4);
+            filter: invert(19%) sepia(60%) saturate(4074%) hue-rotate(349deg) brightness(78%) contrast(103%);
           }
         }
       }
