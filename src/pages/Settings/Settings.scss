@@ -117,10 +117,10 @@ main {
   }
 
   .delete-button {
-    border-left: solid 3px red;
+    border-left: solid 3px $main-warning-color;
 
     &:hover {
-      background-color: red;
+      background-color: $main-warning-color;
       box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
     }
   }

@@ -23,7 +23,7 @@
   }
 
   &.error {
-    border-top: 3px solid red;
+    border-top: 3px solid $main-warning-color;
   }
   
   .toast-message {
