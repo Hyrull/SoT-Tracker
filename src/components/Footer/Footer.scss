@@ -6,21 +6,25 @@ footer {
   align-items: center;
   justify-content: space-around;
   margin: 25px;
-  text-align: center;
   width: 80%;
+
+  text-align: center;
 
   .code-link {
 
     a {
+      display: inline-block;
+      height: 19px;
       text-decoration: none;
       color: $main-links-color;
       text-decoration: underline;
     }
 
     img {
-     filter: invert(60%) sepia(24%) saturate(1055%) hue-rotate(73deg) brightness(93%) contrast(85%);
-     height: 19px;
-     padding-left: 4px;
+      display: inline-block;
+      height: 19px;
+      filter: invert(60%) sepia(24%) saturate(1055%) hue-rotate(73deg) brightness(93%) contrast(85%);
+      padding-left: 4px;
     }
     
     &:hover {
@@ -32,17 +36,9 @@ footer {
 
 @media (max-width: 767.98px) {
   footer {
-    // display: none;
     flex-direction: column;
     align-items: center;
     max-width: 80%;
-
-    p {
-      margin-top: 40px;
-    }
-
-    a {
-      margin-top: 40px;
-    }
+    margin-top:20px;
   }
 }
