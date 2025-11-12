@@ -1,4 +1,4 @@
-import refresh from '/assets/img/icons/refresh.svg'
+import refreshIcon from '/assets/img/icons/refresh.svg'
 import crossIcon from '/assets/img/icons/Cross.svg'
 import searchIcon from '/assets/img/icons/search.svg'
 import { FiltersBarProps } from '../../../types/types'
@@ -27,7 +27,7 @@ const FiltersBar = ({
         <input
           type="text"
           className="search-bar"
-          placeholder="Search through commendations..."
+          placeholder="Search..."
           value={searchQuery}
           onChange={(e) => setSearchQuery(e.target.value)}
           aria-label='Search commendations'
@@ -50,7 +50,7 @@ const FiltersBar = ({
         disabled={refreshing || isDemo} 
         className={`refresh-button ${refreshing ? 'refreshing' : ''} ${isDemo ? 'demo-version' : ''}`}
         title={isDemo ? "Can't refresh in demo mode!" : 'Refresh your data'}>
-      <img src={refresh} alt="Refresh" />
+      <img src={refreshIcon} alt="Refresh" />
       </button>
     </div>
 

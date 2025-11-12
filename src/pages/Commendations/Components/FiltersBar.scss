@@ -5,9 +5,10 @@
     flex-direction: row;
     justify-content: center;
     align-items: center;
+    width: 100%;
 
     margin: 0px 0px;
-    padding: 10px;
+    padding: 10px 0px;;
 
     z-index: 1000;
 
@@ -21,17 +22,11 @@
       width: 100%;
       backdrop-filter: blur(4px);
       box-shadow: 0 3px 5px rgba(0, 0, 0, 0.5);
-
-      .refresh-button {
-        right: 5.5%;
-      }
     }
     
     .toggle-and-search {
       display: flex;
       flex-direction: row;
-      min-width: 650px;
-      // margin-left: 33%;
       margin: 2px 0px;
 
       .toggle-button {
@@ -39,9 +34,10 @@
         align-items: center;
         justify-content: space-between;
         position: relative;
-        width: 300px; /* Adjusted to fit both text and slider */
+        width: min-content;
         height: 40px;
         padding: 0 10px; /* Add padding for proper spacing */
+        margin: 3px 6px;
 
         font-size: 16px;
         color: white;
@@ -52,7 +48,6 @@
 
         cursor: pointer;
         transition: all 0.3s ease-in-out;
-        // margin-right: 25px;
       
         &.off {
           border-color: gray;
@@ -64,7 +59,6 @@
       
         .toggle-text {
           margin-right: 10px;
-          // font-weight: bold;
           white-space: nowrap;
           transition: color 0.3s ease-in-out;
         }
@@ -100,19 +94,17 @@
       }
       
       .search-bar-container {
-        width: 100%;
-        max-width: 420px;
+        width: 300px;
         position: relative;
         align-items: center;
         display: flex;
         height: 40px;
-        margin: 1px 20px;
+        margin: 3px 6px;
 
         .search-icon {
           position: absolute;
           right: 8px;
-          top: 50%;
-          transform: translateY(-50%);
+          top: calc( 50% - 90hv/2);
           width: 90hv;
           height: 90hv;
           filter: invert(52%) sepia(4%) saturate(7%) hue-rotate(319deg) brightness(96%) contrast(86%);
@@ -142,14 +134,12 @@
             border-color: $main-accent-color;
           }
         }
-
         
         .clear-search {
           all: unset;
           position: absolute;
           right: 8px;
-          top: 50%;
-          transform: translateY(-55%);
+          top: calc( 50% - 90hv/2);
           width: 26px;
           height: 26px;
           display: flex;
@@ -166,62 +156,85 @@
           }
         }
       }
-    }
 
-    .refresh-button {
-      display: block;
-      width: 40px;
-      height: 40px;
-      margin-left: 20px;
-      padding: 0 28px 0 8px;
+      .refresh-button {
+        display: block;
+        position: relative;
+        width: 40px;
+        height: 40px;
+        margin: 3px 6px;
+        padding: 0 28px 0 8px;
 
-      background-color: $main-button-color;
-      border: 0px solid black;
+        background-color: $main-button-color;
+        border: 0px solid black;
 
-      cursor: pointer;
-      transition: all 0.3s ease-in-out;
-      transition: right 0s ease-in-out;
-
-      img {
-        filter: invert(52%) sepia(4%) saturate(7%) hue-rotate(319deg) brightness(96%) contrast(86%);
-      }
-
-      &.refreshing {
-        @keyframes rotate-counterclockwise {
-          0% {
-            transform: rotate(0deg) scale(1);
-          }
-          50% {
-            transform: rotate(-180deg) scale(1.1);
-          }
-          100% {
-            transform: rotate(-360deg) scale(1);
-          }
-        }
+        cursor: pointer;
+        transition: all 0.3s ease-in-out;
+        transition: right 0s ease-in-out;
 
         img {
-          animation: rotate-counterclockwise 1s linear infinite;
-          filter: invert(100%);
+          filter: invert(52%) sepia(4%) saturate(7%) hue-rotate(319deg) brightness(96%) contrast(86%);
         }
-      }
 
-      &:hover:not(.refreshing) {
-        // background-color: blue; /* Darker green */
-        border-color: $main-accent-color;
+        &.refreshing {
+          @keyframes rotate-counterclockwise {
+            0% {
+              transform: rotate(0deg) scale(1);
+            }
+            50% {
+              transform: rotate(-180deg) scale(1.1);
+            }
+            100% {
+              transform: rotate(-360deg) scale(1);
+            }
+          }
 
-        img{
-          filter: invert(100%);
+          img {
+            animation: rotate-counterclockwise 1s linear infinite;
+            filter: invert(100%);
+          }
         }
-      }
 
-      &.demo-version {
-        border-color: grey;
-        cursor:not-allowed;
-        opacity: 50%;
+        &:hover:not(.refreshing) {
+          // background-color: blue; /* Darker green */
+          border-color: $main-accent-color;
 
-        &:hover {
+          img{
+            filter: invert(100%);
+          }
+        }
+
+        &.demo-version {
           border-color: grey;
+          cursor:not-allowed;
+          opacity: 50%;
+
+          &:hover {
+            border-color: grey;
+          }
+        }
+      }
+    }
+
+  }
+
+@media (max-width: 767.98px) {
+
+  #all-commendations {
+    .filters {
+      padding: 0;
+
+      .toggle-and-search{
+        display: flex;
+        width: 100%;
+        padding: 0;
+
+        .toggle-button {
+          width: fit-content;
+          min-width: 190px;
         }
       }
     }
   }
+
+}
