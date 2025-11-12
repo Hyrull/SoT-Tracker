@@ -48,6 +48,7 @@ li {
       height: 25px;
       margin-left: 15px;
       filter: invert(23%) sepia(16%) saturate(1764%) hue-rotate(71deg) brightness(90%) contrast(90%);
+      z-index: 20;
     }
 
     .progress-bar {
