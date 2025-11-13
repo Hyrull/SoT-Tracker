@@ -2,6 +2,7 @@ import { Link } from 'react-router'
 import './Header.scss'
 // import logo from '/assets/img/sot-tracker-logo1.png'
 import logo from '/assets/img/sot-tracker-logo-large-light.webp'
+import logoNoText from '/assets/img/sot-tracker-logo-small-light.webp'
 
 const token = localStorage.getItem('token')
 
@@ -17,7 +18,13 @@ function Header() {
         <Link to='/'>
           <img 
             src={logo} 
-            alt='Sea of Thieves logo'
+            alt='SoT Tracker Logo'
+            className='main-logo-full'
+          />
+          <img 
+            src={logoNoText} 
+            alt='SoT Tracker Logo'
+            className='main-logo-notext'
           />
         </Link>
         <nav data-itemtype="https://schema.org/SiteNavigationElement" data-itemscope="">

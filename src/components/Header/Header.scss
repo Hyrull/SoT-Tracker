@@ -16,8 +16,12 @@ header {
     padding-bottom: 10px;
     width: 90%;
 
-    img {
+    .main-logo-full {
       width: 400px;
+    }
+
+    .main-logo-notext {
+      display: none;
     }
     
     a {
@@ -36,12 +40,20 @@ header {
   header {
     flex-direction: column;
 
-    // display: none;
-
     img {
       margin-bottom: 20px;
       margin-left: 20px;
       width: 80%;
+    }
+
+    .header-content {
+      .main-logo-full {
+        display: none;
+      }
+      
+      .main-logo-notext {
+        display: block;
+      }
     }
 
     nav {
