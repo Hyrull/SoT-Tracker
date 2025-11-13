@@ -151,5 +151,29 @@ main {
     filter: brightness(0) saturate(100%) invert(76%) sepia(10%) saturate(3170%) hue-rotate(66deg) brightness(81%) contrast(68%);
     margin-left: 2px;
   }
+}
 
+@media (max-width: 767.98px) { 
+  main {
+    width: 90%;
+
+    .form-group {
+      input {
+        width: 65%;
+      }
+    }
+
+    .delete-confirmation {
+      p {
+        width: 75%;
+        margin-bottom: 20px;
+      }
+
+      .form-group {
+        input {
+          width: 65%;
+        }
+      }
+    }
+  }
 }

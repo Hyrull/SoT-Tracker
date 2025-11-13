@@ -97,3 +97,13 @@ main {
     }
   }
 }
+
+@media (max-width: 767.98px) { 
+  main {
+    form {
+      .form-group {
+          width: 80%;
+      }
+    }
+  }
+}

@@ -41,3 +41,20 @@
     }
   }
 }
+
+@media (max-width: 767.98px) {
+  .main {
+    .homepage-carousel {
+      width: 90%;
+      margin: 0;
+
+      h1 {
+        font-size: 1.85rem;
+      }
+
+      .banner-carousel {
+        display: none;
+      }
+    }
+  }
+}
