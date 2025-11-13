@@ -4,8 +4,7 @@ import './ErrorPage.scss'
 function ErrorPage() {
   return (
     <>
-    <h1>You kind of got lost! Want to see your commendations?</h1>
-    <Link data-itemprop='url' to='/commendations'>Commendations</Link>
+    <h1>You kind of got lost! Wanted to see your <Link data-itemprop='url' to='/commendations'>commendations</Link>?</h1>
     </>
   )
 }
