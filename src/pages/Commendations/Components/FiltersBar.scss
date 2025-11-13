@@ -256,6 +256,10 @@
 
         .search-bar-container {
           width: 90%;
+
+          .search-bar{
+            max-width: none;
+          }
         }
 
         .refresh-button {
@@ -267,6 +271,11 @@
           justify-content: space-between;
           align-items: center;
           
+          &:hover{
+            transition: all 0.3s ease-in-out;
+            border-left: 3px solid $main-accent-color;
+          }
+
           p {
             display: block;
             color: white;
