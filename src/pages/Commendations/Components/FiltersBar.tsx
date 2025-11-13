@@ -50,6 +50,7 @@ const FiltersBar = ({
         disabled={refreshing || isDemo} 
         className={`refresh-button ${refreshing ? 'refreshing' : ''} ${isDemo ? 'demo-version' : ''}`}
         title={isDemo ? "Can't refresh in demo mode!" : 'Refresh your data'}>
+      <p>Refresh my data</p>
       <img src={refreshIcon} alt="Refresh" />
       </button>
     </div>

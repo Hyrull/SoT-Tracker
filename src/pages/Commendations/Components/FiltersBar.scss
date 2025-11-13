@@ -61,6 +61,7 @@
           margin-right: 10px;
           white-space: nowrap;
           transition: color 0.3s ease-in-out;
+          font-family: 'Montserrat';
         }
       
         .slider {
@@ -116,6 +117,7 @@
           height: 40px;
           padding: 10px 12px;
 
+          font-family: 'Montserrat';
           font-size: 16px;
           color: white;
           line-height: normal;
@@ -176,6 +178,10 @@
           filter: invert(52%) sepia(4%) saturate(7%) hue-rotate(319deg) brightness(96%) contrast(86%);
         }
 
+        p {
+          display: none;
+        }
+
         &.refreshing {
           @keyframes rotate-counterclockwise {
             0% {
@@ -226,15 +232,53 @@
 
       .toggle-and-search{
         display: flex;
+        flex-direction: column;
+        align-items: center;
         width: 100%;
         padding: 0;
 
+        .toggle-button:nth-of-type(1) {
+          order: 1;
+        }
+        
+        .toggle-button:nth-of-type(2) {
+          order: 2;
+        }
+        
+        .search-bar-container {
+          order: 3;
+        }
+
         .toggle-button {
-          width: fit-content;
+          width: 90%;
           min-width: 190px;
+        }
+
+        .search-bar-container {
+          width: 90%;
+        }
+
+        .refresh-button {
+          width: 90%;
+          display: flex;
+          background-color: $main-button-color;
+          border: 0px solid black;
+          border-left: 3px solid gray;
+          justify-content: space-between;
+          align-items: center;
+          
+          p {
+            display: block;
+            color: white;
+            font-family: 'Montserrat';
+            font-size: 16px;
+          }
+
+          img {
+            height: 80%;
+          }
         }
       }
     }
   }
-
 }
