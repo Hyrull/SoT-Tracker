@@ -194,11 +194,16 @@ const Commendations = () => {
             key="favorites"
             title={({ displayContent }) => (
               <div className='faction-header favorites'>
+                <div className={`progress-bar favorites`}
+                  style={{
+                    width: `100%`,
+                  }}
+                />
                 <img
-              className='faction-icon'
-              src={pinnedLogo}
-              alt={'pinned section icon'}
-              />
+                  className='faction-icon'
+                  src={pinnedLogo}
+                  alt={'pinned section icon'}
+                />
                 <div className='faction-info'>
                   <div className='faction-text'>
                     <h2>Favorites</h2>
