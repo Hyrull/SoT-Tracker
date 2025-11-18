@@ -1,45 +1,58 @@
 @use './../../variables.scss' as *;
 
 .emblem-card {
-  display: flex;
-  flex-direction: row;
+  position: relative;
   padding: 10px;
-  padding-left: 10px;
   margin: 0px;
   height: 180px;
   width: 540px;
   border: solid 1px #393939;
   border-left: solid 3px #393939;
   border-radius: $global-border-radius;
+  border-top-left-radius: 0px;
+  border-bottom-left-radius: 0px;
   min-height: 140px;
   transition: background-color 0.2s ease, border 0.2s ease;
   background: #181818;
   box-sizing: border-box;
   box-shadow: 0 6px 15px rgba(0,0,0,0.6);
 
-  img {
+  .card-image {
+    position: absolute;
+    left: 10px;
+    top: calc(50% - 130px/2);
+
     width: 130px;
     height: 130px;
-    flex-shrink: 0;
-    margin-right: 15px;
   }
 
-  .emblem-checkmark {
-    width: 24px;
-    height: 24px;
+  .card-button-pin {
     position: absolute;
-    top: 0px;
-    right: 0px;
-    margin-right: 0px;
+    right: 5px;
+    top: 5px;
+
+    width: 25px;
+    height: 25px;
+
+    border: none;
+    background-color: rgba(0,0,0,0);
+    overflow: hidden;
+    filter: invert(16%) sepia(0%) saturate(0%) hue-rotate(185deg) brightness(96%) contrast(90%);
+
+    img:hover{
+      filter:invert(100%);
+      transition: all 0.3s ease-in-out;
+    }
+
   }
 
   .card-content {
-    position: relative;
-    // height: 66%;
+    display: block;
+    width: 375px;
+    margin: auto 0 auto 150px; // Akugb the block verticaly
 
     h4 {
       font-size: 20px;
-      // margin-bottom: 6px;
     }
 
     p {
@@ -54,7 +67,6 @@
     .reward {
       margin-top: 8px;
       font-size: 12px;
-      // font-weight: bold;
     }
   }
 
@@ -66,7 +78,6 @@
 }
 
 .emblem-card:hover {
-  // background-color: rgba($color: #ffffff, $alpha: 0.05);
   border: solid 1px grey;
   border-left: solid 3px grey;
   box-shadow: 0 10px 20px rgba(0,0,0,0.8);

@@ -5,7 +5,7 @@ import './EmblemCard.scss'
 const EmblemCard: React.FC<EmblemCardProps> = ({ emblem, showRewards }) => {
   return (
     <li className={`emblem-card ${emblem.Completed ? 'completed' : ''}`} key={emblem.title}>
-      <img loading="lazy" src={emblem.image} alt={`Commendation picture for ${emblem.title}` || 'Emblem'} />
+      <img className="card-image" loading="lazy" src={emblem.image} alt={`Commendation picture for ${emblem.title}` || 'Emblem'} />
       <div className="card-content">
         <h4>{emblem.title}</h4>
         <p>{emblem.subtitle}</p>
@@ -27,7 +27,7 @@ const EmblemCard: React.FC<EmblemCardProps> = ({ emblem, showRewards }) => {
           return nextGradeReward ? <p className="reward">Next grade: {nextGradeReward.reward}</p> : null;
         })() : null}
       </div>
-      {/* {emblem.Completed ? <img src={checkmark} alt='Completion checkmark' className="emblem-checkmark"/> : ''} */}
+      <button className="card-button-pin"><img src="../../public/assets/img/icons/pinned.svg"></img></button>
     </li>
   )
 }
