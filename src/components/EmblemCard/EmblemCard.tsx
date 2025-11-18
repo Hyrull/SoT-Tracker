@@ -1,4 +1,5 @@
 import { EmblemCardProps } from "../../types/types"
+import pinnedLogo from "/assets/img/icons/pinned.svg"
 import './EmblemCard.scss'
 // import checkmark from '../../assets/img/checkmark.webp'
 
@@ -27,7 +28,7 @@ const EmblemCard: React.FC<EmblemCardProps> = ({ emblem, showRewards }) => {
           return nextGradeReward ? <p className="reward">Next grade: {nextGradeReward.reward}</p> : null;
         })() : null}
       </div>
-      <button className="card-button-pin"><img src="../../public/assets/img/icons/pinned.svg"></img></button>
+      <button className="card-button-pin"><img src={pinnedLogo} alt="pin-logo"></img></button>
     </li>
   )
 }
