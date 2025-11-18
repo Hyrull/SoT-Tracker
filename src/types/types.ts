@@ -63,3 +63,8 @@ export interface FactionDropdownProps {
   searchQuery: string;
 }
 
+export interface PinnedItem {
+  faction: string
+  emblem: string
+  campaign?: string
+}

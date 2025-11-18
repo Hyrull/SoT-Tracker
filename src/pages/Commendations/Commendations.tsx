@@ -1,6 +1,6 @@
-import { useEffect, useState, useCallback } from 'react'
+import { useEffect, useState, useCallback, useMemo } from 'react'
 import { Link, useNavigate } from 'react-router'
-import { AllCommsData } from '../../types/types'
+import { AllCommsData, Emblem, PinnedItem } from '../../types/types'
 import './Commendations.scss'
 import FiltersBar from './Components/FiltersBar'
 import FactionDropdown from './Components/FactionDropdown'
@@ -9,6 +9,11 @@ import DemoBanner from './Components/DemoBanner'
 import NoCommendations from './Components/NoCommendations'
 import { useToast } from '../../contexts/ToastContext'
 import { fetchEmblems, refreshEmblems } from '../../services/emblems'
+import { fetchPinned, addPinned, removePinned } from '../../services/pinned'
+import Dropdown from '../../components/Dropdown/Dropdown'
+import EmblemCard from '../../components/EmblemCard/EmblemCard'
+import dropdownArrow from '/assets/img/icons/Unfold.svg'
+import pinnedLogo from '/assets/img/faction logos/Pinned_logo.webp'
 
 const Commendations = () => {
   const navigate = useNavigate()
@@ -21,22 +26,68 @@ const Commendations = () => {
   const [isSticky, setIsSticky] = useState(false)
   const [refreshing, setRefreshing] = useState(false)
   const token = localStorage.getItem('token')
+  const [pinned, setPinned] = useState<PinnedItem[]>([])
   const isDemo = !token
   const { showToast } = useToast()
   
   // Function to fetch emblems
-useEffect(() => {
-  const getEmblems = async () => {
-    setLoading(true)
-    const { data, error } = await fetchEmblems(token, isDemo)
-    setEmblems(data)
-    if (error) setError(error)
-    else setError(null)
-    setLoading(false)
+  useEffect(() => {
+    const getEmblems = async () => {
+      setLoading(true)
+      const { data, error } = await fetchEmblems(token, isDemo)
+      setEmblems(data)
+      if (error) setError(error)
+      else setError(null)
+      setLoading(false)
+    }
+
+    const getPinned = async () => {
+      const { data, error } = await fetchPinned(token)
+      setPinned(data)
+      console.log(pinned)
+      if (error) console.error('Error fetching pinned:', error)
+    }
+
+    getEmblems()
+    getPinned()
+  }, [token])
+
+
+  const pinnedEmblems = useMemo(() => {
+  const result: Emblem[] = []
+    
+    // HI let's get the pins and make them match the 'actual' comms, description,progress, img etc
+  for (const pin of pinned) {
+    const faction = pin.faction
+    if (!emblems[faction]) continue
+
+    const factionObj = emblems[faction]
+    let found: Emblem | undefined = undefined
+
+    // Search normal emblems
+    const mainList = factionObj.Emblems?.Emblems || []
+    found = mainList.find(e => e.DisplayName === pin.emblem)
+    
+    if (found) {
+      result.push(found)
+      continue
+    }
+
+    // Search in campaigns
+    if (factionObj.Campaigns) {
+      for (const campaign of Object.values(factionObj.Campaigns)) {
+        const campList = campaign.Emblems || []
+        found = campList.find(e => e.DisplayName === pin.emblem)
+        if (found) {
+          result.push(found)
+          break
+        }
+      }
+    }
   }
 
-  getEmblems()
-}, [token])
+  return result
+}, [pinned, emblems])
 
 
 const handleRefreshClick = async () => {
@@ -132,6 +183,48 @@ return (
 
 
     <ul>
+      {/* FAVORITES SECTION */}
+      {pinnedEmblems.length > 0 && (
+        <Dropdown
+          key="favorites"
+          title={({ displayContent }) => (
+            <div className='faction-header favorites'>
+              <img className='faction-icon'
+              src={pinnedLogo}
+              alt='pinned-section-logo' />
+              <div className='faction-info'>
+                <div className='faction-text'>
+                  <h2>Favorites</h2>
+                  <h3>{pinnedEmblems.length} {pinnedEmblems.length === 1 ? 'commendation' : 'commendations'}</h3>
+                </div>
+              </div>
+              <img 
+                src={dropdownArrow} 
+                alt="Dropdown arrow" 
+                className={`arrow ${displayContent ? 'rotate' : ''}`} 
+              />
+            </div>
+          )}
+          content={
+            <div className="category">
+              <ul>
+                {pinnedEmblems
+                  .filter((emblem) => (!hideCompleted || !emblem.Completed))
+                  .map((emblem, index) => (
+                    <EmblemCard 
+                      key={`favorite-${index}`} 
+                      emblem={emblem} 
+                      showRewards={showRewards}
+                    />
+                  ))}
+              </ul>
+            </div>
+          }
+        />
+      )}
+
+
+      {/* NORMAL FACTION RENDERING */}
     {Object.entries(emblems)
       .filter(([factionKey]) => factionNames[factionKey])
       .map(([factionKey, factionData]) => (
