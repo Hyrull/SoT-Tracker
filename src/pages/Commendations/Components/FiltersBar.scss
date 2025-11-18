@@ -173,8 +173,9 @@
         cursor: pointer;
         transition: all 0.3s ease-in-out;
         transition: right 0s ease-in-out;
-
+        
         img {
+          transition: all 0.15s ease-in-out;
           filter: invert(52%) sepia(4%) saturate(7%) hue-rotate(319deg) brightness(96%) contrast(86%);
         }
 
