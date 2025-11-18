@@ -258,8 +258,12 @@
         .search-bar-container {
           width: 90%;
 
-          .search-bar{
+          .search-bar {
             max-width: none;
+
+          }
+          .search-icon {
+            padding-right: 3px;
           }
         }
 
@@ -271,6 +275,7 @@
           border-left: 3px solid gray;
           justify-content: space-between;
           align-items: center;
+          padding-right: 10px;
           
           &:hover{
             transition: all 0.3s ease-in-out;
