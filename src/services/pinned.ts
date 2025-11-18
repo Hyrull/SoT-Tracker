@@ -88,21 +88,26 @@ export const addPinned = async (
   }
 }
 
-// Remove a pinned item
+// Remove a pinned item - faction and campaign are now optional
 export const removePinned = async (
   token: string | null,
-  faction: string,
   emblem: string,
+  faction?: string,
   campaign?: string
 ): Promise<{ data?: PinnedItem[]; error?: string }> => {
   try {
+    const body: any = { emblem }
+    
+    if (faction) body.faction = faction
+    if (campaign) body.campaign = campaign
+
     const response = await fetch(`${apiUrl}/data/pinned`, {
       method: 'DELETE',
       headers: {
         'Content-Type': 'application/json',
         Authorization: `Bearer ${token}`,
       },
-      body: JSON.stringify({ faction, emblem, campaign }),
+      body: JSON.stringify(body),
     })
 
     if (response.status === 401) {

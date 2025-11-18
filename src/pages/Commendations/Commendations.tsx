@@ -75,17 +75,19 @@ const Commendations = () => {
     setRefreshing(false)
   }
 
-  const handleTogglePin = async (emblem: Emblem, factionKey?: string, campaignKey?: string) => {
-  if (isDemo || !token || !factionKey) return
+const handleTogglePin = async (emblem: Emblem, factionKey?: string, campaignKey?: string) => {
+  if (isDemo || !token) return
 
-  const isPinned = isEmblemPinned(emblem, pinned, factionKey, campaignKey)
+  const isPinned = factionKey 
+    ? isEmblemPinned(emblem, pinned, factionKey, campaignKey)
+    : pinned.some(p => p.emblem === emblem.DisplayName) // Fallback check by name only
 
   if (isPinned) {
-    // Remove pin
+    // Remove pin - emblem name is enough now!
     const { data, error } = await removePinned(
       token,
-      factionKey,
       emblem.DisplayName,
+      factionKey, // Optional - for precise matching if available
       campaignKey
     )
     if (data) {
@@ -95,7 +97,9 @@ const Commendations = () => {
       showToast(error, 'error')
     }
   } else {
-    // Add pin
+    // Add pin - still needs faction for creation
+    if (!factionKey) return // Can't add without faction context
+    
     const { data, error } = await addPinned(
       token,
       factionKey,
@@ -106,7 +110,6 @@ const Commendations = () => {
       setPinned(data)
       showToast('Added to favorites', 'success')
     } else if (error) {
-      // Don't show error toast if already pinned
       if (!error.includes('already pinned')) {
         showToast(error, 'error')
       }
