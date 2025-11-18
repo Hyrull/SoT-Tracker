@@ -46,9 +46,9 @@ const EmblemCard: React.FC<EmblemCardProps> = ({
         onClick={handlePinClick}
         title={isPinned ? 'Remove from favorites' : 'Add to favorites'}
       >
-        <img 
-        // leaving myself the option to have a different logo for when it's pinned. will do later
-          src={isPinned ? pinnedLogo : pinnedLogo} 
+        <img
+          className={isPinned ? 'active' : ''}
+          src={pinnedLogo} 
           alt={isPinned ? 'Unpin' : 'Pin'}
         />
       </button>
