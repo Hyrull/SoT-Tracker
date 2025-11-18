@@ -1,6 +1,6 @@
 import { useEffect, useState, useCallback, useMemo } from 'react'
 import { Link, useNavigate } from 'react-router'
-import { AllCommsData, PinnedItem } from '../../types/types'
+import { AllCommsData, Emblem, PinnedItem } from '../../types/types'
 import './Commendations.scss'
 import FiltersBar from './Components/FiltersBar'
 import FactionDropdown from './Components/FactionDropdown'
@@ -12,9 +12,10 @@ import EmblemCard from '../../components/EmblemCard/EmblemCard'
 import { useToast } from '../../contexts/ToastContext'
 import { fetchEmblems, refreshEmblems } from '../../services/emblems'
 import { fetchPinned, addPinned, removePinned } from '../../services/pinned'
-import { resolvePinnedEmblems } from './Utils/pinnedUtils'
+import { resolvePinnedEmblems, isEmblemPinned, createPinnedItem } from './Utils/pinnedUtils'
 import dropdownArrow from '/assets/img/icons/Unfold.svg'
 import pinnedLogo from '/assets/img/faction logos/Pinned_logo.webp'
+
 
 const Commendations = () => {
   const navigate = useNavigate()
@@ -73,6 +74,45 @@ const Commendations = () => {
     }
     setRefreshing(false)
   }
+
+  const handleTogglePin = async (emblem: Emblem, factionKey?: string, campaignKey?: string) => {
+  if (isDemo || !token || !factionKey) return
+
+  const isPinned = isEmblemPinned(emblem, pinned, factionKey, campaignKey)
+
+  if (isPinned) {
+    // Remove pin
+    const { data, error } = await removePinned(
+      token,
+      factionKey,
+      emblem.DisplayName,
+      campaignKey
+    )
+    if (data) {
+      setPinned(data)
+      showToast('Removed from favorites', 'success')
+    } else if (error) {
+      showToast(error, 'error')
+    }
+  } else {
+    // Add pin
+    const { data, error } = await addPinned(
+      token,
+      factionKey,
+      emblem.DisplayName,
+      campaignKey
+    )
+    if (data) {
+      setPinned(data)
+      showToast('Added to favorites', 'success')
+    } else if (error) {
+      // Don't show error toast if already pinned
+      if (!error.includes('already pinned')) {
+        showToast(error, 'error')
+      }
+    }
+  }
+}
 
   // Scroll handling for sticky header
   const handleScroll = useCallback(() => {
@@ -185,6 +225,8 @@ const Commendations = () => {
                         key={`favorite-${index}`}
                         emblem={emblem}
                         showRewards={showRewards}
+                        isPinned={true}
+                        onTogglePin={handleTogglePin}
                       />
                     ))}
                 </ul>
@@ -205,6 +247,8 @@ const Commendations = () => {
               hideCompleted={hideCompleted}
               showRewards={showRewards}
               searchQuery={searchQuery}
+              pinned={pinned}
+              onTogglePin={handleTogglePin}
             />
           ))}
       </ul>

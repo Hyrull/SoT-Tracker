@@ -1,18 +1,31 @@
 import { EmblemCardProps } from "../../types/types"
 import pinnedLogo from "/assets/img/icons/pinned.svg"
 import './EmblemCard.scss'
-// import checkmark from '../../assets/img/checkmark.webp'
 
-const EmblemCard: React.FC<EmblemCardProps> = ({ emblem, showRewards }) => {
+const EmblemCard: React.FC<EmblemCardProps> = ({ 
+  emblem, 
+  showRewards,
+  factionKey,
+  campaignKey,
+  isPinned,
+  onTogglePin
+}) => {
+  
+  const handlePinClick = () => {
+    if (onTogglePin) {
+      onTogglePin(emblem, factionKey, campaignKey)
+    }
+  }
+
   return (
-    <li className={`emblem-card ${emblem.Completed ? 'completed' : ''}`} key={emblem.title}>
+    <li className={`emblem-card ${emblem.Completed ? 'completed' : ''} ${isPinned ? 'pinned' : ''}`} key={emblem.title}>
       <img className="card-image" loading="lazy" src={emblem.image} alt={`Commendation picture for ${emblem.title}` || 'Emblem'} />
       <div className="card-content">
         <h4>{emblem.title}</h4>
         <p>{emblem.subtitle}</p>
         {emblem.Threshold === 1 || emblem.Threshold === 0 ? ('') : (
           <>
-              <p className="progress">
+            <p className="progress">
               Progress: <b>{emblem.Value}/{emblem.Threshold}</b> 
               {emblem.MaxGrade !== 1 && (
                 <> (for grade {emblem.Grade}/{emblem.MaxGrade})</>
@@ -28,7 +41,17 @@ const EmblemCard: React.FC<EmblemCardProps> = ({ emblem, showRewards }) => {
           return nextGradeReward ? <p className="reward">Next grade: {nextGradeReward.reward}</p> : null;
         })() : null}
       </div>
-      <button className="card-button-pin"><img src={pinnedLogo} alt="pin-logo"></img></button>
+      <button 
+        className={`card-button-pin ${isPinned ? 'pinned' : ''}`}
+        onClick={handlePinClick}
+        title={isPinned ? 'Remove from favorites' : 'Add to favorites'}
+      >
+        <img 
+        // leaving myself the option to have a different logo for when it's pinned. will do later
+          src={isPinned ? pinnedLogo : pinnedLogo} 
+          alt={isPinned ? 'Unpin' : 'Pin'}
+        />
+      </button>
     </li>
   )
 }

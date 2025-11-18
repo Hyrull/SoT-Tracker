@@ -16,8 +16,12 @@ export interface Emblem {
 }
 
 export interface EmblemCardProps {
-  emblem: Emblem;
-  showRewards: boolean;
+  emblem: Emblem
+  showRewards: boolean
+  factionKey?: string
+  campaignKey?: string
+  isPinned?: boolean
+  onTogglePin?: (emblem: Emblem, factionKey?: string, campaignKey?: string) => void
 }
 
 export interface Campaign {
@@ -61,6 +65,9 @@ export interface FactionDropdownProps {
   hideCompleted: boolean;
   showRewards: boolean;
   searchQuery: string;
+  pinned?: PinnedItem[]
+  onTogglePin?: (emblem: Emblem, factionKey?: string, campaignKey?: string) => void
+
 }
 
 export interface PinnedItem {

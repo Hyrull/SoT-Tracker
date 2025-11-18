@@ -4,10 +4,11 @@ import checkmark from '/assets/img/icons/sot_checkmark.svg'
 import { FactionDropdownProps, Emblem } from '../../../types/types'
 import factionNames from '../Data/FactionNames'
 import dropdownArrow from '/assets/img/icons/Unfold.svg'
+import { isEmblemPinned } from '../Utils/pinnedUtils'
 
 
 const FactionDropdown = ({
-  factionKey, factionData, hideCompleted, showRewards, searchQuery
+  factionKey, factionData, hideCompleted, showRewards, searchQuery, pinned, onTogglePin
   }: FactionDropdownProps) => {
 
   // Function to check search match
@@ -109,55 +110,56 @@ const FactionDropdown = ({
 
 
       // Actual commendations display
-      content={
+        content={
         <div>
-            {/* Simple ones */}
-            {filteredMainEmblems.length > 0 && (
-              <div className="category">
+          {/* Main emblems */}
+          {filteredMainEmblems.length > 0 && (
+            <div className="category">
+              <ul>
+                {filteredMainEmblems
+                  .filter((emblem) => (!hideCompleted || !emblem.Completed) && matchesSearch(emblem))
+                  .map((emblem, index) => (
+                    <EmblemCard 
+                      key={`main-${index}`} 
+                      emblem={emblem} 
+                      showRewards={showRewards}
+                      factionKey={factionKey}
+                      isPinned={isEmblemPinned(emblem, pinned || [], factionKey)}
+                      onTogglePin={onTogglePin}
+                    />
+                  ))}
+              </ul>
+            </div>
+          )}
+
+          {/* Campaigns */}
+          {filteredCampaigns.map((campaign) => {
+            if (campaign.emblems.length === 0) return null
+            return (
+              <div key={campaign.key} className="category">
+                <h3>{campaign.title}</h3>
                 <ul>
-                  {filteredMainEmblems
-                    .filter((emblem) => (!hideCompleted || !emblem.Completed) && matchesSearch(emblem))
-                    .map((emblem, index) => (
-                      <EmblemCard key={`main-${index}`} emblem={emblem} showRewards={showRewards}/>
-                    ))}
+                  {campaign.emblems
+                    .filter((emblem: Emblem) => !hideCompleted || !emblem.Completed)
+                    .map((emblem: Emblem, index: number) => (
+                      <EmblemCard 
+                        key={`${campaign.key}-${index}`} 
+                        emblem={emblem} 
+                        showRewards={showRewards}
+                        factionKey={factionKey}
+                        campaignKey={campaign.key}
+                        isPinned={isEmblemPinned(emblem, pinned || [], factionKey, campaign.key)}
+                        onTogglePin={onTogglePin}
+                      />
+                    ))
+                  }
                 </ul>
               </div>
-            )}
-
-
-
-            {/* Campaigns */}
-            {/* Checker que si y a aucune commendation, alors on display même pas le nom de la catégorie */}
-            {filteredCampaigns.map((campaign) => {
-              if (campaign.emblems.length === 0) return null
-
-              // Campaign title display
-              return (
-                <div key={campaign.key} className="category">
-                  <h3>{campaign.title}</h3>
-                  <ul>
-                    {campaign.emblems
-                      .filter(
-                        (emblem: Emblem) =>
-                          !hideCompleted || !emblem.Completed
-                      )
-                      .map((emblem: Emblem, index: number) => (
-
-                        // Commendation itself display
-                        <EmblemCard
-                          key={`${campaign.key}-${index}`}
-                          emblem={emblem}
-                          showRewards={showRewards}
-                        />
-                      ))
-                    }
-                  </ul>
-                </div>
-              )
-            })}
+            )
+          })}
         </div>
       }
-      />
+    />
     )  
 }
 }
