@@ -110,6 +110,21 @@
     max-width: 100%;
     min-height: 150px;
     height: auto;
+
+    .card-image{
+      left: 3%;
+      top: calc(50% - 15vw/2);
+
+      width: 15vw;
+      height: 15vw;
+    }
+
+    .card-content {
+      display: block;
+      width: 70%;
+      margin: auto 0 auto 20%; // Align the block verticaly
+    }
   }
+
 
 }
