@@ -106,19 +106,10 @@
 
 @media (max-width: 767.98px) {
   .emblem-card {
-    border: 0px;
     min-width: 90%;
     max-width: 100%;
+    min-height: 150px;
+    height: auto;
   }
-}
-
-
-@media (max-width: 767.98px) {
-
-.emblem-card{
-  min-width: 90%;
-  min-height: 100px;
-  height: auto;
-}
 
 }

@@ -271,31 +271,6 @@ li {
 
         ul {
           flex-direction: column;
-
-          .emblem-card {
-            width: 95%;
-            border: 1px solid #666666;
-
-            img {
-              width: 75px;
-              height: 75px;
-              flex-shrink: 0;
-            }
-          }
-        }
-
-        img {
-          width: 90px;
-          // height: 90px;
-          margin-right: 10px;
-        }
-
-        h4 {
-          font-size: 16px;
-        }
-
-        p {
-          font-size: 14px;
         }
       }
     }
