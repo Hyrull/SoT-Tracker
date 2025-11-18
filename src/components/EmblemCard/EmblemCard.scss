@@ -42,17 +42,21 @@
     img {
       filter: invert(16%) sepia(0%) saturate(0%) hue-rotate(185deg) brightness(96%) contrast(90%);
       cursor: pointer;
-    }
 
-    img:hover {
-      filter: invert(100%);
-      transition: all 0.3s ease-in-out;
-    }
+      &:hover {
+        filter: invert(100%);
+        transition: all 0.3s ease-in-out;
+      }
 
-    img.active {
-      filter: none;
-      transition: all 0.3s ease-in-out;
-      visibility: visible
+      &.active {
+        filter: none;
+        transition: all 0.0s ease-in-out;
+        visibility: visible;
+
+        &:hover {
+          filter: brightness(0) saturate(100%) invert(7%) sepia(48%) saturate(6668%) hue-rotate(1deg) brightness(90%) contrast(112%); }
+      }
+
     }
   }
 
