@@ -78,18 +78,39 @@ const Commendations = () => {
   }
 
 const handleTogglePin = async (emblem: Emblem, factionKey?: string, campaignKey?: string) => {
-  if (isDemo || !token) return
+  if (!factionKey) return
 
-  const isPinned = factionKey 
-    ? isEmblemPinned(emblem, pinned, factionKey, campaignKey)
-    : pinned.some(p => p.emblem === emblem.DisplayName) // Fallback check by name only
+  // Demo mode - it'll be only locally
+  if (isDemo) {
+    const isPinned = isEmblemPinned(emblem, pinned, factionKey, campaignKey)
+    
+    if (isPinned) {
+      // Remove from local state
+      setPinned(pinned.filter(p => 
+        !(p.faction === factionKey && 
+          p.emblem === emblem.DisplayName && 
+          p.campaign === campaignKey)
+      ))
+      showToast('Removed from favorites (demo mode - not saved)', 'info')
+    } else {
+      // Add to local state using the helper
+      const newPin = createPinnedItem(emblem, factionKey, campaignKey)
+      setPinned([...pinned, newPin])
+      showToast('Added to favorites (demo mode - not saved)', 'info')
+    }
+    return
+  }
+
+  // user actually is authenticated so let's save it
+  if (!token) return
+
+  const isPinned = isEmblemPinned(emblem, pinned, factionKey, campaignKey)
 
   if (isPinned) {
-    // Remove pin - emblem name is enough now!
     const { data, error } = await removePinned(
       token,
       emblem.DisplayName,
-      factionKey, // Optional - for precise matching if available
+      factionKey,
       campaignKey
     )
     if (data) {
@@ -99,9 +120,6 @@ const handleTogglePin = async (emblem: Emblem, factionKey?: string, campaignKey?
       showToast(error, 'error')
     }
   } else {
-    // Add pin - still needs faction for creation
-    if (!factionKey) return // Can't add without faction context
-    
     const { data, error } = await addPinned(
       token,
       factionKey,
