@@ -40,9 +40,15 @@
     filter: invert(16%) sepia(0%) saturate(0%) hue-rotate(185deg) brightness(96%) contrast(90%);
     visibility: hidden;
 
-    img:hover{
-      filter:invert(100%);
+    img:hover {
+      filter: invert(100%);
       transition: all 0.3s ease-in-out;
+    }
+
+    img.active {
+      filter: none;
+      transition: all 0.3s ease-in-out;
+      visibility: visible;
     }
 
   }
@@ -50,7 +56,7 @@
   .card-content {
     display: block;
     width: 375px;
-    margin: auto 0 auto 150px; // Akugb the block verticaly
+    margin: auto 0 auto 150px; // Align the block verticaly
 
     h4 {
       font-size: 20px;
