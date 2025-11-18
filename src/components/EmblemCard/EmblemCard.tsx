@@ -1,5 +1,6 @@
 import { EmblemCardProps } from "../../types/types"
 import pinnedLogo from "/assets/img/icons/pinned.svg"
+import pinnedLogoActive from "/assets/img/icons/pinned-active.svg"
 import './EmblemCard.scss'
 
 const EmblemCard: React.FC<EmblemCardProps> = ({ 
@@ -48,7 +49,7 @@ const EmblemCard: React.FC<EmblemCardProps> = ({
       >
         <img
           className={isPinned ? 'active' : ''}
-          src={pinnedLogo} 
+          src={isPinned ? pinnedLogoActive : pinnedLogo} 
           alt={isPinned ? 'Unpin' : 'Pin'}
         />
       </button>

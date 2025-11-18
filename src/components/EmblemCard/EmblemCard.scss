@@ -37,8 +37,12 @@
     border: none;
     background-color: rgba(0,0,0,0);
     overflow: hidden;
-    filter: invert(16%) sepia(0%) saturate(0%) hue-rotate(185deg) brightness(96%) contrast(90%);
     visibility: hidden;
+    
+    img {
+      filter: invert(16%) sepia(0%) saturate(0%) hue-rotate(185deg) brightness(96%) contrast(90%);
+      cursor: pointer;
+    }
 
     img:hover {
       filter: invert(100%);
@@ -48,9 +52,8 @@
     img.active {
       filter: none;
       transition: all 0.3s ease-in-out;
-      visibility: visible;
+      visibility: visible
     }
-
   }
 
   .card-content {
