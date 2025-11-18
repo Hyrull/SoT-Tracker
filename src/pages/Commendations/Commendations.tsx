@@ -15,6 +15,8 @@ import { fetchPinned, addPinned, removePinned } from '../../services/pinned'
 import { resolvePinnedEmblems, isEmblemPinned, createPinnedItem } from './Utils/pinnedUtils'
 import dropdownArrow from '/assets/img/icons/Unfold.svg'
 import pinnedLogo from '/assets/img/faction logos/Pinned_logo.webp'
+import pinnedBanner from '/assets/img/faction banners/Favorites_banner.webp'
+
 
 
 const Commendations = () => {
@@ -216,6 +218,13 @@ const handleTogglePin = async (emblem: Emblem, factionKey?: string, campaignKey?
                     </h3>
                   </div>
                 </div>
+              <div>
+                <img
+                  className='faction-banner'
+                  src={pinnedBanner}
+                  alt={'favorites section banner'}
+                  />
+              </div>
                 <img
                   src={dropdownArrow}
                   alt="Dropdown arrow"
