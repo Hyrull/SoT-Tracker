@@ -38,6 +38,7 @@
     background-color: rgba(0,0,0,0);
     overflow: hidden;
     filter: invert(16%) sepia(0%) saturate(0%) hue-rotate(185deg) brightness(96%) contrast(90%);
+    visibility: hidden;
 
     img:hover{
       filter:invert(100%);
@@ -74,6 +75,13 @@
     border: 1px solid #214B21;
     border-left: solid 3px #3D863D;
     opacity: 40%;
+  }
+
+  // Show card-button-pin when emblem-card is hover
+  &:hover {
+    .card-button-pin {
+      visibility: visible;
+    }
   }
 }
 
