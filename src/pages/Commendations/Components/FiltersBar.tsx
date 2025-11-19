@@ -14,9 +14,18 @@ const FiltersBar = ({
   showRewards, toggleShowRewards, 
   searchQuery, setSearchQuery, 
   refreshData, refreshing, 
-  isSticky, isDemo}: FiltersBarProps) => {
+  isSticky, isDemo,
+  onExpandChange}: FiltersBarProps) => {
     
     const [isExpanded, setIsExpanded] = useState(false)
+
+    const handleToggleExpand = () => {
+    const newExpandedState = !isExpanded
+    setIsExpanded(newExpandedState)
+    if (onExpandChange) {
+      onExpandChange(newExpandedState) // notify commendations.tsx about it
+    }
+  }
 
 return (
     <div className={`filters ${isSticky ? 'sticky' : ''} ${isExpanded ? 'expanded' : 'collapsed'}`}>
@@ -60,7 +69,7 @@ return (
 
       <button 
         className="mobile-toggle-button" 
-        onClick={() => setIsExpanded(!isExpanded)}
+        onClick={handleToggleExpand}
         aria-label={isExpanded ? 'Hide filters' : 'Show filters'}
       >
         <p>Filters</p>
