@@ -31,6 +31,8 @@ const Commendations = () => {
   const [refreshing, setRefreshing] = useState(false)
   const token = localStorage.getItem('token')
   const [pinned, setPinned] = useState<PinnedItem[]>([])
+  const [isFiltersExpanded, setIsFiltersExpanded] = useState(false) // need to pass this as a state cause a condition from filtersbar need to the offset, which is declared here
+
   const isDemo = !token
   const { showToast } = useToast()
 
@@ -205,8 +207,7 @@ const handleTogglePin = async (emblem: Emblem, factionKey?: string, campaignKey?
 
   return (
     <section id="all-commendations">
-      <div className={`offset ${isSticky ? 'active' : ''}`} />
-
+      <div className={`offset ${isSticky ? 'active' : ''} ${isFiltersExpanded ? 'expanded' : 'collapsed'}`} />
       <FiltersBar
         hideCompleted={hideCompleted}
         toggleHideCompleted={toggleHideCompleted}
@@ -218,6 +219,7 @@ const handleTogglePin = async (emblem: Emblem, factionKey?: string, campaignKey?
         refreshing={refreshing}
         isSticky={isSticky}
         isDemo={isDemo}
+        onExpandChange={setIsFiltersExpanded} // just to know if it's expanded or not so we can edit the offset properly
       />
 
       <ul>

@@ -57,6 +57,7 @@ export interface FiltersBarProps {
   refreshing: boolean
   isSticky?: boolean
   isDemo: boolean
+  onExpandChange?: (isExpanded: boolean) => void
 }
 
 export interface FactionDropdownProps {
