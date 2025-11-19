@@ -256,7 +256,7 @@
     }
 
     &.expanded {
-      max-height: 250px;
+      max-height: 300px;
     }
 
     .mobile-toggle-button {
@@ -320,6 +320,7 @@
 
       .search-bar-container {
         width: 90%;
+        height: auto;
         
         .search-bar {
           max-width: none;
@@ -340,6 +341,7 @@
         justify-content: space-between;
         align-items: center;
         padding-right: 10px;
+        overflow: hidden;
         
         &:hover {
           transition: all 0.3s ease-in-out;
