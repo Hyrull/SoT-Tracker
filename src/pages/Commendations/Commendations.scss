@@ -75,5 +75,18 @@
     ul {
       width: 95%;
     }
+
+    .offset {
+      height: 0;
+
+      &.active {
+        height: 257px;
+        transition: none; // very niche case where the height of the page is so small (big filters) that the offset height transition is janky
+      }
+
+      &:not(.active) {
+        transition: height 0.4s ease-out; // and in this very niche case, when scrolling up, we'd see the offset as we scroll up and we'd see it disappear, making the page scroll up, and it sucks
+      }
+    }
   }
 }

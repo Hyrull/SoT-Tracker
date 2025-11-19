@@ -195,7 +195,6 @@ const handleTogglePin = async (emblem: Emblem, factionKey?: string, campaignKey?
 
   return (
     <section id="all-commendations">
-      <div className={`offset ${isSticky ? 'active' : ''}`} />
 
       <FiltersBar
         hideCompleted={hideCompleted}
@@ -210,6 +209,7 @@ const handleTogglePin = async (emblem: Emblem, factionKey?: string, campaignKey?
         isDemo={isDemo}
       />
 
+      <div className={`offset ${isSticky ? 'active' : ''}`} />
       <ul>
         {/* FAVORITES SECTION */}
         {pinnedEmblems.length > 0 && (
