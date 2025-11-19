@@ -26,7 +26,7 @@ function Home() {
         />
         <HomeQuestion
         title="How does it even work?"
-        content="You create an account on this website, and then import your 'rat' token from the Sea of Thieves website - gives the website a 
+        content="You create an account on this website, and then import your 'rat' token from the Sea of Thieves website - gives the website a temporary
         read-only access to your game progress (levels, commendations, monthly ledger unlocks). No data of yours is kept in the databases, 
         would you delete your SoT Tracker account. Everything is open-source, so if you can read code, you'll find the GitHub repos below."
         />
@@ -42,9 +42,8 @@ function Home() {
         />
         <HomeQuestion
         title='Why use the "rat" token and not an importer like other fan websites?'
-        content='This website was originally built to meet my own needs - as a companion app while playing. 
-        While an importer would work just as well, it requires more steps: open the SoT website profile page, run the script, 
-        go back to the tracker and refresh. By using the "rat" token instead, a single click on the "refresh" button here is enough to refresh everything, which is far more convenient.'
+        content='This website was originally built to meet my own needs - as a companion app while playing. While an importer would work just as well, it requires more steps: open the SoT website profile page, run the script, 
+        go back to the tracker and refresh. By using the "rat" token instead, a single click on the "refresh" button here is enough to refresh everything, which is far more convenient - even though it must be updated every couple weeks or so.'
         />
         <HomeQuestion
         title="Does this website work on mobile? / Is an app planned?"
