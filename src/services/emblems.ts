@@ -51,7 +51,7 @@ export const refreshEmblems = async (token: string | null, isDemo: boolean): Pro
         Authorization: `Bearer ${token}`,
       },
     })
-    if (!updateRes.ok) throw new Error('Failed to refresh data.')
+    if (!updateRes.ok) throw new Error('Failed to refresh data - try updating your RAT token in the Settings.')
 
     // Fetch the updated data
     const { data, error } = await fetchEmblems(token, isDemo)

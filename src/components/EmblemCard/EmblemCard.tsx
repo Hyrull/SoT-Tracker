@@ -19,6 +19,10 @@ const EmblemCard: React.FC<EmblemCardProps> = ({
     }
   }
 
+  if (!emblem.image) {
+    return
+  }
+
   return (
     <li className={`emblem-card ${emblem.Completed ? 'completed' : ''} ${isPinned ? 'pinned' : ''}`} key={emblem.title}>
       <img className="card-image" loading="lazy" src={emblem.image} alt={`Commendation picture for ${emblem.title}` || 'Emblem'} />

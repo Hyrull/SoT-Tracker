@@ -70,9 +70,27 @@
 @media (max-width: 767.98px) {
   #all-commendations {
 
-    ul{
-      width: 100%;
+    width: 100%;
+
+    ul {
+      width: 95%;
     }
 
+    .offset {
+      height: 0;
+
+      &.active {
+        height: 50px; // Collapsed mobile height
+        transition: none;
+
+        &.expanded {
+          height: 257px; // Expanded mobile height
+        }
+      }
+
+      &:not(.active) {
+        transition: height 0.4s ease-out;
+      }
+    }
   }
 }

@@ -31,6 +31,8 @@ const Commendations = () => {
   const [refreshing, setRefreshing] = useState(false)
   const token = localStorage.getItem('token')
   const [pinned, setPinned] = useState<PinnedItem[]>([])
+  const [isFiltersExpanded, setIsFiltersExpanded] = useState(false) // need to pass this as a state cause a condition from filtersbar need to the offset, which is declared here
+
   const isDemo = !token
   const { showToast } = useToast()
 
@@ -78,22 +80,26 @@ const Commendations = () => {
   }
 
 const handleTogglePin = async (emblem: Emblem, factionKey?: string, campaignKey?: string) => {
-  if (!factionKey) return
-
-  // Demo mode - it'll be only locally
+  // Demo mode - local state only
   if (isDemo) {
-    const isPinned = isEmblemPinned(emblem, pinned, factionKey, campaignKey)
+    const isPinned = factionKey 
+      ? isEmblemPinned(emblem, pinned, factionKey, campaignKey)
+      : pinned.some(p => p.emblem === emblem.DisplayName)
     
     if (isPinned) {
       // Remove from local state
       setPinned(pinned.filter(p => 
-        !(p.faction === factionKey && 
-          p.emblem === emblem.DisplayName && 
-          p.campaign === campaignKey)
+        factionKey
+          ? !(p.faction === factionKey && 
+              p.emblem === emblem.DisplayName && 
+              p.campaign === campaignKey)
+          : p.emblem !== emblem.DisplayName
       ))
       showToast('Removed from favorites (demo mode - not saved)', 'info')
     } else {
-      // Add to local state using the helper
+      // Can't add without faction context
+      if (!factionKey) return
+      
       const newPin = createPinnedItem(emblem, factionKey, campaignKey)
       setPinned([...pinned, newPin])
       showToast('Added to favorites (demo mode - not saved)', 'info')
@@ -101,12 +107,15 @@ const handleTogglePin = async (emblem: Emblem, factionKey?: string, campaignKey?
     return
   }
 
-  // user actually is authenticated so let's save it
+  // Authenticated mode - API calls
   if (!token) return
 
-  const isPinned = isEmblemPinned(emblem, pinned, factionKey, campaignKey)
+  const isPinned = factionKey 
+    ? isEmblemPinned(emblem, pinned, factionKey, campaignKey)
+    : pinned.some(p => p.emblem === emblem.DisplayName)
 
   if (isPinned) {
+    // Unpinning - emblem name is enough, unlike when we pin
     const { data, error } = await removePinned(
       token,
       emblem.DisplayName,
@@ -120,6 +129,9 @@ const handleTogglePin = async (emblem: Emblem, factionKey?: string, campaignKey?
       showToast(error, 'error')
     }
   } else {
+    // Pinning - needs faction context!!
+    if (!factionKey) return
+    
     const { data, error } = await addPinned(
       token,
       factionKey,
@@ -195,8 +207,7 @@ const handleTogglePin = async (emblem: Emblem, factionKey?: string, campaignKey?
 
   return (
     <section id="all-commendations">
-      <div className={`offset ${isSticky ? 'active' : ''}`} />
-
+      <div className={`offset ${isSticky ? 'active' : ''} ${isFiltersExpanded ? 'expanded' : 'collapsed'}`} />
       <FiltersBar
         hideCompleted={hideCompleted}
         toggleHideCompleted={toggleHideCompleted}
@@ -208,6 +219,7 @@ const handleTogglePin = async (emblem: Emblem, factionKey?: string, campaignKey?
         refreshing={refreshing}
         isSticky={isSticky}
         isDemo={isDemo}
+        onExpandChange={setIsFiltersExpanded} // just to know if it's expanded or not so we can edit the offset properly
       />
 
       <ul>

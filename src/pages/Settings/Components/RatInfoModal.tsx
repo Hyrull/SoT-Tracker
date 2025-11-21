@@ -37,6 +37,8 @@ const RatInfoModal: React.FC<RatInfoModalProps> = ({ isOpen, onClose }) => {
           <li>Under <strong>Cookies</strong> → select <code>https://www.seaofthieves.com</code>.</li>
           <li>Find the cookie named <strong>rat</strong> and copy its value.</li>
           <li>Paste it into the field on the Settings page and press <strong>Update Rat</strong>.</li>
+          <br/>
+          <li>Beware - <strong>the RAT will expire</strong>, and needs an update every couple weeks.</li>
         </ol>
 
         <button className="okay-button" onClick={onClose}>Got it</button>
