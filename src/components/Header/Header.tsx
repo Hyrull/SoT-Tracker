@@ -79,10 +79,12 @@ function Header() {
           {token && (
             <div className="player-infos">
               <p className="nickname">{username}</p>
+              {currentScore !== 0 &&
               <div className='score-display'>
                 <img src={scoreIcon} alt="Score icon" title="Your total score"/>
                 <p>{currentScore.toLocaleString()}</p>
               </div>
+              }
             </div>
         )}
         </div>
