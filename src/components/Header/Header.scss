@@ -43,38 +43,38 @@ header {
         }
       }
       
-    }
-    
-    .player-infos {
-      display: block;
-      margin-right: 1%;
-      margin-top: 10px;
-      text-align: right;
-      font-size: 1em;
       
-      
-      .nickname {
-        font-size: 1.2rem;
-      }
-
-      .score-display {
-        display: flex;
-        align-items: center;
-        flex-direction: row-reverse;
-        margin-top: 2px;
+      .player-infos {
+        display: block;
+        margin-right: 1%;
+        margin-top: 10px;
+        text-align: right;
+        font-size: 1em;
         
-        p {
-          color: gray;
-          font-weight: bold;
-          text-align: right;
+        
+        .nickname {
+          font-size: 1.2rem;
         }
         
-        img {
-          height: 14px;
-          margin-top: 1px;
-          margin-left: 2px;
+        .score-display {
+          display: flex;
           align-items: center;
-          filter: invert(58%) sepia(1%) saturate(1%) hue-rotate(23deg) brightness(87%) contrast(86%);
+          flex-direction: row-reverse;
+          margin-top: 2px;
+          
+          p {
+            color: gray;
+            font-weight: bold;
+            text-align: right;
+          }
+          
+          img {
+            height: 14px;
+            margin-top: 1px;
+            margin-left: 2px;
+            align-items: center;
+            filter: invert(58%) sepia(1%) saturate(1%) hue-rotate(23deg) brightness(87%) contrast(86%);
+          }
         }
       }
     }
@@ -100,17 +100,28 @@ header {
         display: block;
       }
     }
-
-    nav {
-      display: flex;
-      flex-direction: column;
+    
+    .nav-and-infos { 
+      nav {
+        display: flex;
+        flex-direction: column;
+        
+        a {
+          margin-bottom: 15px;
+          justify-content: center;
+          text-align: center;
+          padding-left: 0px;
+          font-size: 1rem;
+        }
+      }
       
-      a {
-        margin-bottom: 15px;
-        justify-content: center;
-        text-align: center;
-        padding-left: 0px;
-        font-size: 1rem;
+      .player-infos {
+        .score-display {
+          img {
+            width: 14px;
+            margin-bottom: 0px;
+          }
+        }
       }
     }
   }
