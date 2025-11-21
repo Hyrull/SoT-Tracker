@@ -26,6 +26,34 @@
     height: 130px;
   }
 
+  .card-score {
+    position:absolute;
+    left: 5px;
+    top: 5px;
+    margin: 0px auto;
+
+    visibility: hidden;
+
+    p {
+      display: inline-block;
+      color: gray;
+      font-weight: bold;
+      vertical-align: sub;
+    }
+
+    img{
+      display: inline-block;
+      width: 15px;
+      height: 15px;
+      margin-left: 5px;
+      filter: invert(58%) sepia(1%) saturate(1%) hue-rotate(23deg) brightness(87%) contrast(86%);
+    }
+  }
+
+  &:hover .card-score {
+    visibility: visible;
+  }
+
   .card-button-pin {
     position: absolute;
     right: 5px;

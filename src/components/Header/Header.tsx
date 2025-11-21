@@ -1,8 +1,8 @@
 import { Link } from 'react-router'
 import './Header.scss'
-// import logo from '/assets/img/sot-tracker-logo1.png'
 import logo from '/assets/img/sot-tracker-logo-large-light.webp'
 import logoNoText from '/assets/img/sot-tracker-logo-small-light.webp'
+import scoreIcon from "/assets/img/icons/icon-tier-4.svg"
 
 const token = localStorage.getItem('token')
 
@@ -40,6 +40,10 @@ function Header() {
               <Link data-itemprop='url' to='/login'>Log in</Link>
             )}
         </nav>
+        <div className="playerInfos">
+            <p className="nickname">Freya</p>
+            <p className="score">14 850<img src={scoreIcon} alt="Score"></img></p>
+        </div>
       </div>
     </header>
   )

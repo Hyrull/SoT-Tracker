@@ -1,6 +1,7 @@
 import { EmblemCardProps } from "../../types/types"
 import pinnedLogo from "/assets/img/icons/pinned.svg"
 import pinnedLogoActive from "/assets/img/icons/pinned-active.svg"
+import scoreIcon from "/assets/img/icons/icon-tier-4.svg"
 import './EmblemCard.scss'
 
 const EmblemCard: React.FC<EmblemCardProps> = ({ 
@@ -53,6 +54,10 @@ const EmblemCard: React.FC<EmblemCardProps> = ({
           alt={isPinned ? 'Unpin' : 'Pin'}
         />
       </button>
+      <div className="card-score">
+        <p>+5</p>
+        <img src={scoreIcon} alt="Score"></img>
+      </div>
     </li>
   )
 }
