@@ -50,26 +50,31 @@ function Header() {
             className='main-logo-notext'
           />
         </Link>
-        <nav data-itemtype="https://schema.org/SiteNavigationElement" data-itemscope="">
-          <Link data-itemprop='url' to='/'>Home</Link>
-          <Link data-itemprop='url' to='/commendations'>Commendations</Link>
-          {
-            token ? (
-              <>
-              <Link data-itemprop='url' to='/settings'>Settings</Link>
-              <Link data-itemprop='url' to='/' onClick={removeToken}>Log out</Link>
-              </>
-            ) : (
-              <Link data-itemprop='url' to='/login'>Log in</Link>
-            )}
-        </nav>
-        
-        {token && (
-          <div className="player-infos">
-            <p className="nickname">{username}</p>
-            <p className="score">{currentScore.toLocaleString()}<img src={scoreIcon} alt="Score" /></p>
-          </div>
+        <div className='nav-and-infos'>
+          <nav data-itemtype="https://schema.org/SiteNavigationElement" data-itemscope="">
+            <Link data-itemprop='url' to='/'>Home</Link>
+            <Link data-itemprop='url' to='/commendations'>Commendations</Link>
+            {
+              token ? (
+                <>
+                <Link data-itemprop='url' to='/settings'>Settings</Link>
+                <Link data-itemprop='url' to='/' onClick={removeToken}>Log out</Link>
+                </>
+              ) : (
+                <Link data-itemprop='url' to='/login'>Log in</Link>
+              )}
+          </nav>
+          
+          {token && (
+            <div className="player-infos">
+              <p className="nickname">{username}</p>
+              <div className='score-display'>
+                <img src={scoreIcon} alt="Score icon" />
+                <p>{currentScore.toLocaleString()}</p>
+              </div>
+            </div>
         )}
+        </div>
       </div>
     </header>
   )

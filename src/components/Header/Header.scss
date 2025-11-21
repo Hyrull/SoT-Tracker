@@ -23,40 +23,60 @@ header {
       display: none;
     }
 
-    nav {
-      margin-top: 20px;
+    .nav-and-infos {
+      
+      display: flex;
+      flex-direction: column;
+      align-items: right;
+      margin-top: 16px;
 
-      a {
-        padding-left: 24px;
-        font-size: 1.4rem;
-        text-decoration: none;
-        color: white;
+      nav {
+        display: flex;
+        align-items: center;
+        // margin-top: 20px;
+        
+        a {
+          padding-left: 24px;
+          font-size: 1.4rem;
+          text-decoration: none;
+          color: white;
+        }
       }
+      
     }
+    
+    .player-infos {
+      display: block;
+      margin-right: 1%;
+      margin-top: 10px;
+      text-align: right;
+      font-size: 1em;
+      
+      
+      .nickname {
+        font-size: 1.2rem;
+      }
 
-  }
-
-  .playerInfos {
-    display: block;
-    position: absolute;
-    right: 5%;
-    top: 65px;
-    text-align: right;
-    font-size: 1em;
-
-    img{
-      height: 13px;
-      margin-left: 5px;
-      filter: invert(58%) sepia(1%) saturate(1%) hue-rotate(23deg) brightness(87%) contrast(86%);
-    }
-
-    .nickname {
-      font-size: 1.2rem;
-    }
-
-    .score{
-      color: gray;
-      font-weight: bold;
+      .score-display {
+        display: flex;
+        align-items: center;
+        flex-direction: row-reverse;
+        margin-top: 2px;
+        
+        p {
+          color: gray;
+          font-weight: bold;
+          text-align: right;
+        }
+        
+        img {
+          height: 14px;
+          margin-top: 1px;
+          margin-left: 2px;
+          align-items: center;
+          filter: invert(58%) sepia(1%) saturate(1%) hue-rotate(23deg) brightness(87%) contrast(86%);
+        }
+      }
     }
   }
 }
