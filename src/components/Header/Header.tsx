@@ -3,8 +3,8 @@ import './Header.scss'
 import logo from '/assets/img/sot-tracker-logo-large-light.webp'
 import logoNoText from '/assets/img/sot-tracker-logo-small-light.webp'
 import scoreIcon from "/assets/img/icons/icon-tier-4.svg"
-
-const token = localStorage.getItem('token')
+import { getScore } from '../../services/score'
+import { useEffect, useState } from 'react'
 
 const removeToken = () => {
   localStorage.removeItem('token')
@@ -12,6 +12,29 @@ const removeToken = () => {
 }
 
 function Header() {
+  const [token] = useState(() => localStorage.getItem('token'))
+  const [username, setUsername] = useState('')
+  const [currentScore, setCurrentScore] = useState(0)
+
+  // I made the backend answer this, too, but I don't have any use for it yet. But it's ready
+  // const [maximumScore, setMaximumScore] = useState(0)
+  // const [completionPercentage, setCompletionPercentage] = useState('0')
+
+  useEffect(() => {
+    if (token) {
+      getScore(token)
+        .then((data) => {
+          setUsername(data.username)
+          setCurrentScore(data.currentScore)
+          // setMaximumScore(data.maximumScore)
+          // setCompletionPercentage(data.percentage)
+        })
+        .catch((err) => {
+          console.error('Failed to fetch score', err)
+        })
+    }
+  }, [token])
+
   return (
     <header>
       <div className='header-content'>
@@ -40,10 +63,13 @@ function Header() {
               <Link data-itemprop='url' to='/login'>Log in</Link>
             )}
         </nav>
-        <div className="playerInfos">
-            <p className="nickname">Freya</p>
-            <p className="score">14 850<img src={scoreIcon} alt="Score"></img></p>
-        </div>
+        
+        {token && (
+          <div className="player-infos">
+            <p className="nickname">{username}</p>
+            <p className="score">{currentScore.toLocaleString()}<img src={scoreIcon} alt="Score" /></p>
+          </div>
+        )}
       </div>
     </header>
   )
