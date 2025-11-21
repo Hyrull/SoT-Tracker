@@ -1,4 +1,4 @@
-import { Link } from 'react-router'
+import { Link, NavLink } from 'react-router'
 import './Header.scss'
 import logo from '/assets/img/sot-tracker-logo-large-light.webp'
 import logoNoText from '/assets/img/sot-tracker-logo-small-light.webp'
@@ -52,16 +52,27 @@ function Header() {
         </Link>
         <div className='nav-and-infos'>
           <nav data-itemtype="https://schema.org/SiteNavigationElement" data-itemscope="">
-            <Link data-itemprop='url' to='/'>Home</Link>
-            <Link data-itemprop='url' to='/commendations'>Commendations</Link>
+            <NavLink to="/"
+                data-itemprop="url">
+                Home
+              </NavLink>
+            <NavLink data-itemprop='url' to='/commendations'>
+              Commendations
+            </NavLink>
             {
               token ? (
                 <>
-                <Link data-itemprop='url' to='/settings'>Settings</Link>
-                <Link data-itemprop='url' to='/' onClick={removeToken}>Log out</Link>
+                <NavLink data-itemprop='url' to='/settings'>
+                  Settings
+                </NavLink>
+                <Link data-itemprop='url' to='/' onClick={removeToken}>
+                  Log out
+                </Link>
                 </>
               ) : (
-                <Link data-itemprop='url' to='/login'>Log in</Link>
+                <NavLink data-itemprop='url' to='/login'>
+                  Log in
+                </NavLink>
               )}
           </nav>
           

@@ -40,6 +40,15 @@ header {
           font-size: 1.4rem;
           text-decoration: none;
           color: white;
+          transition: color 0.2s ease-in-out;
+
+          &.active {
+            color: $main-links-color;
+          }
+
+          &:hover {
+            color: $main-links-hover-color;
+          }
         }
       }
       
@@ -114,7 +123,7 @@ header {
           font-size: 1rem;
         }
       }
-      
+
       .player-infos {
         .score-display {
           img {
