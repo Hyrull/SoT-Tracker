@@ -13,6 +13,7 @@ export interface Emblem {
   rewardType?: string;
   reward?: string;
   reward_graded?: { grade: number; reward: string }[];
+  scoreLevel?: number
 }
 
 export interface EmblemCardProps {

@@ -23,6 +23,17 @@ const EmblemCard: React.FC<EmblemCardProps> = ({
     return
   }
 
+  // These are not given from the backend yet, and one day I'll make it ask the backend for the score level -> # of points. One day.
+  const SCORE_LEVELS: Record<number, number> = {
+    0: 0,
+    1: 5,
+    2: 10,
+    3: 25,
+    4: 50,
+    5: 75,
+    6: 100
+  }
+
   return (
     <li className={`emblem-card ${emblem.Completed ? 'completed' : ''} ${isPinned ? 'pinned' : ''}`} key={emblem.title}>
       <img className="card-image" loading="lazy" src={emblem.image} alt={`Commendation picture for ${emblem.title}` || 'Emblem'} />
@@ -58,10 +69,12 @@ const EmblemCard: React.FC<EmblemCardProps> = ({
           alt={isPinned ? 'Unpin' : 'Pin'}
         />
       </button>
-      <div className="card-score">
-        <p>+5</p>
-        <img src={scoreIcon} alt="Score"></img>
-      </div>
+      {emblem.scoreLevel && (
+        <div className="card-score">
+          <p>+{SCORE_LEVELS[emblem.scoreLevel]}</p>
+          <img src={scoreIcon} alt="Score"></img>
+        </div>
+      )}
     </li>
   )
 }
