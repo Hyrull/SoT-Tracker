@@ -33,6 +33,7 @@
     margin: 0px auto;
 
     visibility: hidden;
+    display: flex;
 
     p {
       display: inline-block;
@@ -41,11 +42,11 @@
       vertical-align: sub;
     }
 
-    img{
+    img {
       display: inline-block;
       width: 15px;
       height: 15px;
-      margin-left: 5px;
+      margin-left: 3px;
       filter: invert(58%) sepia(1%) saturate(1%) hue-rotate(23deg) brightness(87%) contrast(86%);
     }
   }
