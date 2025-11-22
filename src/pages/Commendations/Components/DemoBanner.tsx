@@ -11,7 +11,7 @@ const DemoBanner: React.FC<DemoBannerProps> = ({ isDemo }) => {
 
   return (
     <div className="demo-banner">
-      <p>You are currently browsing a demo version of this page, using Hyrul's data as of 25th of October, 2025.<br></br>
+      <p>You are currently browsing a demo version of this page, using Hyrul's data as of the 21st of November, 2025.<br/>
       <Link to="/signup">Sign Up</Link> or <Link to="/login">Log In</Link> to browse your own commendations.</p>
     </div>
   )
