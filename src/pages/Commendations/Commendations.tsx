@@ -12,6 +12,7 @@ import EmblemCard from '../../components/EmblemCard/EmblemCard'
 import { useToast } from '../../contexts/ToastContext'
 import { fetchEmblems, refreshEmblems } from '../../services/emblems'
 import { fetchPinned, addPinned, removePinned } from '../../services/pinned'
+import { useUser } from '../../contexts/UserContext'
 import { resolvePinnedEmblems, isEmblemPinned, createPinnedItem } from './Utils/pinnedUtils'
 import dropdownArrow from '/assets/img/icons/Unfold.svg'
 import pinnedLogo from '/assets/img/faction logos/Pinned_logo.webp'
@@ -33,8 +34,10 @@ const Commendations = () => {
   const [pinned, setPinned] = useState<PinnedItem[]>([])
   const [isFiltersExpanded, setIsFiltersExpanded] = useState(false) // need to pass this as a state cause a condition from filtersbar need to the offset, which is declared here
 
+
   const isDemo = !token
   const { showToast } = useToast()
+  const { refreshScore } = useUser()
 
   // Resolve pinned items to full emblem objects
   const pinnedEmblems = useMemo(
@@ -77,6 +80,7 @@ const Commendations = () => {
       showToast(error, 'error')
     }
     setRefreshing(false)
+    await refreshScore()
   }
 
 const handleTogglePin = async (emblem: Emblem, factionKey?: string, campaignKey?: string) => {
