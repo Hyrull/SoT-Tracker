@@ -12,10 +12,12 @@ import Settings from "./pages/Settings/Settings.tsx"
 import Commendations from "./pages/Commendations/Commendations.tsx"
 import ErrorPage from "./pages/ErrorPage/ErrorPage"
 import { ToastProvider } from "./contexts/ToastContext.tsx"
+import { UserProvider } from './contexts/UserContext'
 
 ReactDOM.createRoot(document.getElementById('root')!).render(
   <BrowserRouter>
   <ToastProvider>
+  <UserProvider>
     <Header />
     <Routes>
       <Route path='/' element={<Home />} />
@@ -26,6 +28,7 @@ ReactDOM.createRoot(document.getElementById('root')!).render(
       <Route path='*' element={<ErrorPage />} /> 
     </Routes>
     <Footer />
+  </UserProvider>
   </ToastProvider>
   </BrowserRouter>
 )
