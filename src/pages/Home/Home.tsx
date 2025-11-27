@@ -32,7 +32,7 @@ function Home() {
         />
 
         <HomeQuestion
-        title="What's this score/number thing I can see when I'm connected?"
+        title="What's this score/number I can see when I'm logged in?"
         content="Your score. Each grade of each commendation awards a number of points, all of which adds up to form your total score. The higher the better! You can hover any commendation (or tap, on mobile) to see how many points it gives, in the top-left corner."
         />
 
