@@ -11,8 +11,6 @@ function Home() {
         <CarouselBanner/>
       </div>
       <div className="homepage">
-        {/* <h2>This page is under construction - check out the Commendations page!</h2> */}
-
         
         <HomeQuestion 
         title="What is this website?" 
@@ -20,15 +18,27 @@ function Home() {
         I originally built it for myself as a way to have all my commendations be displayed on a single page, ordered, organized, with filter and search options, 
         and displaying what each of them unlocks. Since the game couldn't provide half these features, I made them myself."
         />  
+
         <HomeQuestion
         title="Why bother, when in-game menus exists?"
         content="Again, the in-game menus doesn't have filtering, search bars, and doesn't say what they unlock. And I wanted a tool that's quick, responsive and easy to use while you're in-game."
         />
+
         <HomeQuestion
         title="How does it even work?"
         content="You create an account on this website, and then import your 'rat' token from the Sea of Thieves website - gives the website a temporary
         read-only access to your game progress (levels, commendations, monthly ledger unlocks). No data of yours is kept in the databases, 
         would you delete your SoT Tracker account. Everything is open-source, so if you can read code, you'll find the GitHub repos below."
+        />
+
+        <HomeQuestion
+        title="What's this score/number thing I can see when I'm connected?"
+        content="Your score. Each grade of each commendation awards a number of points, all of which adds up to form your total score. The higher the better! You can hover any commendation (or tap, on mobile) to see how many points it gives, in the top-left corner."
+        />
+
+        <HomeQuestion
+        title="Does this website work on mobile? / Is an app planned?"
+        content="The website does work on mobile. However, an app would require me to re-do the entire website, which is a LOT of work for very few users. I, myself would use it, but it's not planned for the foreseeable future."
         />
 
         <HomeQuestion
@@ -45,10 +55,7 @@ function Home() {
         content='This website was originally built to meet my own needs - as a companion app while playing. While an importer would work just as well, it requires more steps: open the SoT website profile page, run the script, 
         go back to the tracker and refresh. By using the "rat" token instead, a single click on the "refresh" button here is enough to refresh everything, which is far more convenient - even though it must be updated every couple weeks or so.'
         />
-        <HomeQuestion
-        title="Does this website work on mobile? / Is an app planned?"
-        content="Though it's not a priority right now since not all the core features are implemented, this is definitely something I plan to do eventually - especially for console players."
-        />
+        
         <HomeQuestion
           title="Let me see the code!"
           content={
