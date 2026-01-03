@@ -3,21 +3,22 @@ import { Link, useNavigate } from 'react-router'
 import { useToast } from '../../contexts/ToastContext'
 import { login as loginService } from '../../services/auth';
 import './Login.scss'
+import { useUser } from '../../contexts/UserContext';
 
 const Login: React.FC = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const navigate = useNavigate()
   const { showToast } = useToast()
+  const { login } = useUser()
 
   const handleSubmit = async (event: React.FormEvent) => {
     event.preventDefault()
     const { success, token, error } = await loginService(email, password)
 
     if (success && token) {
-      localStorage.setItem('token', token)
+      login(token)
       navigate('/commendations')
-      window.location.reload()
     } else {
       showToast(error || 'Invalid email or password', 'error')
     }

@@ -11,7 +11,10 @@ interface UserContextType {
   score: Score
   username: string
   loading: boolean
+  token: string | null 
   refreshScore: () => Promise<void>
+  login: (token: string) => void
+  logout: () => void
 }
 
 const defaultScore: Score = {
@@ -21,10 +24,13 @@ const defaultScore: Score = {
 }
 
 const defaultContext: UserContextType = {
-  score: defaultScore,
+score: defaultScore,
   username: '',
   loading: true,
-  refreshScore: async () => {}
+  token: null,
+  refreshScore: async () => {},
+  login: () => {},
+  logout: () => {}
 }
 
 const UserContext = createContext<UserContextType>(defaultContext)
@@ -34,21 +40,26 @@ interface UserProviderProps {
 }
 
 export const UserProvider: React.FC<UserProviderProps> = ({ children }) => {
+  const [token, setToken] = useState<string | null>(() => localStorage.getItem('token'))
   const [score, setScore] = useState<Score>(defaultScore)
   const [username, setUsername] = useState<string>('')
   const [loading, setLoading] = useState(true)
 
   useEffect(() => {
-    fetchScore()
-  }, [])
+    if (token) {
+      fetchScore(token)
+    } else {
+      // Reset if no token
+      setScore(defaultScore)
+      setUsername('')
+      setLoading(false)
+    }
+  }, [token])
 
-  const fetchScore = async () => {
+  const fetchScore = async (activeToken: string) => {
     try {
       setLoading(true)
-      const token = localStorage.getItem('token')
-      if (!token) return
-      
-      const data = await getScore(token)
+      const data = await getScore(activeToken)
       setScore({
         current: data.currentScore,
         maximum: data.maximumScore,
@@ -63,14 +74,27 @@ export const UserProvider: React.FC<UserProviderProps> = ({ children }) => {
   }
 
   const refreshScore = async () => {
-    await fetchScore()
+    if (token) await fetchScore(token)
+  }
+
+  const login = (newToken: string) => {
+    localStorage.setItem('token', newToken)
+    setToken(newToken)
+  }
+
+  const logout = () => {
+    localStorage.removeItem('token')
+    setToken(null)
   }
 
   const value: UserContextType = {
     score,
     username,
     loading,
-    refreshScore
+    token,
+    refreshScore,
+    login,
+    logout
   }
 
   return (

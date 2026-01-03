@@ -1,27 +1,31 @@
 import React, { useState } from 'react'
+import { useNavigate } from 'react-router';
 import { useToast } from '../../contexts/ToastContext'
 import { signup as signupService } from '../../services/auth';
 import './Signup.scss'
 
 const Signup: React.FC = () => {
-  const [nickname, setNickname] = useState('');
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
-  const [passwordCheck, setPasswordCheck] = useState('');
+  const [nickname, setNickname] = useState('')
+  const [email, setEmail] = useState('')
+  const [password, setPassword] = useState('')
+  const [passwordCheck, setPasswordCheck] = useState('')
   const { showToast } = useToast()
+  const navigate = useNavigate()
 
   const handleSubmit = async (event: React.FormEvent) => {
     event.preventDefault()
 
     if (password !== passwordCheck) {
       showToast('Passwords do not match!', 'error')
-      return;
+      return
     }
 
     const { success, message, error } = await signupService(nickname, email, password)
 
-    if (success) showToast(message || 'Account created successfully!', 'success')
-    else showToast(error || 'Error creating the account', 'error')
+    if (success) {
+      showToast(message || 'Account created successfully! Please login now.', 'success')
+      navigate('/login')
+    } else showToast(error || 'Error creating the account', 'error')
   }
 
   return (
@@ -52,9 +56,6 @@ const Signup: React.FC = () => {
         </div>
         <div className="form-group">
             <label htmlFor="password">Password</label>
-            {/* {password && !/^(?=.*[A-Z])(?=.*\d).{6,}$/.test(password) && (
-            <p className="error-message"><br/>Your password must be six characters long or more, and include a capitalized character and a number.</p>
-            )} */}
           <input
             type="password"
             id="password"
@@ -66,9 +67,6 @@ const Signup: React.FC = () => {
         </div>
         <div className="form-group">
             <label htmlFor="password">Confirm password</label>
-            {/* {password && !/^(?=.*[A-Z])(?=.*\d).{6,}$/.test(password) && (
-            <p className="error-message"><br/>Your password must be six characters long or more, and include a capitalized character and a number.</p>
-            )} */}
           <input
             type="password"
             id="password-check"

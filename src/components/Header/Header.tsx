@@ -1,40 +1,21 @@
-import { Link, NavLink } from 'react-router'
+import { Link, NavLink, useNavigate } from 'react-router'
 import './Header.scss'
 import logo from '/assets/img/sot-tracker-logo-large-light.webp'
 import logoNoText from '/assets/img/sot-tracker-logo-small-light.webp'
 import scoreIcon from "/assets/img/icons/icon-tier-4.svg"
-import { useState } from 'react'
 import { useUser } from '../../contexts/UserContext'
 
-const removeToken = () => {
-  localStorage.removeItem('token')
-  window.location.href = '/'
-}
+
 
 function Header() {
-  const [token] = useState(() => localStorage.getItem('token'))
-  const { score, username } = useUser()
-  // const [username, setUsername] = useState('')
-  // const [currentScore, setCurrentScore] = useState(0)
+  const { score, username, token, logout } = useUser()
+  const navigate = useNavigate()
 
-  // I made the backend answer this, too, but I don't have any use for it yet. But it's ready
-  // const [maximumScore, setMaximumScore] = useState(0)
-  // const [completionPercentage, setCompletionPercentage] = useState('0')
-
-  // useEffect(() => {
-  //   if (token) {
-  //     getScore(token)
-  //       .then((data) => {
-  //         setUsername(data.username)
-  //         setCurrentScore(data.currentScore)
-  //         // setMaximumScore(data.maximumScore)
-  //         // setCompletionPercentage(data.percentage)
-  //       })
-  //       .catch((err) => {
-  //         console.error('Failed to fetch score', err)
-  //       })
-  //   }
-  // }, [token])
+  const handleLogout = (e: React.MouseEvent) => {
+    e.preventDefault() // Stop the link navigation for a moment
+    logout()
+    navigate('/')
+  }
 
   return (
     <header>
@@ -66,7 +47,7 @@ function Header() {
                 <NavLink data-itemprop='url' to='/settings'>
                   Settings
                 </NavLink>
-                <Link data-itemprop='url' to='/' onClick={removeToken}>
+                <Link data-itemprop='url' to='/' onClick={handleLogout}>
                   Log out
                 </Link>
                 </>
