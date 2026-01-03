@@ -25,6 +25,14 @@ li {
     box-shadow: 0 6px 15px rgba(0,0,0,0.6);
     margin-top: 14px;
 
+    // cancelling some default styling because it's now a <button> and not <div>
+    border: none;
+    font: inherit;
+    color: inherit;
+    // ios fixes
+    appearance: none;
+    -webkit-appearance: none;
+
     .arrow {
       transition: transform 0.3s ease;
       position: absolute;
