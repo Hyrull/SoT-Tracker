@@ -37,7 +37,7 @@ export default function CarouselBanner() {
   }
 
   useEffect(() => {
-    intervalRef.current = setInterval(next, delay)
+    intervalRef.current = window.setInterval(next, delay)
     return () => {
       if (intervalRef.current) clearInterval(intervalRef.current);
     }
