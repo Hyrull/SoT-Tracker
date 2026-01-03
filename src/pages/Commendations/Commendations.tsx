@@ -1,4 +1,4 @@
-import { useEffect, useState, useCallback, useMemo } from 'react'
+import { useEffect, useState, useCallback, useMemo, useRef } from 'react'
 import { Link, useNavigate } from 'react-router'
 import { AllCommsData, Emblem, PinnedItem } from '../../types/types'
 import './Commendations.scss'
@@ -32,8 +32,28 @@ const Commendations = () => {
   const [refreshing, setRefreshing] = useState(false)
   const token = localStorage.getItem('token')
   const [pinned, setPinned] = useState<PinnedItem[]>([])
-  const [isFiltersExpanded, setIsFiltersExpanded] = useState(false) // need to pass this as a state cause a condition from filtersbar need to the offset, which is declared here
+  const sentinelRef = useRef<HTMLDivElement>(null)
 
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        // If the sentinel is NOT intersecting (it scrolled off screen), we are sticky
+        setIsSticky(!entry.isIntersecting)
+      },
+      {
+        root: null, // viewport
+        threshold: 0, // triggers as soon as 1 pixel leaves
+        rootMargin: `-${125}px 0px 0px 0px` 
+        // 125px = header height
+      }
+    )
+
+    if (sentinelRef.current) {
+      observer.observe(sentinelRef.current)
+    }
+
+    return () => observer.disconnect()
+  }, [])
 
   const isDemo = !token
   const { showToast } = useToast()
@@ -211,7 +231,10 @@ const handleTogglePin = async (emblem: Emblem, factionKey?: string, campaignKey?
 
   return (
     <section id="all-commendations">
-      <div className={`offset ${isSticky ? 'active' : ''} ${isFiltersExpanded ? 'expanded' : 'collapsed'}`} />
+      {/* this is the div that acts as a treshold for the stickyness of the filterbar */}
+      <div ref={sentinelRef} style={{ height: '1px', width: '100%', position: 'absolute', top: 0, visibility: 'hidden' }} />
+      
+      <div className={`offset ${isSticky ? 'active' : ''} ...`} />
       <FiltersBar
         hideCompleted={hideCompleted}
         toggleHideCompleted={toggleHideCompleted}
@@ -222,9 +245,7 @@ const handleTogglePin = async (emblem: Emblem, factionKey?: string, campaignKey?
         refreshData={handleRefreshClick}
         refreshing={refreshing}
         isSticky={isSticky}
-        isDemo={isDemo}
-        onExpandChange={setIsFiltersExpanded} // just to know if it's expanded or not so we can edit the offset properly
-      />
+        isDemo={isDemo}      />
 
       <ul>
         {/* FAVORITES SECTION */}
