@@ -26,7 +26,7 @@ const routes = ['/', '/commendations'];
   const { preview } = await import('vite')
   const server = await preview({
     preview: { port: 4173, open: false },
-    root: DIST_DIR,
+    root: __dirname,
     configFile: false,
   })
   
