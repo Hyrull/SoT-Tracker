@@ -41,7 +41,15 @@ const routes = ['/', '/commendations'];
     await page.goto(url, { waitUntil: 'networkidle0' });
     
     // Capture HTML
-    const html = await page.content()
+    let html = await page.content()
+
+    // fixing so the url isnt localhost but sot-tracker.com instead
+    const safeBaseUrl = baseUrl.endsWith('/') ? baseUrl.slice(0, -1) : baseUrl
+    const prodUrl = 'https://www.sot-tracker.com'
+    
+    // Global replace of localhost:4173 -> sot-tracker.com
+    html = html.split(safeBaseUrl).join(prodUrl)
+    // ----------------------------------------------------
 
     // Determine output path (e.g. dist/commendations/index.html)
     const fileName = route === '/' ? 'index.html' : `${route.substring(1)}/index.html`
