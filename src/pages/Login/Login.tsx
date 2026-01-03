@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { useNavigate } from 'react-router'
+import { Link, useNavigate } from 'react-router'
 import { useToast } from '../../contexts/ToastContext'
 import { login as loginService } from '../../services/auth';
 import './Login.scss'
@@ -53,9 +53,7 @@ return (
     </form>
   <p className='signup-here'>
     Don't have an account? You can{' '}
-    <span onClick={() => navigate('/signup')} className="signup-link">
-      sign up here
-    </span>.
+    <Link to="/signup" className="signup-link">sign up here</Link>
   </p>
   </main>
 )
