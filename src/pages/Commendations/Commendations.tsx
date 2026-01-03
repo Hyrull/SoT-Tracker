@@ -233,7 +233,7 @@ const handleTogglePin = async (emblem: Emblem, factionKey?: string, campaignKey?
     <section id="all-commendations">
       {/* this is the div that acts as a treshold for the stickyness of the filterbar */}
       <div ref={sentinelRef} style={{ height: '1px', width: '100%', position: 'absolute', top: 0, visibility: 'hidden' }} />
-      
+
       <div className={`offset ${isSticky ? 'active' : ''} ...`} />
       <FiltersBar
         hideCompleted={hideCompleted}
@@ -292,9 +292,9 @@ const handleTogglePin = async (emblem: Emblem, factionKey?: string, campaignKey?
                 <ul>
                   {pinnedEmblems
                     .filter((emblem) => !hideCompleted || !emblem.Completed)
-                    .map((emblem, index) => (
+                    .map((emblem) => (
                       <EmblemCard
-                        key={`favorite-${index}`}
+                        key={`fav-${emblem.DisplayName}`}
                         emblem={emblem}
                         showRewards={showRewards}
                         isPinned={true}
