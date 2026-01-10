@@ -52,7 +52,7 @@ function Header() {
 
   return (
     <header>
-      {backendOnline ? 
+      {!backendOnline ? 
       <div className='no-backend-banner'>
         <p className='no-backend-text'>SoT Tracker servers are offline. Please try again later.</p>
         <p className='no-backend-subtext'>Blame my ISP. If it's been offline for a while, ping @hyrul on Discord!</p>
