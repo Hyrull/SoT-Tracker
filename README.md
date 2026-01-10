@@ -18,10 +18,11 @@ SoT Tracker is a companion web app for **Sea of Thieves** that makes browsing yo
 
 1. Create an account on SoT Tracker.
 2. Import your **"rat" token** from the Sea of Thieves website. This gives the tracker **read-only access** to your progress (commendations, levels, monthly ledger unlocks).  
+   - The RAT is stored encrypted.
    - Your data is never stored permanently — deleting your account removes all traces.
 3. The website automatically updates your data when you click the **refresh** button.
 
-> Using the "rat" token simplifies the workflow compared to manual importers: no extra steps or scripts are needed, just refresh and go. However it dies every few weeks and might need updating. Can't help it.
+> Using the "rat" token simplifies the workflow compared to manual importers: no extra steps or scripts are needed, just refresh and go. However it dies every week or so and might need updating. Can't help it.
 
 ---
 
@@ -31,8 +32,10 @@ The homepage carousel displays example screenshots. You can also explore the [Co
 
 ---
 
-## Desktop-only for now
-Currently, the site is optimized for desktop, and is 100% broken on mobile. I will fix this eventually.
+## Desktop / mobile app available
+If you so wish, you can install the website as a windows app (embedded page, really) or phone app.
+On PC: Open it in Chrome and clicking the install app button on the right of the URL bar.
+On phone: Open it in Chrome again, press the three dots in the top-right corner and press "Add to Home Screen".
 
 ---
 
