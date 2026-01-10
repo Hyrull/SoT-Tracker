@@ -26,19 +26,19 @@ function Home() {
 
         <HomeQuestion
         title="How does it even work?"
-        content="You create an account on this website, and then import your 'rat' token from the Sea of Thieves website - gives the website a temporary
-        read-only access to your game progress (levels, commendations, monthly ledger unlocks). No data of yours is kept in the databases, 
-        would you delete your SoT Tracker account. Everything is open-source, so if you can read code, you'll find the GitHub repos below."
+        content="You create an account on this website, and then import your Rare Authentification Token (RAT) from the Sea of Thieves website - gives our website a temporary
+        read-only access to your game progress (levels, commendations, monthly ledger unlocks). No data of yours is kept in the databases, would you delete your SoT Tracker account.
+        Your RAT is stored crypted in the database. Everything is open-source, so if you can read code, you'll find the GitHub repos below."
         />
 
         <HomeQuestion
         title="What's this score/number I can see when I'm logged in?"
-        content="Your score. Each grade of each commendation awards a number of points, all of which adds up to form your total score. The higher the better! You can hover any commendation (or tap, on mobile) to see how many points it gives, in the top-left corner."
+        content="Your account score. Each grade of each commendation awards a number of points, all of which adds up to form your total score. The higher the better! You can hover any commendation (or tap, on mobile) to see how many points it gives, in the top-left corner."
         />
 
         <HomeQuestion
         title="Does this website work on mobile? / Is an app planned?"
-        content="The website does work on mobile. However, an app would require me to re-do the entire website, which is a LOT of work for very few users. I, myself would use it, but it's not planned for the foreseeable future."
+        content="The website does work on mobile. You can get the website as an 'app' by opening it via Google Chrome, pressing the three dots in the top-right corner and selecting 'Add to Home Screen'."
         />
 
         <HomeQuestion
@@ -46,21 +46,21 @@ function Home() {
         content={
           <>
           See a couple screenshots on the carousel above or try browsing the <Link data-itemprop='url' to='/commendations'>Commendations</Link> page - 
-          even without making an account, you can browse a demo page with my own commendations from late October, 2025.
+          even without making an account, you can browse a demo page with my own commendations from late November, 2025.
           </>
         }
         />
         <HomeQuestion
         title='Why use the "rat" token and not an importer like other fan websites?'
         content='This website was originally built to meet my own needs - as a companion app while playing. While an importer would work just as well, it requires more steps: open the SoT website profile page, run the script, 
-        go back to the tracker and refresh. By using the "rat" token instead, a single click on the "refresh" button here is enough to refresh everything, which is far more convenient - even though it must be updated every couple weeks or so.'
+        go back to the tracker and refresh. By using the "rat" token instead, a single click on the "refresh" button here is enough to refresh everything, which is far more convenient - even though it must be updated every week or so.'
         />
         
         <HomeQuestion
           title="Let me see the code!"
           content={
-            <>
-              Yup. You can find it on the website's footer at any time, or here:{' '}
+            <p>
+              Sure. You can find it on the website's footer at any time, or here:{' '}
               <a href="https://github.com/Hyrull/SoT-Tracker"
                 target="_blank" rel="noopener noreferrer">
                 frontend code</a>
@@ -68,12 +68,12 @@ function Home() {
               <a href="https://github.com/Hyrull/SoT-Tracker-backend"
                 target="_blank" rel="noopener noreferrer">
                 backend code</a>.
-            </>
+            </p>
           }
         />
         <HomeQuestion
-        title="I have feedback."
-        content="Either send an issue on the repos above, or ping me on any Sea of Thieves Discord server I'm on (I'm on most). I'm @hyrul."
+        title="I have feedback / more questions."
+        content="For bug reports, either send an issue on the repos above, or ping me on any Sea of Thieves Discord server I'm on (I'm on most). I'm @hyrul. Feel free to DM anything question or suggestion too."
         />
       </div>
     </div>
