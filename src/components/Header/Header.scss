@@ -4,8 +4,31 @@ header {
   background-color: #1a1a1a;
   width: 100%;
   display: flex;
+  flex-direction: column;
   justify-content: center;
   border-bottom: 1px solid #393939;
+
+  .no-backend-banner {
+    background-color: $main-accent-color;
+    height: 50px;
+    display: flex;
+    align-items: center;
+    justify-content:space-between;
+
+    display: flex;
+    flex-direction: column;
+    padding: 10px 0px;
+
+    .no-backend-text {
+      font-size: 1.6em;  
+      color: white;
+    }
+
+    .no-backend-subtext {
+      font-size: 0.83em;
+    }
+  }
+
   
   .header-content {
     display: flex;
@@ -93,6 +116,22 @@ header {
 @media (max-width: 767.98px) {
   header {
     flex-direction: column;
+
+    .no-backend-banner {
+      height: auto;
+      padding: 18px;
+      
+      .no-backend-text {
+        font-size: 1.4em;
+        text-align: center;
+        // padding-bottom: 10px;
+      }
+
+      .no-backend-subtext {
+        display: none;
+        // text-align: center;
+      }
+    }
 
     img {
       margin-bottom: 20px;
