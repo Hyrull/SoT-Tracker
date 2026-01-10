@@ -140,37 +140,53 @@ header {
     }
 
     .header-content {
+      display: grid;
+      /* Define your width share here */
+      grid-template-columns: 35% 65%; 
+      align-items: center;
+      width: 100%;
+
       .main-logo-full {
         display: none;
       }
       
       .main-logo-notext {
+        align-items: auto;
         display: block;
-      }
-    }
-    
-    .nav-and-infos { 
-      nav {
-        display: flex;
-        flex-direction: column;
-        
-        a {
-          margin-bottom: 15px;
-          justify-content: center;
-          text-align: center;
-          padding-left: 0px;
-          font-size: 1rem;
-        }
+        margin: 6px;
       }
 
-      .player-infos {
-        .score-display {
-          img {
-            width: 14px;
-            margin-bottom: 0px;
+      .nav-and-infos { 
+        display: flex;
+        flex-direction: column;
+        gap: 12px;
+        // justify-self: end
+  
+        nav {
+          display: flex;
+          flex-direction: column;
+          width: 90%;
+          gap: 8px;
+          
+          a {
+            width: 100%;
+            text-align: right;
+            font-size: 1.5rem;
+            padding: 4px 0px 4px 0px;
+          }
+        }
+  
+        .player-infos {
+          margin-right: 28px;
+          .score-display {
+            img {
+              width: 14px;
+              margin-bottom: 0px;
+            }
           }
         }
       }
     }
+    
   }
 }
