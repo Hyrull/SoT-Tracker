@@ -8,7 +8,7 @@ export interface ToastProps {
   onClose?: () => void
 }
 
-function Toast({ content, duration = 3000, type = 'success', onClose }: ToastProps) {
+function Toast({ content, duration = 5000, type = 'success', onClose }: ToastProps) {
   const [visible, setVisible] = useState(true)
 
   useEffect(() => {
