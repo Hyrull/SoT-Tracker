@@ -51,7 +51,20 @@ export const refreshEmblems = async (token: string | null, isDemo: boolean): Pro
         Authorization: `Bearer ${token}`,
       },
     })
-    if (!updateRes.ok) throw new Error('Failed to refresh data - try updating your RAT token in the Settings.')
+    if (!updateRes.ok) {
+      if (updateRes.status === 503) {
+        throw new Error('The Sea of Thieves API is currently down. Try again later.')
+      }
+      let serverMessage = 'Failed to refresh data' // just a generic one, but supposedly will never be shown
+      try {
+        const errorData = await updateRes.json()
+        if (errorData.error) serverMessage = errorData.error
+        if (errorData.message) serverMessage = errorData.message
+      } catch (e) {
+        // response wasn't JSON, ignore
+      }
+      throw new Error(serverMessage)
+    }
 
     // Fetch the updated data
     const { data, error } = await fetchEmblems(token, isDemo)
