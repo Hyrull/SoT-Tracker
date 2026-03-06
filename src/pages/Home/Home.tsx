@@ -73,7 +73,7 @@ function Home() {
         />
         <HomeQuestion
         title="I have feedback / more questions."
-        content="For bug reports, either send an issue on the repos above, or ping me on any Sea of Thieves Discord server I'm on (I'm on most). I'm @hyrul. Feel free to DM anything question or suggestion too."
+        content="For bug reports, either send an issue on the repos above, or ping me on any Sea of Thieves Discord server I'm on (I'm on most). I'm @hyrul. Feel free to DM me any question or suggestion too."
         />
       </div>
     </div>
