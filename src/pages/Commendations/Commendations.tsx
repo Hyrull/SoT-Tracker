@@ -1,4 +1,4 @@
-import { useEffect, useState, useCallback, useMemo, useRef } from 'react'
+import { useEffect, useState, useCallback, useMemo } from 'react'
 import { Link } from 'react-router'
 import { AllCommsData, Emblem, PinnedItem } from '../../types/types'
 import './Commendations.scss'
@@ -31,28 +31,6 @@ const Commendations = () => {
   const [refreshing, setRefreshing] = useState(false)
   const { token, refreshScore, logout } = useUser()
   const [pinned, setPinned] = useState<PinnedItem[]>([])
-  const sentinelRef = useRef<HTMLDivElement>(null)
-
-  useEffect(() => {
-    const observer = new IntersectionObserver(
-      ([entry]) => {
-        // If the sentinel is NOT intersecting (it scrolled off screen), we are sticky
-        setIsSticky(!entry.isIntersecting)
-      },
-      {
-        root: null, // viewport
-        threshold: 0, // triggers as soon as 1 pixel leaves
-        rootMargin: `-${125}px 0px 0px 0px` 
-        // 125px = header height
-      }
-    )
-
-    if (sentinelRef.current) {
-      observer.observe(sentinelRef.current)
-    }
-
-    return () => observer.disconnect()
-  }, [])
 
   const isDemo = !token
   const { showToast } = useToast()
@@ -179,7 +157,7 @@ const handleTogglePin = async (emblem: Emblem, factionKey?: string, campaignKey?
   }, [])
 
   useEffect(() => {
-    window.addEventListener('scroll', handleScroll)
+    window.addEventListener('scroll', handleScroll, {passive: true})
     return () => window.removeEventListener('scroll', handleScroll)
   }, [handleScroll])
 
@@ -223,9 +201,6 @@ const handleTogglePin = async (emblem: Emblem, factionKey?: string, campaignKey?
 
   return (
     <section id="all-commendations">
-      {/* this is the div that acts as a treshold for the stickyness of the filterbar */}
-      <div ref={sentinelRef} style={{ height: '1px', width: '100%', position: 'absolute', top: 0, visibility: 'hidden' }} />
-
       <div className={`offset ${isSticky ? 'active' : ''} ...`} />
       <FiltersBar
         hideCompleted={hideCompleted}
