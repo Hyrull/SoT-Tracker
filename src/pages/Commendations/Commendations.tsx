@@ -1,5 +1,5 @@
 import { useEffect, useState, useCallback, useMemo, useRef } from 'react'
-import { Link, useNavigate } from 'react-router'
+import { Link } from 'react-router'
 import { AllCommsData, Emblem, PinnedItem } from '../../types/types'
 import './Commendations.scss'
 import FiltersBar from './Components/FiltersBar'
@@ -21,7 +21,6 @@ import pinnedBanner from '/assets/img/faction banners/Favorites_banner.webp'
 
 
 const Commendations = () => {
-  const navigate = useNavigate()
   const [emblems, setEmblems] = useState<AllCommsData>({})
   const [hideCompleted, setHideCompleted] = useState(true)
   const [showRewards, setShowRewards] = useState(true)
@@ -30,7 +29,7 @@ const Commendations = () => {
   const [error, setError] = useState<string | null>(null)
   const [isSticky, setIsSticky] = useState(false)
   const [refreshing, setRefreshing] = useState(false)
-  const token = localStorage.getItem('token')
+  const { token, refreshScore, logout } = useUser()
   const [pinned, setPinned] = useState<PinnedItem[]>([])
   const sentinelRef = useRef<HTMLDivElement>(null)
 
@@ -57,7 +56,6 @@ const Commendations = () => {
 
   const isDemo = !token
   const { showToast } = useToast()
-  const { refreshScore } = useUser()
 
   // Resolve pinned items to full emblem objects
   const pinnedEmblems = useMemo(
@@ -185,10 +183,6 @@ const handleTogglePin = async (emblem: Emblem, factionKey?: string, campaignKey?
     return () => window.removeEventListener('scroll', handleScroll)
   }, [handleScroll])
 
-  const removeToken = () => {
-    localStorage.removeItem('token')
-  }
-
   const toggleHideCompleted = () => {
     setHideCompleted(!hideCompleted)
   }
@@ -212,9 +206,7 @@ const handleTogglePin = async (emblem: Emblem, factionKey?: string, campaignKey?
           <span
             className='relog-button'
             onClick={() => {
-              removeToken()
-              navigate('/login')
-              window.location.reload()
+              logout()
             }}
           >
             Log in again
