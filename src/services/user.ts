@@ -16,7 +16,8 @@ export const deleteUser = async (password: string, token: string | null): Promis
     })
 
     if (res.ok) return { success: true }
-    return { success: false, error: 'Failed to delete your profile.' }
+    const payload = await res.json().catch(() => ({}))
+    return { success: false, error: payload?.error || payload?.message || 'Failed to delete your profile.' }
   } catch (err: any) {
     return { success: false, error: err?.message || 'Network error.' }
   }
